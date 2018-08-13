@@ -9,7 +9,7 @@ defined( 'ABSPATH' ) || die( 'File cannot be accessed directly' );
 class Add_Reveal_Customizer {
 	public static function init() {
 		add_action( 'customize_register', array( __CLASS__, 'engage_the_customizer' ) );
-		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'customizer_enqueue' ) );
+		// add_action( 'wp_enqueue_scripts', array( __CLASS__, 'customizer_enqueue' ) );
 		add_action( 'wp_head', array( __CLASS__, 'show_admin_bar' ) );
 	}
 

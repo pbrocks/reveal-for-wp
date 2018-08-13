@@ -71,6 +71,20 @@ wp_head();
 			<p><small><?php echo $step_menu; ?></small></p>
 			</section>
 		</section>
+		<section>
+			<section>
+				<p>Reveal.js is great in showing slides in the same way on different screens with different sizes and aspect ratios.</p>
+			</section>
+			<section>
+				<p>However, by default not all of the screen can be used for presentation.</p>
+			</section>
+			<section>
+				<p>Sometimes you want to use all of the screen and this plugin allows you to.</p>
+			</section>
+			<section>
+				<p>Just include the <code>data-fullscreen</code> attribute to the section tag and the slide will use the entire screen.</p>
+			</section>
+		</section>
 		<?php wp_reset_postdata(); ?>
 		</div>
 	</div>
@@ -79,25 +93,42 @@ wp_head();
 	<script src="<?php echo REVEAL_JS; ?>/js/reveal.js"></script>
 
 	<script>
-
-	  // Full list of configuration options available at:
-	  // https://github.com/hakimel/reveal.js#configuration
-	  Reveal.initialize({
+	Reveal.initialize({
 		controls: true,
 		progress: true,
 		history: true,
 		center: true,
+		slideNumber: true,
 
 		transition: 'slide', // none/fade/slide/convex/concave/zoom
 
+				previewLinks: true,
+		menu: { // Menu works best with font-awesome installed: sudo apt-get install fonts-font-awesome
+			themes: false,
+			transitions: false,
+			markers: true,
+			hideMissingTitles: true,
+			keyboard: true,
+			custom: [
+		            { title: 'Plugins', icon: '<i class="fa fa-external-link"></i>', src: 'toc.html' },
+		            { title: 'About', icon: '<i class="fa fa-info"></i>', src: 'about.html' }
+		        ]
+		},
+		// menu: {
+		// 	numbers: true,
+		// 	openSlideNumber: true,
+		// 	themes: true,
+		// 	themesPath: '<?php echo REVEAL_JS; ?>/lib/reveal.js/css/theme/',
+		// 	transitions: true,
+	 //        custom: [
+	 //            { title: 'Custom', icon: '<i class="fa fa-bookmark">', src: 'links.html' },
+	 //        ]
+		// },
+
 		// Optional reveal.js plugins
 		dependencies: [
-		  { src: '<?php echo REVEAL_JS; ?>/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-		  { src: '<?php echo REVEAL_JS; ?>/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-		  { src: '<?php echo REVEAL_JS; ?>/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-		  { src: '<?php echo REVEAL_JS; ?>/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-		  { src: '<?php echo REVEAL_JS; ?>/plugin/zoom-js/zoom.js', async: true },
-		  { src: '<?php echo REVEAL_JS; ?>/plugin/notes/notes.js', async: true }
+			{ src: '<?php echo REVEAL_JS; ?>/plugin/notes/notes.js', async: true },
+			{ src: '<?php echo REVEAL_JS; ?>/plugin/menu/menu.js', async: true }
 		]
 	  });
 

@@ -98,25 +98,40 @@ wp_head();
 	<script src="<?php echo REVEAL_JS; ?>/js/reveal.js"></script>
 
 	<script>
+			Reveal.initialize({
+				controls: false,
+				progress: true,
+				history: true,
+				center: true,
+				width: 1200,
+				height: 800,
+				mouseWheel: true,
+				previewLinks: true,
+				menu: { // Menu works best with font-awesome installed: sudo apt-get install fonts-font-awesome
+					themes: false,
+					transitions: false,
+					markers: true,
+					hideMissingTitles: true,
+					keyboard: true,
+					custom: [
+				            { title: 'Plugins', icon: '<i class="fa fa-external-link"></i>', src: 'toc.html' },
+				            { title: 'About', icon: '<i class="fa fa-info"></i>', src: 'about.html' }
+				        ]
+				},
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // none/fade/slide/convex/concave/zoom
 
-	  // Full list of configuration options available at:
-	  // https://github.com/hakimel/reveal.js#configuration
-	  Reveal.initialize({
-		controls: true,
-		progress: true,
-		history: true,
-		center: true,
-
-		transition: 'slide', // none/fade/slide/convex/concave/zoom
 
 		// Optional reveal.js plugins
 		dependencies: [
-		  { src: '<?php echo REVEAL_JS; ?>/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-		  { src: '<?php echo REVEAL_JS; ?>/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-		  { src: '<?php echo REVEAL_JS; ?>/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-		  { src: '<?php echo REVEAL_JS; ?>/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-		  { src: '<?php echo REVEAL_JS; ?>/plugin/zoom-js/zoom.js', async: true },
-		  { src: '<?php echo REVEAL_JS; ?>/plugin/notes/notes.js', async: true }
+			{ src: '<?php echo REVEAL_JS; ?>/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+			{ src: '<?php echo REVEAL_JS; ?>/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+			{ src: '<?php echo REVEAL_JS; ?>/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+			{ src: '<?php echo REVEAL_JS; ?>/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+			{ src: '<?php echo REVEAL_JS; ?>/plugin/zoom-js/zoom.js', async: true },
+			{ src: '<?php echo REVEAL_JS; ?>/plugin/notes/notes.js', async: true },
+			{ src: '<?php echo REVEAL_JS; ?>/plugin/fullscreen/fullscreen.js' },
+			{ src: '<?php echo REVEAL_JS; ?>/plugin/menu/menu.js' },
 		]
 	  });
 

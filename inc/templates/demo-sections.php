@@ -409,7 +409,7 @@ wp_head();
 		  { src: '<?php echo REVEAL_JS; ?>/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
 		  { src: '<?php echo REVEAL_JS; ?>/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
 		  { src: '<?php echo REVEAL_JS; ?>/plugin/zoom-js/zoom.js', async: true },
-		  { src: '<?php echo REVEAL_JS; ?>/plugin/notes/notes.js', async: true }
+		{ src: '<?php echo REVEAL_JS; ?>/plugin/menu/menu.js', async: true }
 		]
 	  });
 
