@@ -46,7 +46,25 @@ $args = array(
 	\'order\'      => \'ASC\',
 	\'orderby\'    => \'menu_order\',
 );</xmp>';
+$path = plugin_dir_path( dirname( dirname( __FILE__ ) ) . '/templates/' );
+$path = plugin_dir_path( __DIR__ ) . 'templates/';
+$files = scandir($path);
 
+echo '<select>';
+foreach ( glob( plugin_dir_path( __DIR__ ) . 'templates/*.php' ) as $file ) {
+    echo '<option>' . basename( $file ) . '</option>';
+}
+echo '</select>';
+
+
+echo '<pre>';
+// print_r( $files );
+echo '</pre>';
+		echo '<h4>final_reveal_template = ' . get_option( 'final_reveal_template' )  . '</h4>';
+		echo '<h4>REVEAL_JS = ' . REVEAL_JS . '</h4>';
+		echo '<h4>Reveal Templates = ' . $path . '</h4>';
+		echo '<h4>reveal_on_page ' . get_option( 'reveal_on_page' )  . '</h4>';
+		echo '<h4> ' . ( '1' === get_option( 'turn_off_admin_bar' ) && get_option( 'reveal_on_page' ) ? 'please' : 'nope' ) . '</h4>';
 		echo '</div>';
 	}
 
@@ -63,13 +81,14 @@ $args = array(
 
 	/**
 	 * Add page templates.
-	 *
+	 * plugin_dir_path( __DIR__ ) . 'templates/*.php' 
 	 * @param array $templates The list of page templates
 	 *
 	 * @return array  $templates  The modified list of page templates
 	 */
 	public static function add_page_template_to_dropdown( $templates ) {
-		$templates[ plugin_dir_path( dirname( __FILE__ ) ) . 'templates/reveal-page-template.php' ] = __( 'Reveal Template', 'reveal-with-wordpress' );
+		// $templates[ plugin_dir_path( dirname( __FILE__ ) ) . 'templates/reveal-page-template.php' ] = __( 'Reveal Template', 'reveal-with-wordpress' );
+		$templates[ plugin_dir_path( dirname( __FILE__ ) ) . 'templates/' . get_option( 'final_reveal_template' ) ] = __( 'Reveal Template', 'reveal-with-wordpress' );
 		return $templates;
 	}
 
@@ -85,8 +104,8 @@ $args = array(
 		if ( is_page( 'wclvpa' ) ) {
 
 			if ( is_single() || is_page() ) {
-				// $file_template = plugin_dir_path( __FILE__ ) . 'templates/reveal-page-template.php';
-				$file_template = plugin_dir_path( dirname( __FILE__ ) ) . 'templates/reveal-page-template.php';
+				// $file_template = plugin_dir_path( dirname( __FILE__ ) ) . 'templates/reveal-page-template.php';
+				$file_template = plugin_dir_path( dirname( __FILE__ ) ) . 'templates/' . get_option( 'final_reveal_template' );
 				if ( file_exists( $file_template ) ) {
 					$template = $file_template;
 				}
