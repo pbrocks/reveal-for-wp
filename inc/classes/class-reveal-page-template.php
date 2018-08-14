@@ -50,6 +50,17 @@ $path = plugin_dir_path( dirname( dirname( __FILE__ ) ) . '/templates/' );
 $path = plugin_dir_path( __DIR__ ) . 'templates/';
 $files = scandir($path);
 
+		$slides = Build_Reveal_Slides::build_the_query();
+		$presentation = '';
+		foreach ( $slides->posts as $key => $value ) {
+			$presentation .= '<section><h3>Slide ' . ( intval( $key ) + 1 ) . ' ' . $value->post_title . '</h3>';
+			$presentation .= '<p style="color:blue">' . $value->post_content . '</p></section>';
+		}
+		echo esc_html__($presentation);
+		echo '<hr><hr><pre>';
+		// print_r( $slides->posts );
+		echo '</pre>';
+
 echo '<select>';
 foreach ( glob( plugin_dir_path( __DIR__ ) . 'templates/*.php' ) as $file ) {
     echo '<option>' . basename( $file ) . '</option>';
@@ -101,7 +112,8 @@ echo '</pre>';
 	 * @return mixed
 	 */
 	public static function change_page_template( $template ) {
-		if ( is_page( 'wclvpa' ) ) {
+		$page_id = get_option( 'reveal_on_page' );
+		if ( is_page( $page_id ) ) {
 
 			if ( is_single() || is_page() ) {
 				// $file_template = plugin_dir_path( dirname( __FILE__ ) ) . 'templates/reveal-page-template.php';

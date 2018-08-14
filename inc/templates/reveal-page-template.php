@@ -54,16 +54,6 @@ wp_head();
 			<div class="slide-content">
 				<?php echo $slides->posts[0]->post_content; ?>
 			</div>
-			<?php
-			if ( $slides->max_num_pages > 1 ) {
-				?>
-				<div id="nav-below" class="navigation">
-				<div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Previous', 'domain' ) ); ?></div>
-				<div class="nav-next"><?php previous_posts_link( __( 'Next <span class="meta-nav">&rarr;</span>', 'domain' ) ); ?></div>
-			</div>
-			<?php
-			}
-			?>
 			<p><br><br></p>
 			<aside class="notes">
 				
@@ -71,20 +61,17 @@ wp_head();
 			<p><small><?php echo $step_menu; ?></small></p>
 			</section>
 		</section>
-		<section>
-			<section>
-				<p>Reveal.js is great in showing slides in the same way on different screens with different sizes and aspect ratios.</p>
-			</section>
-			<section>
-				<p>However, by default not all of the screen can be used for presentation.</p>
-			</section>
-			<section>
-				<p>Sometimes you want to use all of the screen and this plugin allows you to.</p>
-			</section>
-			<section>
-				<p>Just include the <code>data-fullscreen</code> attribute to the section tag and the slide will use the entire screen.</p>
-			</section>
-		</section>
+		<?php
+		$slides = Build_Reveal_Slides::build_the_query();
+		$presentation = '';
+		foreach ( $slides->posts as $key => $value ) {
+			$presentation .= '<section><h3>Slide ' . ( intval( $key ) + 1 ) . ' ' . $value->post_title . '</h3>';
+			
+			$presentation .= '<div class="slide-content">' . $value->post_content . '</div></section>';
+		}
+		echo $presentation;
+		?>
+
 		<?php wp_reset_postdata(); ?>
 		</div>
 	</div>
