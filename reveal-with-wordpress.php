@@ -6,6 +6,7 @@
  * Version: 0.9.3
  * Author: pbrocks
  * Author URI: https://github.com/pbrocks
+ * Text-domain: reveal-with-wp
  */
 
 defined( 'ABSPATH' ) || die( 'File cannot be accessed directly' );

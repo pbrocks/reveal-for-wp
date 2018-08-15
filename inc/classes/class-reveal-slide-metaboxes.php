@@ -13,6 +13,7 @@ class Reveal_Slide_MetaBoxes {
 	public static function init() {
 		add_action( 'load-post.php', array( __CLASS__, 'init_metabox' ) );
 		add_action( 'load-post-new.php', array( __CLASS__, 'init_metabox' ) );
+		add_action( 'admin_menu', array( __CLASS__, 'enqueue_scripts' ) );
 		add_action( 'save_post', array( __CLASS__, 'landing_page_on_save' ), 10, 3 );
 	}
 
@@ -24,23 +25,29 @@ class Reveal_Slide_MetaBoxes {
 		add_action( 'save_post', array( __CLASS__, 'save_sws_metaboxes' ), 10, 2 );
 	}
 
+	public static function enqueue_scripts() {
+		wp_register_style( 'post-edit', plugins_url( 'css/post-edit.css', dirname( __FILE__ ) ) );
+		wp_enqueue_style( 'post-edit' );
+	}
+
 	/**
 	 * Add the metaboxes.
 	 */
 	public static function add_sws_metaboxes() {
 
 		add_meta_box(
-			'reveal_slide_one',
-			__( 'Sitewide Sale', 'pmpro_sitewide_sale' ),
-			array( __CLASS__, 'some_checkbox_metabox' ),
-			array( 'reveal_slides' ),
+			'reveal_presentation_checkbox',
+			__( 'Use with Reveal.js', 'reveal-with-wp' ),
+			array( __CLASS__, 'is_this_for_reveal' ),
+			array( 'page' ),
 			'side',
 			'high'
 		);
+		add_filter( 'postbox_classes_page_reveal_presentation_checkbox', array( __CLASS__, 'minify_this_metabox' ) );
 
 		add_meta_box(
 			'reveal_slide_step_3',
-			__( 'Customize your Message', 'pmpro_sitewide_sale' ),
+			__( 'Customize your Message', 'reveal-with-wp' ),
 			array( __CLASS__, 'display_step_3' ),
 			array( 'reveal_slides' ),
 			'normal',
@@ -49,7 +56,7 @@ class Reveal_Slide_MetaBoxes {
 
 		add_meta_box(
 			'reveal_slide_step_5',
-			__( 'Reveal Slide Notes', 'pmpro_sitewide_sale' ),
+			__( 'Reveal Slide Notes', 'reveal-with-wp' ),
 			array( __CLASS__, 'record_slide_notes' ),
 			array( 'reveal_slides' ),
 			'normal',
@@ -57,15 +64,61 @@ class Reveal_Slide_MetaBoxes {
 		);
 	}
 
+
+
+	/**
+	 * [minify_this_metabox description]
+	 *
+	 * @param  array $classes [description]
+	 * @return array          [description]
+	 */
+	public static function minify_this_metabox( $classes ) {
+		// if ( isset( $_POST['my_condition'] ) && 'my_condition' == $_POST['my_condition'] ) {
+		array_push( $classes, 'closed' );
+		// }
+		return $classes;
+	}
+
 	public static function some_checkbox_metabox( $post ) {
+		$selector = preg_replace( '/_+/', '-', __FUNCTION__ );
+		$label = ucwords( preg_replace( '/_+/', ' ', __FUNCTION__ ) );
 		wp_nonce_field( 'custom_nonce_action', 'custom_nonce' );
 		$init_checked = false;
+		echo '<label for="' . esc_html__( $selector, 'reveal-with-wp' ) . '">' . esc_html__( $label, 'reveal-with-wp' ) . ':</label><br>
+	<input name="' . esc_html__( $selector, 'reveal-with-wp' ) . '" id="' . esc_html__( $selector, 'reveal-with-wp' ) . '" type="checkbox" ' . ( $init_checked ? 'checked' : '' ) . ' /><div>
+	' . home_url() . '/pbrocks-pmpro-rocks
+	</div>';
+	}
 
-		echo '<table class="form-table"><tr>
-	<th scope="row" valign="top"><label>' . esc_html__( 'Set as Current Sitewide Sale', 'pmpro-sitewide-sale' ) . ':</label></th>
-	<td><input name="pmpro_sws_set_as_sitewide_sale" type="checkbox" ' . ( $init_checked ? 'checked' : '' ) . ' /></td>
-	</tr>
-	</table>';
+	public static function is_this_for_reveal( $post ) {
+		$selector = preg_replace( '/_+/', '-', __FUNCTION__ );
+		$label = ucfirst( preg_replace( '/_+/', ' ', __FUNCTION__ ) );
+		$reveal_page_id = intval( get_option( 'reveal_on_page' ) );
+		$show_reveal = get_permalink( $reveal_page_id );
+		$customize_reveal = admin_url( 'customize.php?url=' . get_permalink( $reveal_page_id ) );
+		wp_nonce_field( 'custom_nonce_action', 'custom_nonce' );
+		$init_checked = false;
+		/*
+		echo ' get_post( $reveal_page_id )->post_name
+		<section>
+		<!-- Checbox Three -->
+		<h3>Checkbox Three</h3>
+		<div class="checkboxThree">
+		<input type="checkbox" value="1" id="checkboxThreeInput" name="" />
+		<label for="checkboxThreeInput"></label>
+		</div>
+
+		<!-- Checbox Four -->
+		<h3>Checkbox Four</h3>
+		<div class="checkboxFour">
+		<input type="checkbox" value="1" id="checkboxFourInput" name="" />
+		<label for="checkboxFourInput"></label>
+		</div>
+		</section>
+		'; */
+		echo '<label for="' . esc_html__( $selector, 'reveal-with-wp' ) . '">' . esc_html__( $label, 'reveal-with-wp' ) . '.js?</label><br>
+	<input name="' . esc_html__( $selector, 'reveal-with-wp' ) . '" id="' . esc_html__( $selector, 'reveal-with-wp' ) . '" type="checkbox" ' . ( $init_checked ? 'checked' : '' ) . ' /><div><button class="button button-primary"><a href="' . $customize_reveal . '" target="_blank">Customize Presentation</a></button></div><br>
+	<div><button class="button button-primary"><a href="' . $show_reveal . '" target="_blank">Show Presentation</a></button></div>';
 	}
 
 	public static function display_step_3_heading() {
@@ -89,9 +142,7 @@ class Reveal_Slide_MetaBoxes {
 
 		echo '
 		<label for="record_slide_notes">Reveal Slide Notes</label><br>
-			<hr><textarea rows="6" cols="80">
-At w3schools.com you will learn how to make a website. We offer free tutorials in all web development technologies.
-</textarea><br>';
+			<hr><textarea rows="6" cols="80">Add notes here</textarea><br>';
 	}
 
 	/**

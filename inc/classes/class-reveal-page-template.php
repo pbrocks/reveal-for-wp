@@ -70,11 +70,16 @@ $args = array(
 		echo '<pre>';
 		// print_r( $files );
 		echo '</pre>';
+		$reveal_page_id = intval( get_option( 'reveal_on_page' ) );
 		echo '<h4>final_reveal_template = ' . get_option( 'final_reveal_template' ) . '</h4>';
 		echo '<h4>REVEAL_JS = ' . REVEAL_JS . '</h4>';
 		echo '<h4>Reveal Templates = ' . $path . '</h4>';
-		echo '<h4>reveal_on_page ' . get_option( 'reveal_on_page' ) . '</h4>';
+		echo '<h4>reveal_on_page id# ' . $reveal_page_id . '</h4>';
 		echo '<h4> ' . ( '1' === get_option( 'turn_off_admin_bar' ) && get_option( 'reveal_on_page' ) ? 'please' : 'nope' ) . '</h4>';
+		echo '<pre>';
+		print_r( get_post( $reveal_page_id ) );
+		print_r( get_the_author_meta( $reveal_page_id ) );
+		echo '</pre>';
 		echo '</div>';
 	}
 

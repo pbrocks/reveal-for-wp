@@ -10,6 +10,7 @@ class Add_Reveal_Customizer {
 	public static function init() {
 		add_action( 'customize_register', array( __CLASS__, 'engage_the_customizer' ) );
 		// add_action( 'wp_enqueue_scripts', array( __CLASS__, 'customizer_enqueue' ) );
+		// add_filter( 'wp_enqueue_scripts', array( __CLASS__, 'set_customizer_preview_url' ) );
 		add_action( 'wp', array( __CLASS__, 'show_admin_bar' ) );
 	}
 
@@ -186,9 +187,11 @@ class Add_Reveal_Customizer {
 
 	public static function set_customizer_preview_url() {
 		global $wp_customize;
+		$reveal_page_id = intval( get_option( 'reveal_on_page' ) );
+
 		// if ( ! isset( $_GET['url'] ) ) {
-			// $wp_customize->set_preview_url( get_permalink( get_page_by_title( 'Launchpad' ) ) );
-			$wp_customize->set_preview_url( '/customizer-dev-page/' );
+			$wp_customize->set_preview_url( get_permalink( $reveal_page_id ) );
+			// $wp_customize->set_preview_url( '/customizer-dev-page/' );
 		// }
 	}
 	// checkbox sanitization function
