@@ -37,7 +37,8 @@ wp_head();
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
 	<link rel="stylesheet" href="<?php echo REVEAL_JS; ?>/css/reveal.css">
-	<link rel="stylesheet" href="<?php echo REVEAL_JS; ?>/css/theme/sky-too.css" id="theme">
+	<!-- <link rel="stylesheet" href="<?php echo REVEAL_JS; ?>/css/theme/sky-too.css" id="theme"> -->
+	<link rel="stylesheet" href="<?php echo REVEAL_JS; ?>/css/theme/moon.css" id="theme">
 
 	<!-- Code syntax highlighting -->
 	<link rel="stylesheet" href="<?php echo REVEAL_JS; ?>/lib/css/zenburn.css">
