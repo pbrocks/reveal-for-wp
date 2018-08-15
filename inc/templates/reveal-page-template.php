@@ -58,14 +58,13 @@ wp_head();
 			<aside class="notes">
 				
 			</aside>
-			<p><small><?php echo $step_menu; ?></small></p>
 			</section>
 		</section>
 		<?php
 		$slides = Build_Reveal_Slides::build_the_query();
 		$presentation = '';
 		foreach ( $slides->posts as $key => $value ) {
-			$presentation .= '<section><h3>Slide ' . ( intval( $key ) + 1 ) . ' ' . $value->post_title . '</h3>';
+			$presentation .= '<section><h3>' . $value->post_title . '</h3>';
 
 			$presentation .= '<div class="slide-content">' . $value->post_content . '</div></section>';
 		}

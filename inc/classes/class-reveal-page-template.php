@@ -7,8 +7,8 @@ class Reveal_Page_Template {
 	public static function init() {
 		add_action( 'admin_menu', array( __CLASS__, 'reveal_dashboard' ) );
 		// add_action( 'wp_enqueue_scripts', array( __CLASS__, 'enqueue_scripts' ) );
-		add_filter( 'theme_page_templates', array( __CLASS__, 'add_page_template_to_dropdown' ) );
-		add_filter( 'template_include', array( __CLASS__, 'change_page_template' ), 99 );
+		// add_filter( 'theme_page_templates', array( __CLASS__, 'add_page_template_to_dropdown' ) );
+		add_filter( 'template_include', array( __CLASS__, 'change_page_template' ) );
 	}
 
 	public static function reveal_dashboard() {
@@ -46,9 +46,9 @@ $args = array(
 	\'order\'      => \'ASC\',
 	\'orderby\'    => \'menu_order\',
 );</xmp>';
-$path = plugin_dir_path( dirname( dirname( __FILE__ ) ) . '/templates/' );
-$path = plugin_dir_path( __DIR__ ) . 'templates/';
-$files = scandir($path);
+		$path = plugin_dir_path( dirname( dirname( __FILE__ ) ) . '/templates/' );
+		$path = plugin_dir_path( __DIR__ ) . 'templates/';
+		$files = scandir( $path );
 
 		$slides = Build_Reveal_Slides::build_the_query();
 		$presentation = '';
@@ -56,25 +56,24 @@ $files = scandir($path);
 			$presentation .= '<section><h3>Slide ' . ( intval( $key ) + 1 ) . ' ' . $value->post_title . '</h3>';
 			$presentation .= '<p style="color:blue">' . $value->post_content . '</p></section>';
 		}
-		echo esc_html__($presentation);
+		echo esc_html__( $presentation );
 		echo '<hr><hr><pre>';
 		// print_r( $slides->posts );
 		echo '</pre>';
 
-echo '<select>';
-foreach ( glob( plugin_dir_path( __DIR__ ) . 'templates/*.php' ) as $file ) {
-    echo '<option>' . basename( $file ) . '</option>';
-}
-echo '</select>';
+		echo '<select>';
+		foreach ( glob( plugin_dir_path( __DIR__ ) . 'templates/*.php' ) as $file ) {
+			echo '<option>' . basename( $file ) . '</option>';
+		}
+		echo '</select>';
 
-
-echo '<pre>';
-// print_r( $files );
-echo '</pre>';
-		echo '<h4>final_reveal_template = ' . get_option( 'final_reveal_template' )  . '</h4>';
+		echo '<pre>';
+		// print_r( $files );
+		echo '</pre>';
+		echo '<h4>final_reveal_template = ' . get_option( 'final_reveal_template' ) . '</h4>';
 		echo '<h4>REVEAL_JS = ' . REVEAL_JS . '</h4>';
 		echo '<h4>Reveal Templates = ' . $path . '</h4>';
-		echo '<h4>reveal_on_page ' . get_option( 'reveal_on_page' )  . '</h4>';
+		echo '<h4>reveal_on_page ' . get_option( 'reveal_on_page' ) . '</h4>';
 		echo '<h4> ' . ( '1' === get_option( 'turn_off_admin_bar' ) && get_option( 'reveal_on_page' ) ? 'please' : 'nope' ) . '</h4>';
 		echo '</div>';
 	}
@@ -92,7 +91,8 @@ echo '</pre>';
 
 	/**
 	 * Add page templates.
-	 * plugin_dir_path( __DIR__ ) . 'templates/*.php' 
+	 * plugin_dir_path( __DIR__ ) . 'templates/*.php'
+	 *
 	 * @param array $templates The list of page templates
 	 *
 	 * @return array  $templates  The modified list of page templates
