@@ -19,7 +19,7 @@ wp_head();
 		$step_menu .= $i . ' | ';
 		$i++;
 	}
-?>
+	?>
 <!doctype html>
 <html lang="en">
 
@@ -66,7 +66,7 @@ wp_head();
 		$presentation = '';
 		foreach ( $slides->posts as $key => $value ) {
 			$presentation .= '<section><h3>Slide ' . ( intval( $key ) + 1 ) . ' ' . $value->post_title . '</h3>';
-			
+
 			$presentation .= '<div class="slide-content">' . $value->post_content . '</div></section>';
 		}
 		echo $presentation;
@@ -91,15 +91,16 @@ wp_head();
 
 				previewLinks: true,
 		menu: { // Menu works best with font-awesome installed: sudo apt-get install fonts-font-awesome
-			themes: false,
+			themes: true,
+			themesPath: '<?php echo REVEAL_JS; ?>/lib/reveal.js/css/theme/',
 			transitions: false,
 			markers: true,
 			hideMissingTitles: true,
 			keyboard: true,
 			custom: [
-		            { title: 'Plugins', icon: '<i class="fa fa-external-link"></i>', src: 'toc.html' },
-		            { title: 'About', icon: '<i class="fa fa-info"></i>', src: 'about.html' }
-		        ]
+					{ title: 'Plugins', icon: '<i class="fa fa-external-link"></i>', src: 'toc.html' },
+					{ title: 'About', icon: '<i class="fa fa-info"></i>', src: 'about.html' }
+				]
 		},
 		// menu: {
 		// 	numbers: true,

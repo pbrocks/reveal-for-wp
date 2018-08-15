@@ -1,6 +1,6 @@
 <?php
-/** 
- * References 
+/**
+ * References
  * https://themefoundation.com/wordpress-theme-customizer/
  * https://divpusher.com/blog/wordpress-customizer-sanitization-examples#ddpages
  */
@@ -10,7 +10,7 @@ class Add_Reveal_Customizer {
 	public static function init() {
 		add_action( 'customize_register', array( __CLASS__, 'engage_the_customizer' ) );
 		// add_action( 'wp_enqueue_scripts', array( __CLASS__, 'customizer_enqueue' ) );
-		add_action( 'wp_head', array( __CLASS__, 'show_admin_bar' ) );
+		add_action( 'wp', array( __CLASS__, 'show_admin_bar' ) );
 	}
 
 		/**
@@ -121,7 +121,7 @@ class Add_Reveal_Customizer {
 
 		foreach ( glob( plugin_dir_path( __DIR__ ) . 'templates/*.php' ) as $file ) {
 			// echo '<option>' . basename( $file ) . '</option>';
-			$return[ basename( $file ) ] = basename( $file ); 
+			$return[ basename( $file ) ] = basename( $file );
 		}
 
 		$reveal_wp->add_control(
@@ -140,13 +140,13 @@ class Add_Reveal_Customizer {
 	public static function show_admin_bar( $reveal_wp ) {
 		global $post;
 
-		if (
-		/* '1' === get_option( 'turn_off_admin_bar' ) && */
-		$post->ID === intval( get_option( 'reveal_on_page' ) ) ) {
+		if ( is_page( intval( get_option( 'reveal_on_page' ) ) ) ) {
+			/* '1' === get_option( 'turn_off_admin_bar' ) && */
+
 			// disable the admin bar
-			add_filter('show_admin_bar', '__return_false');
-			}
+			add_filter( 'show_admin_bar', '__return_false' );
 		}
+	}
 
 	public static function create_customizer_dev_page( $reveal_wp ) {
 
@@ -191,12 +191,12 @@ class Add_Reveal_Customizer {
 			$wp_customize->set_preview_url( '/customizer-dev-page/' );
 		// }
 	}
-    //checkbox sanitization function
-	public static function sanitize_checkbox( $input ){
-	    //returns true if checkbox is checked
+	// checkbox sanitization function
+	public static function sanitize_checkbox( $input ) {
+		// returns true if checkbox is checked
 		return ( isset( $input ) ? true : false );
 	}
- 
+
 	/**
 	 * A section to show how you use the default customizer controls in WordPress
 	 *
