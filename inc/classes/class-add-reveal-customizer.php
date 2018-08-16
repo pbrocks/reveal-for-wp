@@ -81,16 +81,15 @@ class Add_Reveal_Customizer {
 			)
 		);
 
-		$reveal_wp->add_control(
-			'turn_off_admin_bar', array(
-				'label'     => __( 'Turn off Admin Bar on Reveal Page', 'reveal-customizer' ),
-				'section'   => 'reveal_section',
-				'priority'  => 10,
-				'settings'  => 'turn_off_admin_bar',
-				'type'      => 'checkbox',
-			)
-		);
-
+		// $reveal_wp->add_control(
+		// 'turn_off_admin_bar', array(
+		// 'label'     => __( 'Turn off Admin Bar on Reveal Page', 'reveal-customizer' ),
+		// 'section'   => 'reveal_section',
+		// 'priority'  => 10,
+		// 'settings'  => 'turn_off_admin_bar',
+		// 'type'      => 'checkbox',
+		// )
+		// );
 		$reveal_wp->add_setting(
 			'reveal_on_page', array(
 				'default'   => '',

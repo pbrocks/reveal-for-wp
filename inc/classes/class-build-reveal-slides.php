@@ -28,7 +28,14 @@ class Build_Reveal_Slides {
 	public static function reveal_some_html() {
 		echo '<div class="wrap">';
 		echo '<h2>' . ucwords( preg_replace( '/_+/', ' ', __FUNCTION__ ) ) . '</h2>';
+		// $portfolio = query_posts( 'post_type=reveal_slides' );
 		$slides = self::build_the_query();
+		$slide_count = count( $slides->posts );
+		// $slide_count = 14;
+		echo '<h3>We have ' . $slide_count . ' slides</h3>';
+		echo '<pre>';
+		print_r( $slides->posts );
+		echo '</pre>';
 		foreach ( $slides->posts as $key => $value ) {
 			// echo '<h4><span style="color:tomato;">Slide ' . ( intval( $key ) + 1 ) . '</span> ' . $value->ID . ' ' . $value->post_title . '</h4>';
 		}
@@ -112,14 +119,26 @@ class Build_Reveal_Slides {
 	 * @return string
 	 */
 	public static function build_the_query() {
-		$slides = new WP_Query(
-			array(
-				'post_type'  => array( 'reveal_slides' ),
-				'order'      => 'ASC',
-				'orderby'    => 'menu_order',
-			)
+		// WP_Query arguments
+		$args = array(
+			'post_type'              => array( 'reveal_slides' ),
+			'post_status'            => array( 'publish' ),
+			'nopaging'               => true,
+			'order'                  => 'ASC',
+			'orderby'                => 'menu_order',
 		);
-		return $slides;
+
+		// The Query
+		$query = new WP_Query( $args );
+		// $slides = new WP_Query(
+		// array(
+		// 'post_type'  => array( 'reveal_slides' ),
+		// 'showposts' => 30,
+		// 'order'      => 'DESC',
+		// 'orderby'    => 'menu_order',
+		// )
+		// );
+		return $query;
 	}
 	/**
 	 * count_the_query

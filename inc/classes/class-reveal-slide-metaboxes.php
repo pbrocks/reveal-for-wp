@@ -22,7 +22,7 @@ class Reveal_Slide_MetaBoxes {
 	 */
 	public static function init_metabox() {
 		add_action( 'add_meta_boxes', array( __CLASS__, 'add_sws_metaboxes' ) );
-		add_action( 'save_post', array( __CLASS__, 'save_sws_metaboxes' ), 10, 2 );
+		add_action( 'save_post', array( __CLASS__, 'save_reveal_slides_metaboxes' ), 10, 2 );
 	}
 
 	public static function enqueue_scripts() {
@@ -152,8 +152,8 @@ class Reveal_Slide_MetaBoxes {
 	 * @param WP_Post $post    Post object.
 	 * @return null
 	 */
-	public static function save_sws_metaboxes( $post_id, $post ) {
-		if ( 'reveal_slides' !== $post->post_type ) {
+	public static function save_reveal_slides_metaboxes( $post_id, $post ) {
+		if ( 'reveal_slides' !== $post->post_type || 'page' !== $post->post_type ) {
 			return;
 		}
 
@@ -187,7 +187,7 @@ class Reveal_Slide_MetaBoxes {
 
 		// Check if nonce is valid.
 		if ( ! wp_verify_nonce( $nonce_name, $nonce_action ) ) {
-			die( '<br/>Nonce failed' );
+			// die( '<br/>Nonce failed' );
 		}
 
 		global $wpdb;
