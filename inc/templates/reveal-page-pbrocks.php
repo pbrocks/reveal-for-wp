@@ -56,8 +56,7 @@ $reveal_notes = get_post_meta( $reveal_page_id, 'reveal_notes', true );
 ?>
 	<div class="reveal">
 	  <div class="slides">
-		<section>
-			<section class="title-slide">
+		<section class="title-slide">
 			<h1 id="block-name"><?php echo $reveal_presentation_title; ?></h1>
 
 			<div class="slide-content">
@@ -72,23 +71,6 @@ $reveal_notes = get_post_meta( $reveal_page_id, 'reveal_notes', true );
 				}
 				?>
 			</aside>
-			</section>
-			<section class="final-slide">
-			<h1 id="presenter-name"><?php echo $reveal_presenter_name; ?></h1>
-
-			<div class="slide-content">
-				<h3><?php echo $reveal_presentation_title; ?></h3>
-				<h3><?php echo $reveal_presenter_affiliation; ?></h3>
-			</div>
-			<p><br><br></p>
-			<aside class="notes">
-				<?php
-				if ( ! empty( $reveal_notes ) ) {
-					echo $reveal_notes;
-				}
-				?>
-			</aside>
-			</section>
 		</section>
 		<?php
 		$slides = Build_Reveal_Slides::build_the_query();
@@ -103,7 +85,22 @@ $reveal_notes = get_post_meta( $reveal_page_id, 'reveal_notes', true );
 		}
 		echo $presentation;
 		?>
+		<section class="final-slide">
+			<h1 id="presenter-name"><?php echo $reveal_presenter_name; ?></h1>
 
+			<div class="slide-content">
+				<h3><?php echo $reveal_presentation_title; ?></h3>
+				<h3><?php echo $reveal_presenter_affiliation; ?></h3>
+			</div>
+			<p><br><br></p>
+			<aside class="notes">
+				<?php
+				if ( ! empty( $reveal_notes ) ) {
+					echo $reveal_notes;
+				}
+				?>
+			</aside>
+		</section>
 		<?php wp_reset_postdata(); ?>
 		</div>
 	</div>
