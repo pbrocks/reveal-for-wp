@@ -26,10 +26,12 @@ class Create_Reveal_Slides {
 		$screen = get_current_screen();
 		$customize_link = admin_url( 'customize.php?url=' . get_permalink( get_option( 'reveal_on_page' ) ) );
 		$present_link = get_permalink( get_option( 'reveal_on_page' ) );
+		$edit_link = get_edit_post_link( get_option( 'reveal_on_page' ) );
 		if ( 'reveal_slides' != $screen->post_type ) {
 			return;
 		}
 		if ( $which == 'top' ) {
+			echo '<a href="' . $edit_link . '"><input type="button" class="button button-primary" value="Edit Cover" /></a> ';
 			echo '<a href="' . $customize_link . '"><input type="button" class="button button-primary" value="Customize Slides" /></a> ';
 			echo ' <a href="' . $present_link . '"><input type="button" class="button button-primary" value="Present Slides" /></a>';
 		}
