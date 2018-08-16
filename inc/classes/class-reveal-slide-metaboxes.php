@@ -13,7 +13,7 @@ class Reveal_Slide_MetaBoxes {
 	public static function init() {
 		add_action( 'load-post.php', array( __CLASS__, 'init_metabox' ) );
 		add_action( 'load-post-new.php', array( __CLASS__, 'init_metabox' ) );
-		add_action( 'admin_menu', array( __CLASS__, 'enqueue_scripts' ) );
+		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'enqueue_scripts' ) );
 		add_action( 'save_post', array( __CLASS__, 'landing_page_on_save' ), 10, 3 );
 	}
 
@@ -26,7 +26,9 @@ class Reveal_Slide_MetaBoxes {
 	}
 
 	public static function enqueue_scripts() {
+		wp_register_script( 'post-edit', plugins_url( 'js/post-edit.js', dirname( __FILE__ ) ), array( 'jquery' ) );
 		wp_register_style( 'post-edit', plugins_url( 'css/post-edit.css', dirname( __FILE__ ) ) );
+		wp_enqueue_script( 'post-edit' );
 		wp_enqueue_style( 'post-edit' );
 	}
 
@@ -46,16 +48,16 @@ class Reveal_Slide_MetaBoxes {
 		add_filter( 'postbox_classes_page_reveal_presentation_checkbox', array( __CLASS__, 'minify_this_metabox' ) );
 
 		add_meta_box(
-			'reveal_slide_step_3',
+			'reveal_slide_metabox_3',
 			__( 'Customize your Message', 'reveal-with-wp' ),
-			array( __CLASS__, 'display_step_3' ),
+			array( __CLASS__, 'display_metabox_3' ),
 			array( 'reveal_slides' ),
 			'normal',
 			'high'
 		);
 
 		add_meta_box(
-			'reveal_slide_step_5',
+			'reveal_slide_metabox_5',
 			__( 'Reveal Slide Notes', 'reveal-with-wp' ),
 			array( __CLASS__, 'record_slide_notes' ),
 			array( 'reveal_slides' ),
@@ -98,39 +100,34 @@ class Reveal_Slide_MetaBoxes {
 		$customize_reveal = admin_url( 'customize.php?url=' . get_permalink( $reveal_page_id ) );
 		wp_nonce_field( 'custom_nonce_action', 'custom_nonce' );
 		$init_checked = false;
-		/*
-		echo ' get_post( $reveal_page_id )->post_name
-		<section>
-		<!-- Checbox Three -->
-		<h3>Checkbox Three</h3>
-		<div class="checkboxThree">
-		<input type="checkbox" value="1" id="checkboxThreeInput" name="" />
-		<label for="checkboxThreeInput"></label>
-		</div>
 
-		<!-- Checbox Four -->
-		<h3>Checkbox Four</h3>
-		<div class="checkboxFour">
-		<input type="checkbox" value="1" id="checkboxFourInput" name="" />
-		<label for="checkboxFourInput"></label>
-		</div>
-		</section>
-		'; */
-		echo '<label for="' . esc_html__( $selector, 'reveal-with-wp' ) . '">' . esc_html__( $label, 'reveal-with-wp' ) . '.js?</label><br>
-	<input name="' . esc_html__( $selector, 'reveal-with-wp' ) . '" id="' . esc_html__( $selector, 'reveal-with-wp' ) . '" type="checkbox" ' . ( $init_checked ? 'checked' : '' ) . ' /><div><button class="button button-primary"><a href="' . $customize_reveal . '" target="_blank">Customize Presentation</a></button></div><br>
-	<div><button class="button button-primary"><a href="' . $show_reveal . '" target="_blank">Show Presentation</a></button></div>';
+		/*
+		 echo '<div class="use-reveal">
+		<input type="checkbox" value="1" id="use-with-reveal" name="" />
+		<label for="use-with-reveal"></label>
+		</div>';*/
+		echo '<p class="description">' . esc_html__( $label, 'reveal-with-wp' ) . '.js?<br>';
+		echo '<div class="use-reveal"><br>';
+		echo '<input name="' . esc_html__( $selector, 'reveal-with-wp' ) . '" id="' . esc_html__( $selector, 'reveal-with-wp' ) . '" type="checkbox" ' . ( $init_checked ? 'checked' : '' ) . ' />';
+		echo '<label for="' . esc_html__( $selector, 'reveal-with-wp' ) . '"></label></div>';
+		/*
+		/ echo '<div class="use-reveal">
+		<input type="checkbox" value="1" id="use-with-reveal" name="" />
+		<label for="use-with-reveal"></label>
+		</div>';*/
+		echo '<div id="show-reveal"><button class="button button-primary"><a href="' . $customize_reveal . '" target="_blank">Customize Presentation</a></button><br><br><button class="button button-primary"><a href="' . $show_reveal . '" target="_blank">Show Presentation</a></button><br></div>';
 	}
 
-	public static function display_step_3_heading() {
+	public static function display_metabox_3_heading() {
 		$return = '<h3>' . __FUNCTION__ . '</h3>';
 		return $return;
 	}
 
-	public static function display_step_3( $post ) {
-		$label = self::display_step_3_heading();
+	public static function display_metabox_3( $post ) {
+		$label = self::display_metabox_3_heading();
 		$label = ucwords( preg_replace( '/_+/', ' ', $label ) );
 		$value = $label;
-		$value .= apply_filters( 'sws_step_3_description', 'Use this filter: sws_step_3_description to provide some instructions about how to set up a Sitewide Sale.' );
+		$value .= apply_filters( 'sws_metabox_3_description', 'Use this filter: sws_metabox_3_description to provide some instructions about how to set up a Sitewide Sale.' );
 		echo $value;
 	}
 

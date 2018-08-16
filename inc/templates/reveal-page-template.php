@@ -35,9 +35,10 @@ wp_head();
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-
+	<?php $theme_css = get_option( 'reveal_theme_css' ); ?>
 	<link rel="stylesheet" href="<?php echo REVEAL_JS; ?>/css/reveal.css">
-	<link rel="stylesheet" href="<?php echo REVEAL_JS; ?>/css/theme/sky-too.css" id="theme">
+	<link rel="stylesheet" href="<?php echo REVEAL_JS; ?>/css/theme/<?php echo ( $theme_css ? $theme_css : 'sky-too.css' ); ?>" id="theme">
+	<link rel="stylesheet" href="<?php echo REVEAL_JS; ?>/css/reveal-presentation.css">
 
 	<!-- Code syntax highlighting -->
 	<link rel="stylesheet" href="<?php echo REVEAL_JS; ?>/lib/css/zenburn.css">
@@ -49,7 +50,7 @@ wp_head();
 	  <div class="slides">
 		<section class="page-zero">
 			<section>
-			<h2><?php echo $slides->posts[0]->post_title; ?></h2>
+			<h2 id="block-name"><?php echo $slides->posts[0]->post_title; ?></h2>
 
 			<div class="slide-content">
 				<?php echo $slides->posts[0]->post_content; ?>
@@ -64,9 +65,9 @@ wp_head();
 		$slides = Build_Reveal_Slides::build_the_query();
 		$presentation = '';
 		foreach ( $slides->posts as $key => $value ) {
-			$presentation .= '<section><h3>' . $value->post_title . '</h3>';
+			$presentation .= '<section><h2 id="block-name">' . $value->post_title . '</h2>';
 
-			$presentation .= '<div class="slide-content">' . $value->post_content . '</div></section>';
+			$presentation .= '<div id="block-content" class="slide-content">' . $value->post_content . '</div></section>';
 		}
 		echo $presentation;
 		?>
