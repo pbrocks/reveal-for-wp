@@ -38,7 +38,7 @@ wp_head();
 	<?php $theme_css = get_option( 'reveal_theme_css' ); ?>
 	<link rel="stylesheet" href="<?php echo REVEAL_JS; ?>/css/reveal.css">
 	<link rel="stylesheet" href="<?php echo REVEAL_JS; ?>/css/theme/<?php echo ( $theme_css ? $theme_css : 'sky-too.css' ); ?>" id="theme">
-	<link rel="stylesheet" href="<?php echo REVEAL_JS; ?>/css/reveal-pbrocks.css">
+	<link rel="stylesheet" href="<?php echo plugins_url( 'inc/css/reveal-pbrocks.css', dirname( __DIR__ ) ); ?>">
 
 	<!-- Code syntax highlighting -->
 	<link rel="stylesheet" href="<?php echo REVEAL_JS; ?>/lib/css/zenburn.css">
@@ -58,7 +58,7 @@ $reveal_notes = get_post_meta( $reveal_page_id, 'reveal_notes', true );
 	  <div class="slides">
 		<section class="title-slide">
 			<h1 id="block-name"><?php echo $reveal_presentation_title; ?></h1>
-
+			<?php /* echo plugins_url( 'inc/css/reveal-pbrocks.css', dirname( __DIR__ ) ); */ ?>
 			<div class="slide-content">
 				<h3><?php echo $reveal_presenter_name; ?></h3>
 				<h3><?php echo $reveal_presenter_affiliation; ?></h3>

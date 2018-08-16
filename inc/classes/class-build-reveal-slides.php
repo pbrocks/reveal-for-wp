@@ -6,6 +6,7 @@ class Build_Reveal_Slides {
 
 	public static function init() {
 		add_action( 'admin_menu', array( __CLASS__, 'reveal_html' ) );
+		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'custom_css_enqueue' ) );
 		// add_filter( 'theme_page_templates', array( __CLASS__, 'add_page_template_to_dropdown' ) );
 	}
 
@@ -13,6 +14,19 @@ class Build_Reveal_Slides {
 		$slug = preg_replace( '/_+/', '-', __FUNCTION__ );
 		$label = ucwords( preg_replace( '/_+/', ' ', __FUNCTION__ ) );
 		add_submenu_page( 'edit.php?post_type=reveal_slides', __( $label, 'reveal-dashboard-menu' ), __( $label, 'reveal-dashboard-menu' ), 'manage_options', $slug . '.php', array( __CLASS__, 'reveal_some_html' ) );
+	}
+
+
+	public static function custom_css_enqueue() {
+		?>
+		<style type="text/css">
+			#wpadminbar {
+				/*display: none;*/
+			}			
+		</style>
+		<?php
+		wp_register_style( 'reveal-pbrocks', plugins_url( 'css/reveal-pbrocks.css', dirname( __FILE__ ) ) );
+		wp_enqueue_style( 'reveal-pbrocks' );
 	}
 
 
@@ -132,7 +146,6 @@ class Build_Reveal_Slides {
 	 * @return string
 	 */
 	public static function build_the_query() {
-		// WP_Query arguments
 		$args = array(
 			'post_type'              => array( 'reveal_slides' ),
 			'post_status'            => array( 'publish' ),
@@ -141,17 +154,9 @@ class Build_Reveal_Slides {
 			'orderby'                => 'menu_order',
 		);
 
-		// The Query
-		$query = new WP_Query( $args );
-		// $slides = new WP_Query(
-		// array(
-		// 'post_type'  => array( 'reveal_slides' ),
-		// 'showposts' => 30,
-		// 'order'      => 'DESC',
-		// 'orderby'    => 'menu_order',
-		// )
-		// );
-		return $query;
+		$slides = new WP_Query( $args );
+
+		return $slides;
 	}
 	/**
 	 * count_the_query
