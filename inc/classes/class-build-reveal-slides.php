@@ -28,6 +28,14 @@ class Build_Reveal_Slides {
 	public static function reveal_some_html() {
 		echo '<div class="wrap">';
 		echo '<h2>' . ucwords( preg_replace( '/_+/', ' ', __FUNCTION__ ) ) . '</h2>';
+		echo plugin_dir_path( dirname( __DIR__ ) ) . 'reveal-js/css/themes/<br>';
+
+		echo '<select>';
+		foreach ( glob( plugin_dir_path( dirname( __DIR__ ) ) . 'reveal-js/css/theme/*.css' ) as $file ) {
+			echo '<option>' . basename( $file ) . '</option>';
+		}
+		echo '</select>';
+
 		// $portfolio = query_posts( 'post_type=reveal_slides' );
 		$slides = self::build_the_query();
 		$slide_count = count( $slides->posts );
@@ -39,6 +47,11 @@ class Build_Reveal_Slides {
 		foreach ( $slides->posts as $key => $value ) {
 			// echo '<h4><span style="color:tomato;">Slide ' . ( intval( $key ) + 1 ) . '</span> ' . $value->ID . ' ' . $value->post_title . '</h4>';
 		}
+
+		// foreach ( glob( plugin_dir_path( __DIR__ ) . 'templates/*.php' ) as $file ) {
+		// echo '<option>' . basename( $file ) . '</option>';
+		// $return[ basename( $file ) ] = basename( $file );
+		// }
 		echo '<hr><hr><h3 style="color:tomato;">Slide presentation<h3>';
 		echo '<p>Below you should see the order of slides in your presentation.</p>';
 		$presentation = '';

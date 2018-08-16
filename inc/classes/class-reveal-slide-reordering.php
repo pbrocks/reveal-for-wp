@@ -35,7 +35,7 @@ if ( ! class_exists( 'Reveal_Slide_Reordering' ) ) :
 		public static function _add_actions() {
 			add_action( 'load-edit.php', array( __CLASS__, 'load_edit_screen' ) );
 			add_action( 'wp_ajax_reveal_slide_ordering', array( __CLASS__, 'ajax_reveal_slide_ordering' ) );
-			// add_action( 'plugins_loaded', array( __CLASS__, 'load_textdomain' ) );
+			add_action( 'plugins_loaded', array( __CLASS__, 'load_textdomain' ) );
 		}
 
 		/**
@@ -51,6 +51,9 @@ if ( ! class_exists( 'Reveal_Slide_Reordering' ) ) :
 		public static function load_edit_screen() {
 			$screen    = get_current_screen();
 			$post_type = $screen->post_type;
+			if ( 'page' === $post_type ) {
+				return;
+			}
 
 			// is post type sortable?
 			$sortable = ( post_type_supports( $post_type, 'slide-attributes' ) || is_post_type_hierarchical( $post_type ) );        // check permission

@@ -115,7 +115,8 @@ class Add_Reveal_Customizer {
 		$reveal_wp->add_setting(
 			'final_reveal_template', array(
 				'type'      => 'option',
-				'default'        => '',
+				'transport' => 'refresh',
+				'default'   => '',
 			)
 		);
 
@@ -135,6 +136,31 @@ class Add_Reveal_Customizer {
 				'priority'    => 11,
 			)
 		);
+
+		$reveal_wp->add_setting(
+			'reveal_theme_css', array(
+				'type'      => 'option',
+				'transport' => 'refresh',
+				'default'   => '',
+			)
+		);
+
+		foreach ( glob( plugin_dir_path( dirname( __DIR__ ) ) . 'reveal-js/css/theme/*.css' ) as $css ) {
+			$return_css[ basename( $css ) ] = basename( $css );
+		}
+
+		$reveal_wp->add_control(
+			'reveal_theme_css', array(
+				'section'     => 'reveal_section',
+				'type'        => 'select',
+				'settings'    => 'reveal_theme_css',
+				'label'       => 'Reveal CSS',
+				'description' => 'Select the css theme for displaying your presentation',
+				'choices'     => $return_css,
+				'priority'    => 14,
+			)
+		);
+
 	}
 
 	public static function show_admin_bar( $reveal_wp ) {

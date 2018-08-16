@@ -22,5 +22,5 @@ include( 'inc/classes/class-reveal-slide-reordering.php' );
 Add_Reveal_Customizer::init();
 Build_Reveal_Slides::init();
 Create_Reveal_Slides::init();
-// Reveal_Slide_MetaBoxes::init();
+Reveal_Slide_MetaBoxes::init();
 Reveal_Page_Template::init();
