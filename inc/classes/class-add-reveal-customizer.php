@@ -109,34 +109,6 @@ class Add_Reveal_Customizer {
 			)
 		);
 
-		/**
-		 * Radio control
-		 */
-		$reveal_wp->add_setting(
-			'final_reveal_template', array(
-				'type'      => 'option',
-				'transport' => 'refresh',
-				'default'   => '',
-			)
-		);
-
-		foreach ( glob( plugin_dir_path( __DIR__ ) . 'templates/*.php' ) as $file ) {
-			// echo '<option>' . basename( $file ) . '</option>';
-			$return[ basename( $file ) ] = basename( $file );
-		}
-
-		$reveal_wp->add_control(
-			'final_reveal_template', array(
-				'section'     => 'reveal_section',
-				'type'        => 'radio',
-				'settings'    => 'final_reveal_template',
-				'label'       => 'Final Reveal Template',
-				'description' => 'Select the template displaying your presentation',
-				'choices'     => $return,
-				'priority'    => 11,
-			)
-		);
-
 		$reveal_wp->add_setting(
 			'reveal_theme_css', array(
 				'type'      => 'option',
@@ -158,6 +130,31 @@ class Add_Reveal_Customizer {
 				'description' => 'Select the css theme for displaying your presentation',
 				'choices'     => $return_css,
 				'priority'    => 14,
+			)
+		);
+
+		$reveal_wp->add_setting(
+			'final_reveal_template', array(
+				'type'      => 'option',
+				'transport' => 'refresh',
+				'default'   => '',
+			)
+		);
+
+		foreach ( glob( plugin_dir_path( __DIR__ ) . 'templates/*.php' ) as $file ) {
+			// echo '<option>' . basename( $file ) . '</option>';
+			$return[ basename( $file ) ] = basename( $file );
+		}
+
+		$reveal_wp->add_control(
+			'final_reveal_template', array(
+				'section'     => 'reveal_section',
+				'type'        => 'select',
+				'settings'    => 'final_reveal_template',
+				'label'       => 'Final Reveal Template',
+				'description' => 'Select the template displaying your presentation',
+				'choices'     => $return,
+				'priority'    => 11,
 			)
 		);
 
@@ -196,28 +193,14 @@ class Add_Reveal_Customizer {
 		}
 	}
 
-	public static function set_reveal_array() {
-		$return['first'] = 'First';
-		$return['second'] = 'Second';
-		$return['third'] = 'Third';
-		return $return;
-	}
-
-	public static function set_reveal_template_array() {
-		$return['first'] = 'First';
-		$return['second'] = 'Second';
-		$return['third'] = 'Third';
-		return $return;
-	}
 
 	public static function set_customizer_preview_url() {
 		global $wp_customize;
 		$reveal_page_id = intval( get_option( 'reveal_on_page' ) );
 
-		// if ( ! isset( $_GET['url'] ) ) {
+		if ( ! isset( $_GET['url'] ) ) {
 			$wp_customize->set_preview_url( get_permalink( $reveal_page_id ) );
-			// $wp_customize->set_preview_url( '/customizer-dev-page/' );
-		// }
+		}
 	}
 	// checkbox sanitization function
 	public static function sanitize_checkbox( $input ) {
