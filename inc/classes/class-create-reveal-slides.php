@@ -24,12 +24,14 @@ class Create_Reveal_Slides {
 	}
 	public static function reveal_extra_tablenav( $which ) {
 		$screen = get_current_screen();
-		$link = admin_url( 'customize.php?url=' . get_permalink( get_option( 'reveal_on_page' ) ) );
+		$customize_link = admin_url( 'customize.php?url=' . get_permalink( get_option( 'reveal_on_page' ) ) );
+		$present_link = get_permalink( get_option( 'reveal_on_page' ) );
 		if ( 'reveal_slides' != $screen->post_type ) {
 			return;
 		}
 		if ( $which == 'top' ) {
-			echo '<a href="' . $link . '"><input type="button" class="button button-primary" value="Customize Slides" /></a>';
+			echo '<a href="' . $customize_link . '"><input type="button" class="button button-primary" value="Customize Slides" /></a> ';
+			echo ' <a href="' . $present_link . '"><input type="button" class="button button-primary" value="Present Slides" /></a>';
 		}
 		if ( $which == 'bottom' ) {
 		}
