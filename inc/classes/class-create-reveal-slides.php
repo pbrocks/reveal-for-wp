@@ -6,6 +6,7 @@ class Create_Reveal_Slides {
 
 	public static function init() {
 		add_action( 'init', array( __CLASS__, 'create_reveal_js_slide' ) );
+		add_action( 'manage_posts_extra_tablenav', array( __CLASS__, 'reveal_extra_tablenav' ) );
 		add_filter( 'plugin_action_links_reveal-with-wordpress/reveal-with-wordpress.php', array( __CLASS__, 'plugin_action_links' ) );
 		add_filter( 'query_vars', array( __CLASS__, 'custom_query_vars_filter' ) );
 		add_action( 'manage_reveal_slides_posts_custom_column', array( __CLASS__, 'custom_reveal_slides_column' ), 10, 2 );
@@ -20,6 +21,18 @@ class Create_Reveal_Slides {
 		// To make a column 'un-sortable' remove it from the array
 		unset( $columns['date'] );
 		return $columns;
+	}
+	public static function reveal_extra_tablenav( $which ) {
+		$screen = get_current_screen();
+		$link = admin_url( 'customize.php?url=' . get_permalink( get_option( 'reveal_on_page' ) ) );
+		if ( 'reveal_slides' != $screen->post_type ) {
+			return;
+		}
+		if ( $which == 'top' ) {
+			echo '<a href="' . $link . '"><input type="button" class="button button-primary" value="Customize Slides" /></a>';
+		}
+		if ( $which == 'bottom' ) {
+		}
 	}
 
 	public static function set_custom_edit_reveal_slides_columns( $columns ) {
@@ -179,7 +192,7 @@ class Create_Reveal_Slides {
 		}
 
 		</style>
-	<?php
+		<?php
 	}
 
 }
