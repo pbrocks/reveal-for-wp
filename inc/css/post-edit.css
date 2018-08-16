@@ -17,8 +17,12 @@
     background: transparent;
 }
 */
-
-
+input#record_slide_link {
+    width: 80%;
+}
+input.reveal_presentation_text_input {
+    width: 88%;
+}
 /**
  * Checkbox Three
  */

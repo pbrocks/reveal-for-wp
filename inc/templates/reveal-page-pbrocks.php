@@ -38,25 +38,55 @@ wp_head();
 	<?php $theme_css = get_option( 'reveal_theme_css' ); ?>
 	<link rel="stylesheet" href="<?php echo REVEAL_JS; ?>/css/reveal.css">
 	<link rel="stylesheet" href="<?php echo REVEAL_JS; ?>/css/theme/<?php echo ( $theme_css ? $theme_css : 'sky-too.css' ); ?>" id="theme">
+	<link rel="stylesheet" href="<?php echo REVEAL_JS; ?>/css/reveal-pbrocks.css">
 
 	<!-- Code syntax highlighting -->
 	<link rel="stylesheet" href="<?php echo REVEAL_JS; ?>/lib/css/zenburn.css">
   </head>
 
   <body>
-<?php $posts_array = $slides->posts; ?>
+<?php
+$posts_array = $slides->posts;
+$reveal_page_id = intval( get_option( 'reveal_on_page' ) );
+$presenting_on = get_post( $reveal_page_id );
+$reveal_presentation_title = get_post_meta( $reveal_page_id, 'reveal_presentation_title', true );
+$reveal_presenter_name = get_post_meta( $reveal_page_id, 'reveal_presenter_name', true );
+$reveal_presenter_affiliation = get_post_meta( $reveal_page_id, 'reveal_presenter_affiliation', true );
+$reveal_notes = get_post_meta( $reveal_page_id, 'reveal_notes', true );
+?>
 	<div class="reveal">
 	  <div class="slides">
-		<section class="page-zero">
-			<section>
-			<h2 id="block-name"><?php echo $slides->posts[0]->post_title; ?></h2>
+		<section>
+			<section class="title-slide">
+			<h1 id="block-name"><?php echo $reveal_presentation_title; ?></h1>
 
 			<div class="slide-content">
-				<?php echo $slides->posts[0]->post_content; ?>
+				<h3><?php echo $reveal_presenter_name; ?></h3>
+				<h3><?php echo $reveal_presenter_affiliation; ?></h3>
 			</div>
 			<p><br><br></p>
 			<aside class="notes">
-				
+				<?php
+				if ( ! empty( $reveal_notes ) ) {
+					echo $reveal_notes;
+				}
+				?>
+			</aside>
+			</section>
+			<section class="final-slide">
+			<h1 id="presenter-name"><?php echo $reveal_presenter_name; ?></h1>
+
+			<div class="slide-content">
+				<h3><?php echo $reveal_presentation_title; ?></h3>
+				<h3><?php echo $reveal_presenter_affiliation; ?></h3>
+			</div>
+			<p><br><br></p>
+			<aside class="notes">
+				<?php
+				if ( ! empty( $reveal_notes ) ) {
+					echo $reveal_notes;
+				}
+				?>
 			</aside>
 			</section>
 		</section>
@@ -64,9 +94,12 @@ wp_head();
 		$slides = Build_Reveal_Slides::build_the_query();
 		$presentation = '';
 		foreach ( $slides->posts as $key => $value ) {
+			$notes = get_post_meta( $value->ID, 'reveal_notes', true );
 			$presentation .= '<section><h2 id="block-name">' . $value->post_title . '</h2>';
 
-			$presentation .= '<div id="block-content" class="slide-content">' . $value->post_content . '</div></section>';
+			$presentation .= '<div id="block-content" class="slide-content">' . $value->post_content . '</div>';
+
+			$presentation .= '<aside class="notes">' . ( $notes ? esc_html( $notes ) : 'nada' ) . '</aside></section>';
 		}
 		echo $presentation;
 		?>
@@ -101,21 +134,12 @@ wp_head();
 					{ title: 'About', icon: '<i class="fa fa-info"></i>', src: 'about.html' }
 				]
 		},
-		// menu: {
-		// 	numbers: true,
-		// 	openSlideNumber: true,
-		// 	themes: true,
-		// 	themesPath: '<?php echo REVEAL_JS; ?>/lib/reveal.js/css/theme/',
-		// 	transitions: true,
-	 //        custom: [
-	 //            { title: 'Custom', icon: '<i class="fa fa-bookmark">', src: 'links.html' },
-	 //        ]
-		// },
+
 
 		// Optional reveal.js plugins
 		dependencies: [
 			{ src: '<?php echo REVEAL_JS; ?>/plugin/notes/notes.js', async: true },
-			{ src: '<?php echo REVEAL_JS; ?>/plugin/menu/menu.js', async: true }
+			
 		]
 	  });
 
