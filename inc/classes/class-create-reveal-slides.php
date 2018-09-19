@@ -9,6 +9,7 @@ class Create_Reveal_Slides {
 		add_action( 'manage_posts_extra_tablenav', array( __CLASS__, 'reveal_extra_tablenav' ) );
 		add_filter( 'plugin_action_links_reveal-with-wordpress/reveal-with-wordpress.php', array( __CLASS__, 'plugin_action_links' ) );
 		add_filter( 'query_vars', array( __CLASS__, 'custom_query_vars_filter' ) );
+		// add_action( 'init', array( __CLASS__, 'add_slide_statuses' ), 0 );
 		add_action( 'manage_reveal_slides_posts_custom_column', array( __CLASS__, 'custom_reveal_slides_column' ), 10, 2 );
 		add_filter( 'manage_edit_reveal_slides_sortable_columns', array( __CLASS__, 'make_reveal_slides_sortable_column' ) );
 		add_filter( 'manage_reveal_slides_posts_columns', array( __CLASS__, 'set_custom_edit_reveal_slides_columns' ) );
@@ -68,6 +69,21 @@ class Create_Reveal_Slides {
 		$renaming_menu = apply_filters( 'renaming_cpt_menu_filter', 'Reveal Slides' );
 		return $renaming_menu;
 	}
+
+	public static function add_slide_statuses() {
+
+		$args = array(
+			'label'                     => _x( 'Presented', 'Status General Name', 'reveal-slides' ),
+			'label_count'               => _n_noop( 'Presented (%s)', 'Presented (%s)', 'reveal-slides' ),
+			'public'                    => false,
+			'show_in_admin_all_list'    => true,
+			'show_in_admin_status_list' => true,
+			'exclude_from_search'       => true,
+		);
+		register_post_status( 'presented', $args );
+
+	}
+
 
 	public static function register_sidecat_taxonomy() {
 		$tax_labels = self::get_tax_label_defaults();
