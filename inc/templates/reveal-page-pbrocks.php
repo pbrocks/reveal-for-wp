@@ -7,6 +7,7 @@ wp_head();
 	$slides = new WP_Query(
 		array(
 			'post_type'  => array( 'reveal_slides' ),
+			'category_name'      => get_option( 'reveal_category' ),
 			'order'      => 'ASC',
 			'orderby'    => 'menu_order',
 		)

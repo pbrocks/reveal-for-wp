@@ -54,9 +54,14 @@ class Build_Reveal_Slides {
 		$slides = self::build_the_query();
 		$slide_count = count( $slides->posts );
 		// $slide_count = 14;
-		echo '<h3>We have ' . $slide_count . ' slides</h3>';
+		echo '<h3>Active Presentation</h3>';
+		$catgry = get_option( 'reveal_category' );
+		echo '<li>We have ' . $slide_count . ' slides</li>';
+		echo '<li>Presenting from ' . $catgry . ' category</li>';
+		wp_dropdown_categories();
+
 		echo '<pre>';
-		print_r( $slides->posts );
+		// print_r( $slides->posts );
 		echo '</pre>';
 		foreach ( $slides->posts as $key => $value ) {
 			// echo '<h4><span style="color:tomato;">Slide ' . ( intval( $key ) + 1 ) . '</span> ' . $value->ID . ' ' . $value->post_title . '</h4>';
@@ -69,11 +74,13 @@ class Build_Reveal_Slides {
 		echo '<hr><hr><h3 style="color:tomato;">Slide presentation<h3>';
 		echo '<p>Below you should see the order of slides in your presentation.</p>';
 		$presentation = '';
+		echo '<div style="padding:0 2rem;">';
 		foreach ( $slides->posts as $key => $value ) {
-			echo '<div style="padding:0 2rem;"><h4><span style="color:tomato;">Slide ' . ( intval( $key ) + 1 ) . '</span> ' . $value->post_title . '</h4>';
-			echo '<p style="color:blue">' . $value->post_content . '</p></div>';
+			echo '<h4><a href="' . admin_url() . '/post.php?post=' . $value->ID . '&action=edit" target="_blank"><span style="color:tomato;">Slide ' . ( intval( $key ) + 1 ) . '</span> ' . $value->post_title . '</a></h4>';
+			// echo '<p style="color:blue">' . $value->post_content . '</p>';
 		}
-		echo '<hr><hr><pre>';
+		echo '</div><hr><hr>';
+		echo '<pre>';
 		// print_r( $slides->posts );
 		echo '</pre>';
 
@@ -149,6 +156,7 @@ class Build_Reveal_Slides {
 		$args = array(
 			'post_type'              => array( 'reveal_slides' ),
 			'post_status'            => array( 'publish' ),
+			'category_name'          => get_option( 'reveal_category' ),
 			'nopaging'               => true,
 			'order'                  => 'ASC',
 			'orderby'                => 'menu_order',
