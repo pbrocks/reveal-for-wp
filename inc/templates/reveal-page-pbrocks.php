@@ -79,9 +79,13 @@ $reveal_notes = get_post_meta( $reveal_page_id, 'reveal_notes', true );
 			$notes = get_post_meta( $value->ID, 'reveal_notes', true );
 			$presentation .= '<section><h2 id="block-name">' . $value->post_title . '</h2>';
 
-			$presentation .= '<div id="block-content" class="slide-content">' . $value->post_content . '</div>';
-
-			$presentation .= '<aside class="notes">' . ( $notes ? esc_html( $notes ) : 'nada' ) . '</aside></section>';
+			$presentation .= '<div id="block-content" class="slide-content">';
+			if ( has_post_thumbnail( $value->ID ) ) {
+				$presentation .= '<div id="slide-image" >' . get_the_post_thumbnail( $value->ID, 'full', array( 'class' => 'aligncenter' ) ) . '</div>';
+			} else {
+				$presentation .= $value->post_content;
+			}
+			$presentation .= '</div><aside class="notes">' . ( $notes ? esc_html( $notes ) : 'nada' ) . '</aside></section>';
 		}
 		echo $presentation;
 		?>
