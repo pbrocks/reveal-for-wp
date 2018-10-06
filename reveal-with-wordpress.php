@@ -2,8 +2,8 @@
 /**
  * Plugin Name: Reveal for/with WordPress
  * Plugin URI: https://github.com/pbrocks/reveal-for-wp
- * Description: Build Reveal.js presentations in WordPress
- * Version: 0.9.4
+ * Description: Build Reveal.js presentations in WordPress, select page to present on and category to present from in Customizer
+ * Version: 0.9.5
  * Author: pbrocks
  * Author URI: https://github.com/pbrocks
  * Text-domain: reveal-with-wp

@@ -119,13 +119,11 @@ class Add_Reveal_Customizer {
 
 		$reveal_wp->add_control(
 			'reveal_category', array(
-				// https://www.cssigniter.com/wordpress-customizer-custom-controls-categories-dropdown/
-				// 'type'        => 'dropdown-category',
 				'type'        => 'text',
-				'label'       => 'Present from',
+				'label'       => 'Presentation Category',
 				'settings'    => 'reveal_category',
 				'section'     => 'reveal_section',
-				'description' => 'Select the page you wish to show your presention on',
+				'description' => 'Select the category you are presenting from',
 			)
 		);
 
