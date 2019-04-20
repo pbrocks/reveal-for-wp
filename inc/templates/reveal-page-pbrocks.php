@@ -75,7 +75,7 @@ $reveal_notes                 = get_post_meta( $reveal_page_id, 'reveal_notes', 
 		</section>
 		<?php
 		$slides       = Build_Reveal_Slides::build_the_query();
-		$presentation = '' );
+		$presentation = '';
 		foreach ( $slides->posts as $key => $value ) {
 			$notes         = get_post_meta( $value->ID, 'reveal_notes', true );
 			$presentation .= '<section><h2 id="block-name">' . $value->post_title . '</h2>';
