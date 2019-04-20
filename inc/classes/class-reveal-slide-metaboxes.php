@@ -49,15 +49,25 @@ class Reveal_Slide_MetaBoxes {
 
 		add_meta_box(
 			'reveal_presentation_title',
-			__( 'reveal_presentation_title', 'reveal-with-wp' ),
+			__( ucwords( preg_replace( '/_+/', ' ', 'reveal_presentation_title' ) ), 'reveal-with-wp' ),
 			array( __CLASS__, 'reveal_presentation_title' ),
 			array( 'page' ),
 			'normal',
 			'high'
 		);
+
+		add_meta_box(
+			'reveal_presentation_subtitle',
+			__( ucwords( preg_replace( '/_+/', ' ', 'reveal_presentation_subtitle' ) ), 'reveal-with-wp' ),
+			array( __CLASS__, 'reveal_presentation_subtitle' ),
+			array( 'page' ),
+			'normal',
+			'high'
+		);
+
 		add_meta_box(
 			'reveal_presenter_name',
-			__( 'reveal_presenter_name', 'reveal-with-wp' ),
+			__( ucwords( preg_replace( '/_+/', ' ', 'reveal_presenter_name' ) ), 'reveal-with-wp' ),
 			array( __CLASS__, 'reveal_presenter_name' ),
 			array( 'page' ),
 			'normal',
@@ -65,21 +75,12 @@ class Reveal_Slide_MetaBoxes {
 		);
 		add_meta_box(
 			'reveal_presenter_affiliation',
-			__( 'reveal_presenter_affiliation', 'reveal-with-wp' ),
+			__( ucwords( preg_replace( '/_+/', ' ', 'reveal_presenter_affiliation' ) ), 'reveal-with-wp' ),
 			array( __CLASS__, 'reveal_presenter_affiliation' ),
 			array( 'page' ),
 			'normal',
 			'high'
 		);
-		add_meta_box(
-			'reveal_slide_metabox_3',
-			__( 'Customize your Message', 'reveal-with-wp' ),
-			array( __CLASS__, 'display_metabox_3' ),
-			array( 'reveal_slides' ),
-			'normal',
-			'high'
-		);
-
 		add_meta_box(
 			'reveal_slide_metabox_5',
 			__( 'Reveal Slide Notes', 'reveal-with-wp' ),
@@ -93,6 +94,14 @@ class Reveal_Slide_MetaBoxes {
 			'reveal_slide_link',
 			__( 'Reveal Slide Link', 'reveal-with-wp' ),
 			array( __CLASS__, 'record_slide_link' ),
+			array( 'reveal_slides' ),
+			'normal',
+			'high'
+		);
+		add_meta_box(
+			'reveal_slide_metabox_3',
+			__( 'Customize your Message', 'reveal-with-wp' ),
+			array( __CLASS__, 'display_metabox_3' ),
 			array( 'reveal_slides' ),
 			'normal',
 			'high'
@@ -115,30 +124,40 @@ class Reveal_Slide_MetaBoxes {
 	}
 
 	public static function reveal_presentation_title( $post ) {
-		$reveal_meta = __FUNCTION__;
+		$reveal_meta     = __FUNCTION__;
 		$reveal_existing = get_post_meta( $post->ID, $reveal_meta, true );
-		$label = ucwords( preg_replace( '/_+/', ' ', $reveal_meta ) );
-		$selector = preg_replace( '/_+/', '-', $reveal_meta );
+		$label           = ucwords( preg_replace( '/_+/', ' ', $reveal_meta ) );
+		$selector        = preg_replace( '/_+/', '-', $reveal_meta );
+		echo '
+		<label for="' . $selector . '">' . $label . '</label><br>
+			<hr><input name="' . $selector . '" id="' . $selector . '" class="reveal_presentation_text_input" value="' . $reveal_existing . '" /><br>';
+	}
+
+	public static function reveal_presentation_subtitle( $post ) {
+		$reveal_meta     = __FUNCTION__;
+		$reveal_existing = get_post_meta( $post->ID, $reveal_meta, true );
+		$label           = ucwords( preg_replace( '/_+/', ' ', $reveal_meta ) );
+		$selector        = preg_replace( '/_+/', '-', $reveal_meta );
 		echo '
 		<label for="' . $selector . '">' . $label . '</label><br>
 			<hr><input name="' . $selector . '" id="' . $selector . '" class="reveal_presentation_text_input" value="' . $reveal_existing . '" /><br>';
 	}
 
 	public static function reveal_presenter_name( $post ) {
-		$reveal_meta = __FUNCTION__;
+		$reveal_meta     = __FUNCTION__;
 		$reveal_existing = get_post_meta( $post->ID, $reveal_meta, true );
-		$label = ucwords( preg_replace( '/_+/', ' ', $reveal_meta ) );
-		$selector = preg_replace( '/_+/', '-', $reveal_meta );
+		$label           = ucwords( preg_replace( '/_+/', ' ', $reveal_meta ) );
+		$selector        = preg_replace( '/_+/', '-', $reveal_meta );
 		echo '
 		<label for="' . $selector . '">' . $label . '</label><br>
 			<hr><input name="' . $selector . '" id="' . $selector . '" class="reveal_presentation_text_input" value="' . $reveal_existing . '" /><br>';
 	}
 
 	public static function reveal_presenter_affiliation( $post ) {
-		$reveal_meta = __FUNCTION__;
+		$reveal_meta     = __FUNCTION__;
 		$reveal_existing = get_post_meta( $post->ID, $reveal_meta, true );
-		$label = ucwords( preg_replace( '/_+/', ' ', $reveal_meta ) );
-		$selector = preg_replace( '/_+/', '-', $reveal_meta );
+		$label           = ucwords( preg_replace( '/_+/', ' ', $reveal_meta ) );
+		$selector        = preg_replace( '/_+/', '-', $reveal_meta );
 		echo '
 		<label for="' . $selector . '">' . $label . '</label><br>
 			<hr><input name="' . $selector . '" id="' . $selector . '" class="reveal_presentation_text_input" value="' . $reveal_existing . '" /><br>';
@@ -146,7 +165,7 @@ class Reveal_Slide_MetaBoxes {
 
 	public static function some_checkbox_metabox( $post ) {
 		$selector = preg_replace( '/_+/', '-', __FUNCTION__ );
-		$label = ucwords( preg_replace( '/_+/', ' ', __FUNCTION__ ) );
+		$label    = ucwords( preg_replace( '/_+/', ' ', __FUNCTION__ ) );
 		wp_nonce_field( 'custom_nonce_action', 'custom_nonce' );
 		$init_checked = false;
 		echo '<label for="' . esc_html__( $selector, 'reveal-with-wp' ) . '">' . esc_html__( $label, 'reveal-with-wp' ) . ':</label><br>
@@ -156,10 +175,10 @@ class Reveal_Slide_MetaBoxes {
 	}
 
 	public static function is_this_for_reveal( $post ) {
-		$selector = preg_replace( '/_+/', '-', __FUNCTION__ );
-		$label = ucfirst( preg_replace( '/_+/', ' ', __FUNCTION__ ) );
-		$reveal_page_id = intval( get_option( 'reveal_on_page' ) );
-		$show_reveal = get_permalink( $reveal_page_id );
+		$selector         = preg_replace( '/_+/', '-', __FUNCTION__ );
+		$label            = ucfirst( preg_replace( '/_+/', ' ', __FUNCTION__ ) );
+		$reveal_page_id   = intval( get_option( 'reveal_on_page' ) );
+		$show_reveal      = get_permalink( $reveal_page_id );
 		$customize_reveal = admin_url( 'customize.php?url=' . get_permalink( $reveal_page_id ) );
 		wp_nonce_field( 'custom_nonce_action', 'custom_nonce' );
 		$init_checked = false;
@@ -177,9 +196,9 @@ class Reveal_Slide_MetaBoxes {
 	}
 
 	public static function display_metabox_3( $post ) {
-		$label = self::display_metabox_3_heading();
-		$label = ucwords( preg_replace( '/_+/', ' ', $label ) );
-		$value = $label;
+		$label  = self::display_metabox_3_heading();
+		$label  = ucwords( preg_replace( '/_+/', ' ', $label ) );
+		$value  = $label;
 		$value .= apply_filters( 'sws_metabox_3_description', 'Use this filter: sws_metabox_3_description to provide some instructions about how to set up a Sitewide Sale.' );
 		echo $value;
 	}
@@ -252,6 +271,10 @@ class Reveal_Slide_MetaBoxes {
 			update_post_meta( $post_id, 'reveal_presentation_title', esc_html( $_POST['reveal-presentation-title'] ) );
 		}
 
+		if ( isset( $_POST['reveal-presentation-subtitle'] ) ) {
+			update_post_meta( $post_id, 'reveal_presentation_subtitle', esc_html( $_POST['reveal-presentation-subtitle'] ) );
+		}
+
 		if ( isset( $_POST['reveal-presenter-name'] ) ) {
 			update_post_meta( $post_id, 'reveal_presenter_name', esc_html( $_POST['reveal-presenter-name'] ) );
 		}
@@ -287,7 +310,7 @@ class Reveal_Slide_MetaBoxes {
 			// Get id of sitewide sale to redirect to.
 			$sitewide_sale_id = explode( 'pmpro_sws_callback=', $url )[1];
 			$sitewide_sale_id = explode( '$', $sitewide_sale_id )[0];
-			$location = esc_html( get_admin_url() ) . 'post.php?post=' . $sitewide_sale_id . '&action=edit';
+			$location         = esc_html( get_admin_url() ) . 'post.php?post=' . $sitewide_sale_id . '&action=edit';
 		}
 		return $location;
 	}

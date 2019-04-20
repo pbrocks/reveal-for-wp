@@ -24,17 +24,24 @@ class Create_Reveal_Slides {
 		return $columns;
 	}
 	public static function reveal_extra_tablenav( $which ) {
-		$screen = get_current_screen();
+		$screen               = get_current_screen();
+		$current_presentation = get_term( 1 )->name;
+		if ( ! empty( get_option( 'reveal_category' ) ) ) {
+			$category_name        = get_term( get_option( 'reveal_category' ) )->name;
+			$current_presentation = $category_name;
+		}
+		$show_current   = admin_url( 'edit.php?post_type=reveal_slides&category_name=' ) . $current_presentation;
 		$customize_link = admin_url( 'customize.php?url=' . get_permalink( get_option( 'reveal_on_page' ) ) );
-		$present_link = get_permalink( get_option( 'reveal_on_page' ) );
-		$edit_link = get_edit_post_link( get_option( 'reveal_on_page' ) );
+		$present_link   = get_permalink( get_option( 'reveal_on_page' ) );
+		$edit_link      = get_edit_post_link( get_option( 'reveal_on_page' ) );
 		if ( 'reveal_slides' != $screen->post_type ) {
 			return;
 		}
 		if ( $which == 'top' ) {
+			echo '<a href="' . $show_current . '"><input type="button" class="button button-primary" value="Only Current" /></a> ';
 			echo '<a href="' . $edit_link . '"><input type="button" class="button button-primary" value="Edit Cover" /></a> ';
-			echo '<a href="' . $customize_link . '"><input type="button" class="button button-primary" value="Customize Slides" /></a> ';
-			echo ' <a href="' . $present_link . '"><input type="button" class="button button-primary" value="Present Slides" /></a>';
+			echo '<a href="' . $customize_link . '"><input type="button" class="button button-primary" value="Customizer" /></a> ';
+			echo ' <a href="' . $present_link . '"><input type="button" class="button button-primary" value="Present" /></a>';
 		}
 		if ( $which == 'bottom' ) {
 		}
@@ -42,8 +49,8 @@ class Create_Reveal_Slides {
 
 	public static function set_custom_edit_reveal_slides_columns( $columns ) {
 		$columns['menu_order'] = __( 'SlideOrder', 'reveal-slides' );
-		$columns['post_id'] = __( 'Slide ID', 'reveal-slides' );
-		$columns['reorder'] = __( 'Reorder Slides', 'reveal-slides' );
+		$columns['post_id']    = __( 'Slide ID', 'reveal-slides' );
+		$columns['reorder']    = __( 'Reorder Slides', 'reveal-slides' );
 		return $columns;
 	}
 
@@ -86,15 +93,15 @@ class Create_Reveal_Slides {
 
 
 	public static function register_sidecat_taxonomy() {
-		$tax_labels = self::get_tax_label_defaults();
-		$tax_labels['name']     = _x( 'SideCats', 'Taxonomy General Name', 'reveal-slides' );
-		$tax_labels['singular_name']         = _x( 'SideCat', 'Taxonomy Singular Name', 'reveal-slides' );
-		$tax_labels['menu_name']         = _x( 'SideCat', 'Taxonomy Singular Name', 'reveal-slides' );
+		$tax_labels                  = self::get_tax_label_defaults();
+		$tax_labels['name']          = _x( 'SideCats', 'Taxonomy General Name', 'reveal-slides' );
+		$tax_labels['singular_name'] = _x( 'SideCat', 'Taxonomy Singular Name', 'reveal-slides' );
+		$tax_labels['menu_name']     = _x( 'SideCat', 'Taxonomy Singular Name', 'reveal-slides' );
 
-		$tax_args = self::get_tax_args_defaults();
-		$tax_args['label']  = __( 'SideCat', 'reveal-slides' );
-		$tax_args['labels'] = $tax_labels;
-		$tax_args['hierarchical']         = __( true, 'reveal-slides' );
+		$tax_args                 = self::get_tax_args_defaults();
+		$tax_args['label']        = __( 'SideCat', 'reveal-slides' );
+		$tax_args['labels']       = $tax_labels;
+		$tax_args['hierarchical'] = __( true, 'reveal-slides' );
 
 		register_taxonomy( 'revealcat', array( 'reveal_slides_cat' ), $tax_args );
 	}
@@ -133,7 +140,7 @@ class Create_Reveal_Slides {
 			'items_list_navigation' => __( 'Reveal Slides list navigation', 'reveal-with-wp' ),
 			'filter_items_list'     => __( 'Filter Reveal Slides list', 'reveal-with-wp' ),
 		);
-		$args = array(
+		$args   = array(
 			'label'                 => __( 'Reveal Slide', 'reveal-with-wp' ),
 			'description'           => __( 'Post Type Description', 'reveal-with-wp' ),
 			'labels'                => $labels,
@@ -148,14 +155,17 @@ class Create_Reveal_Slides {
 			'show_in_admin_bar'     => true,
 			'show_in_nav_menus'     => true,
 			'can_export'            => true,
+			'show_in_rest'          => true,
+			'rest_base'             => '',
+			'rest_controller_class' => 'WP_REST_Posts_Controller',
 			'has_archive'           => true,
 			'exclude_from_search'   => false,
 			'publicly_queryable'    => true,
 			'capability_type'       => 'page',
 			'rewrite'               => array(
 				'with_front' => true,
-				'slug' => 'presentation',
-				'rest_base'           => __( 'reveal-slides', 'reveal-with-wp' ),
+				'slug'       => 'presentation',
+				'rest_base'  => __( 'reveal-slides', 'reveal-with-wp' ),
 			),
 		);
 

@@ -51,6 +51,7 @@ $posts_array                  = $slides->posts;
 $reveal_page_id               = intval( get_option( 'reveal_on_page' ) );
 $presenting_on                = get_post( $reveal_page_id );
 $reveal_presentation_title    = get_post_meta( $reveal_page_id, 'reveal_presentation_title', true );
+$reveal_presentation_subtitle = get_post_meta( $reveal_page_id, 'reveal_presentation_subtitle', true );
 $reveal_presenter_name        = get_post_meta( $reveal_page_id, 'reveal_presenter_name', true );
 $reveal_presenter_affiliation = get_post_meta( $reveal_page_id, 'reveal_presenter_affiliation', true );
 $reveal_notes                 = get_post_meta( $reveal_page_id, 'reveal_notes', true );
@@ -58,7 +59,8 @@ $reveal_notes                 = get_post_meta( $reveal_page_id, 'reveal_notes', 
 	<div class="reveal">
 	  <div class="slides">
 		<section class="title-slide">
-			<h1 id="block-name"><?php echo $reveal_presentation_title; ?></h1>
+			<h1 id="slide-title"><?php echo $reveal_presentation_title; ?></h1>
+			<h3 id="slide-subtitle"><?php echo $reveal_presentation_subtitle; ?></h3>
 			<?php /* echo plugins_url( 'inc/css/reveal-pbrocks.css', dirname( __DIR__ ) ); */ ?>
 			<div class="slide-content">
 				<h3><?php echo $reveal_presenter_name; ?></h3>

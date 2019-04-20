@@ -13,7 +13,7 @@ class Build_Reveal_Slides {
 	public static function reveal_html() {
 		$slug  = preg_replace( '/_+/', '-', __FUNCTION__ );
 		$label = ucwords( preg_replace( '/_+/', ' ', __FUNCTION__ ) );
-		add_submenu_page( 'edit.php?post_type=reveal_slides', __( $label, 'reveal-dashboard-menu' ), __( $label, 'reveal-dashboard-menu' ), 'manage_options', $slug . '.php', array( __CLASS__, 'reveal_some_html' ) );
+		add_submenu_page( 'edit.php?post_type=reveal_slide&scategory_name=wclancpa19', __( $label, 'reveal-dashboard-menu' ), __( $label, 'reveal-dashboard-menu' ), 'manage_options', $slug . '.php', array( __CLASS__, 'reveal_some_html' ) );
 	}
 
 
@@ -43,7 +43,7 @@ class Build_Reveal_Slides {
 		echo '<div class="wrap">';
 		echo '<h2>' . ucwords( preg_replace( '/_+/', ' ', __FUNCTION__ ) ) . '</h2>';
 		echo plugin_dir_path( dirname( __DIR__ ) ) . 'reveal-js/css/themes/<br>';
-
+		echo '<br>get_option(\'reveal_category\') ' . get_option( 'reveal_category' );
 		echo '<select>';
 		foreach ( glob( plugin_dir_path( dirname( __DIR__ ) ) . 'reveal-js/css/theme/*.css' ) as $file ) {
 			echo '<option>' . basename( $file ) . '</option>';

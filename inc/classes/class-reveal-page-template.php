@@ -12,8 +12,13 @@ class Reveal_Page_Template {
 	}
 
 	public static function reveal_dashboard() {
-		$slug = preg_replace( '/_+/', '-', __FUNCTION__ );
-		$label = ucwords( preg_replace( '/_+/', ' ', __FUNCTION__ ) );
+		$slug                 = preg_replace( '/_+/', '-', __FUNCTION__ );
+		$label                = ucwords( preg_replace( '/_+/', ' ', __FUNCTION__ ) );
+		$current_presentation = 1;
+		if ( ! empty( get_option( 'reveal_category' ) ) ) {
+			$category_name        = get_term( get_option( 'reveal_category' ) )->name;
+			$current_presentation = $category_name;
+		}
 		add_submenu_page( 'edit.php?post_type=reveal_slides', __( $label, 'reveal-dashboard-menu' ), __( $label, 'reveal-dashboard-menu' ), 'manage_options', $slug . '.php', array( __CLASS__, 'reveal_dashboard_menu_order' ) );
 	}
 
@@ -33,6 +38,7 @@ class Reveal_Page_Template {
 		$screen = get_current_screen();
 		echo '<h4 style="color:rgba(250,128,114,.7);">Current Screen is <span style="color:rgba(250,128,114,1);">' . $screen->id . '</span></h4>';
 		$my_theme = wp_get_theme();
+		echo '<br>get_option(\'reveal_category\') ' . get_option( 'reveal_category' );
 		echo '<h4>Theme is ' . sprintf(
 			__( '%1$s and is version %2$s', 'text-domain' ),
 			$my_theme->get( 'Name' ),
@@ -46,14 +52,14 @@ $args = array(
 	\'order\'      => \'ASC\',
 	\'orderby\'    => \'menu_order\',
 );</xmp>';
-		$path = plugin_dir_path( dirname( dirname( __FILE__ ) ) . '/templates/' );
-		$path = plugin_dir_path( __DIR__ ) . 'templates/';
+		$path  = plugin_dir_path( dirname( dirname( __FILE__ ) ) . '/templates/' );
+		$path  = plugin_dir_path( __DIR__ ) . 'templates/';
 		$files = scandir( $path );
 
-		$slides = Build_Reveal_Slides::build_the_query();
+		$slides       = Build_Reveal_Slides::build_the_query();
 		$presentation = '';
 		foreach ( $slides->posts as $key => $value ) {
-			$notes = '$post_id = ' . $value->ID . '<br>';
+			$notes         = '$post_id = ' . $value->ID . '<br>';
 			$presentation .= '<section><h3>Slide ' . ( intval( $key ) + 1 ) . ' ' . $value->post_title . '</h3>';
 			$presentation .= '<p style="color:blue">' . $value->post_content . '</p></section>';
 		}

@@ -29,3 +29,11 @@ h2#block-name {
     width: 77%;
     margin: -3rem auto 1rem;
 }
+h1#slide-title {
+    margin: 0;
+}
+
+#slide-subtitle {
+    margin: 1rem 0 5rem;
+    color: slategray;
+}
