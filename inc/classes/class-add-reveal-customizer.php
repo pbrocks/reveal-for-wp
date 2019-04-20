@@ -14,12 +14,12 @@ class Add_Reveal_Customizer {
 		add_action( 'wp', array( __CLASS__, 'show_admin_bar' ) );
 	}
 
-		/**
-		 * Customizer manager demo
-		 *
-		 * @param  WP_Customizer_Manager $reveal_wp
-		 * @return void
-		 */
+	/**
+	 * Customizer manager demo
+	 *
+	 * @param  WP_Customizer_Manager $reveal_wp
+	 * @return void
+	 */
 	public static function engage_the_customizer( $reveal_wp ) {
 		// self::reveal_panel( $reveal_wp );
 		self::reveal_section( $reveal_wp );
@@ -45,11 +45,12 @@ class Add_Reveal_Customizer {
 	 */
 	private static function reveal_panel( $reveal_wp ) {
 		$reveal_wp->add_panel(
-			'reveal_wp_panel', array(
-				'priority' => 10,
-				'capability' => 'edit_theme_options',
-				'description' => 'Wnat to switch pages via javascript',
-				'title' => __( 'Reveal Admin Panel', 'reveal-customizer' ),
+			'reveal_wp_panel',
+			array(
+				'priority'    => 10,
+				'capability'  => 'edit_theme_options',
+				'description' => __( 'Want to switch pages via javascript', 'reveal-for-wp' ),
+				'title'       => __( 'Reveal Admin Panel', 'reveal-for-wp' ),
 			)
 		);
 	}
@@ -64,16 +65,18 @@ class Add_Reveal_Customizer {
 	 */
 	private static function reveal_section( $reveal_wp ) {
 		$reveal_wp->add_section(
-			'reveal_section', array(
-				'title'          => 'Reveal Controls',
-				'priority'       => 9,
+			'reveal_section',
+			array(
+				'title'       => 'Reveal Controls',
+				'priority'    => 9,
 				// 'panel'          => 'reveal_wp_panel',
 				'description' => 'This is a description of this text setting in the Reveal Customizer Controls section of the Reveal panel',
 			)
 		);
 
 		$reveal_wp->add_setting(
-			'turn_off_admin_bar', array(
+			'turn_off_admin_bar',
+			array(
 				'default'   => false,
 				'type'      => 'option',
 				// 'sanitize_callback' => array( __CLASS__, 'sanitize_checkbox' ),
@@ -83,7 +86,7 @@ class Add_Reveal_Customizer {
 
 		// $reveal_wp->add_control(
 		// 'turn_off_admin_bar', array(
-		// 'label'     => __( 'Turn off Admin Bar on Reveal Page', 'reveal-customizer' ),
+		// 'label'     => __( 'Turn off Admin Bar on Reveal Page', 'reveal-for-wp' ),
 		// 'section'   => 'reveal_section',
 		// 'priority'  => 10,
 		// 'settings'  => 'turn_off_admin_bar',
@@ -91,16 +94,18 @@ class Add_Reveal_Customizer {
 		// )
 		// );
 		$reveal_wp->add_setting(
-			'reveal_on_page', array(
-				'default'   => '',
-				'type'      => 'option',
-				'transport' => 'refresh',
+			'reveal_on_page',
+			array(
+				'default'           => '',
+				'type'              => 'option',
+				'transport'         => 'refresh',
 				'sanitize_callback' => 'absint',
 			)
 		);
 
 		$reveal_wp->add_control(
-			'reveal_on_page', array(
+			'reveal_on_page',
+			array(
 				'type'        => 'dropdown-pages',
 				'label'       => 'Show Presentation on',
 				'settings'    => 'reveal_on_page',
@@ -110,25 +115,35 @@ class Add_Reveal_Customizer {
 		);
 
 		$reveal_wp->add_setting(
-			'reveal_category', array(
-				'type'      => 'option',
-				'transport' => 'refresh',
-				'default'   => '',
+			'reveal_category',
+			array(
+				'default'           => 0,
+				'type'              => 'option',
+				'transport'         => 'refresh',
+				'sanitize_callback' => 'absint',
 			)
 		);
 
+		require_once plugin_dir_path( __FILE__ ) . '/controls/class-customizer-category-dropdown.php';
 		$reveal_wp->add_control(
-			'reveal_category', array(
-				'type'        => 'text',
-				'label'       => 'Presentation Category',
-				'settings'    => 'reveal_category',
-				'section'     => 'reveal_section',
-				'description' => 'Select the category you are presenting from',
+			new Reveal_Category_Dropdown_Control(
+				$reveal_wp,
+				'reveal_category',
+				array(
+					'section'     => 'reveal_section',
+					'settings'    => 'reveal_category',
+					'label'       => esc_html__( 'Reveal slides presentation', 'reveal-for-wp' ),
+					'description' => esc_html__( 'Select the presentation that you will pull from. If no presentation is selected, the presentation won\'t show properly.', 'reveal-for-wp' ),
+				// Uncomment to pass arguments to wp_dropdown_categories()
+				// 'dropdown_args' => array(
+				// 'taxonomy' => 'post_tag',
+				// ),
+				)
 			)
 		);
-
 		$reveal_wp->add_setting(
-			'reveal_theme_css', array(
+			'reveal_theme_css',
+			array(
 				'type'      => 'option',
 				'transport' => 'refresh',
 				'default'   => '',
@@ -140,7 +155,8 @@ class Add_Reveal_Customizer {
 		}
 
 		$reveal_wp->add_control(
-			'reveal_theme_css', array(
+			'reveal_theme_css',
+			array(
 				'section'     => 'reveal_section',
 				'type'        => 'select',
 				'settings'    => 'reveal_theme_css',
@@ -152,7 +168,8 @@ class Add_Reveal_Customizer {
 		);
 
 		$reveal_wp->add_setting(
-			'final_reveal_template', array(
+			'final_reveal_template',
+			array(
 				'type'      => 'option',
 				'transport' => 'refresh',
 				'default'   => '',
@@ -165,7 +182,8 @@ class Add_Reveal_Customizer {
 		}
 
 		$reveal_wp->add_control(
-			'final_reveal_template', array(
+			'final_reveal_template',
+			array(
 				'section'     => 'reveal_section',
 				'type'        => 'select',
 				'settings'    => 'final_reveal_template',
@@ -191,19 +209,19 @@ class Add_Reveal_Customizer {
 
 	public static function create_customizer_dev_page( $reveal_wp ) {
 
-		$customizer_dev_page = 'Customizer Dev Page';
+		$customizer_dev_page         = 'Customizer Dev Page';
 		$customizer_dev_page_content = self::return_something();
-		$author_id = get_current_user();
+		$author_id                   = get_current_user();
 
 		$check_page = get_page_by_title( $customizer_dev_page );
 		if ( null == $check_page ) {
 			$my_post = array(
-				'post_title'    => wp_strip_all_tags( $customizer_dev_page ),
+				'post_title'   => wp_strip_all_tags( $customizer_dev_page ),
 				// $slug = 'wordpress-post-created-with-code';
-				'post_content'  => $customizer_dev_page_content,
-				'post_status'   => 'publish',
-				'post_type'     => 'page',
-				'post_author'   => $author_id,
+				'post_content' => $customizer_dev_page_content,
+				'post_status'  => 'publish',
+				'post_type'    => 'page',
+				'post_author'  => $author_id,
 			// 'post_category' => array( 8,39 ),
 			);
 

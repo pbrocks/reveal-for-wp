@@ -11,7 +11,7 @@ class Build_Reveal_Slides {
 	}
 
 	public static function reveal_html() {
-		$slug = preg_replace( '/_+/', '-', __FUNCTION__ );
+		$slug  = preg_replace( '/_+/', '-', __FUNCTION__ );
 		$label = ucwords( preg_replace( '/_+/', ' ', __FUNCTION__ ) );
 		add_submenu_page( 'edit.php?post_type=reveal_slides', __( $label, 'reveal-dashboard-menu' ), __( $label, 'reveal-dashboard-menu' ), 'manage_options', $slug . '.php', array( __CLASS__, 'reveal_some_html' ) );
 	}
@@ -51,7 +51,7 @@ class Build_Reveal_Slides {
 		echo '</select>';
 
 		// $portfolio = query_posts( 'post_type=reveal_slides' );
-		$slides = self::build_the_query();
+		$slides      = self::build_the_query();
 		$slide_count = count( $slides->posts );
 		// $slide_count = 14;
 		echo '<h3>Active Presentation</h3>';
@@ -154,12 +154,13 @@ class Build_Reveal_Slides {
 	 */
 	public static function build_the_query() {
 		$args = array(
-			'post_type'              => array( 'reveal_slides' ),
-			'post_status'            => array( 'publish' ),
-			'category_name'          => get_option( 'reveal_category' ),
-			'nopaging'               => true,
-			'order'                  => 'ASC',
-			'orderby'                => 'menu_order',
+			'post_type'    => array( 'reveal_slides' ),
+			'post_status'  => array( 'publish' ),
+			'category__in' => get_option( 'reveal_category' ),
+			// 'category_name' => 'wclancpa19',
+			'nopaging'     => true,
+			'order'        => 'ASC',
+			'orderby'      => 'menu_order',
 		);
 
 		$slides = new WP_Query( $args );
@@ -176,9 +177,9 @@ class Build_Reveal_Slides {
 	 * @return string
 	 */
 	public static function count_the_query() {
-		$slides = self::build_the_query();
-		$count = count( $slides->posts );
-		$i = 1;
+		$slides    = self::build_the_query();
+		$count     = count( $slides->posts );
+		$i         = 1;
 		$step_menu = ' | ';
 		while ( $i <= $count ) {
 			$step_menu .= $i . ' | ';

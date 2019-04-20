@@ -1,4 +1,5 @@
-# reveal-for-wp
+# Reveal.js for WordPress
+
 A WordPress plugin for building Reveal.js presentations
 
 Reveal Slides CPT is created

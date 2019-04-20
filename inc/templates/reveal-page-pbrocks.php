@@ -6,15 +6,15 @@
 wp_head();
 	$slides = new WP_Query(
 		array(
-			'post_type'  => array( 'reveal_slides' ),
-			'category_name'      => get_option( 'reveal_category' ),
-			'order'      => 'ASC',
-			'orderby'    => 'menu_order',
+			'post_type'    => array( 'reveal_slides' ),
+			'category__in' => get_option( 'reveal_category' ),
+			'order'        => 'ASC',
+			'orderby'      => 'menu_order',
 		)
 	);
 	// $slides->posts[0]->post_title;
-	$count = count( $slides->posts );
-	$i = 1;
+	$count     = count( $slides->posts );
+	$i         = 1;
 	$step_menu = ' | ';
 	while ( $i <= $count ) {
 		$step_menu .= $i . ' | ';
@@ -47,13 +47,13 @@ wp_head();
 
   <body>
 <?php
-$posts_array = $slides->posts;
-$reveal_page_id = intval( get_option( 'reveal_on_page' ) );
-$presenting_on = get_post( $reveal_page_id );
-$reveal_presentation_title = get_post_meta( $reveal_page_id, 'reveal_presentation_title', true );
-$reveal_presenter_name = get_post_meta( $reveal_page_id, 'reveal_presenter_name', true );
+$posts_array                  = $slides->posts;
+$reveal_page_id               = intval( get_option( 'reveal_on_page' ) );
+$presenting_on                = get_post( $reveal_page_id );
+$reveal_presentation_title    = get_post_meta( $reveal_page_id, 'reveal_presentation_title', true );
+$reveal_presenter_name        = get_post_meta( $reveal_page_id, 'reveal_presenter_name', true );
 $reveal_presenter_affiliation = get_post_meta( $reveal_page_id, 'reveal_presenter_affiliation', true );
-$reveal_notes = get_post_meta( $reveal_page_id, 'reveal_notes', true );
+$reveal_notes                 = get_post_meta( $reveal_page_id, 'reveal_notes', true );
 ?>
 	<div class="reveal">
 	  <div class="slides">
@@ -74,10 +74,10 @@ $reveal_notes = get_post_meta( $reveal_page_id, 'reveal_notes', true );
 			</aside>
 		</section>
 		<?php
-		$slides = Build_Reveal_Slides::build_the_query();
-		$presentation = '';
+		$slides       = Build_Reveal_Slides::build_the_query();
+		$presentation = '' );
 		foreach ( $slides->posts as $key => $value ) {
-			$notes = get_post_meta( $value->ID, 'reveal_notes', true );
+			$notes         = get_post_meta( $value->ID, 'reveal_notes', true );
 			$presentation .= '<section><h2 id="block-name">' . $value->post_title . '</h2>';
 
 			$presentation .= '<div id="block-content" class="slide-content">';

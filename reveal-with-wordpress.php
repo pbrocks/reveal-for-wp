@@ -13,12 +13,26 @@ defined( 'ABSPATH' ) || die( 'File cannot be accessed directly' );
 
 define( 'REVEAL_JS', plugins_url( 'reveal-js', __FILE__ ) );
 
-include( 'inc/classes/class-add-reveal-customizer.php' );
-include( 'inc/classes/class-build-reveal-slides.php' );
-include( 'inc/classes/class-create-reveal-slides.php' );
-include( 'inc/classes/class-reveal-page-template.php' );
-include( 'inc/classes/class-reveal-slide-metaboxes.php' );
-include( 'inc/classes/class-reveal-slide-reordering.php' );
+/**
+ * Include all php files in /inc directory.
+ */
+foreach ( glob( __DIR__ . '/inc/*.php' ) as $filename ) {
+	require $filename;
+}
+
+/**
+ * Include all php files in /inc directory.
+ */
+foreach ( glob( __DIR__ . '/inc/classes/*.php' ) as $filename ) {
+	require $filename;
+}
+
+// include( 'inc/classes/class-add-reveal-customizer.php' );
+// include( 'inc/classes/class-build-reveal-slides.php' );
+// include( 'inc/classes/class-create-reveal-slides.php' );
+// include( 'inc/classes/class-reveal-page-template.php' );
+// include( 'inc/classes/class-reveal-slide-metaboxes.php' );
+// include( 'inc/classes/class-reveal-slide-reordering.php' );
 Add_Reveal_Customizer::init();
 Build_Reveal_Slides::init();
 Create_Reveal_Slides::init();
