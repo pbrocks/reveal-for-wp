@@ -39,11 +39,11 @@ class Create_Reveal_Slides {
 		}
 		if ( $which == 'top' ) {
 			echo '<a href="' . $show_current . '"><input type="button" class="button button-primary" value="Only Current" /></a> ';
-			echo '<a href="' . $edit_link . '"><input type="button" class="button button-primary" value="Edit Cover" /></a> ';
 			echo '<a href="' . $customize_link . '"><input type="button" class="button button-primary" value="Customizer" /></a> ';
 			echo ' <a href="' . $present_link . '"><input type="button" class="button button-primary" value="Present" /></a>';
 		}
 		if ( $which == 'bottom' ) {
+			echo '<a href="' . $edit_link . '"><input type="button" class="button button-primary" value="Edit Cover" /></a> ';
 		}
 	}
 
@@ -226,3 +226,5 @@ class Create_Reveal_Slides {
 	}
 
 }
+
+Create_Reveal_Slides::init();

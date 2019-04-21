@@ -315,3 +315,4 @@ class Reveal_Slide_MetaBoxes {
 		return $location;
 	}
 }
+Reveal_Slide_MetaBoxes::init();

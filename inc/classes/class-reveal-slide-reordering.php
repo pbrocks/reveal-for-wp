@@ -67,7 +67,8 @@ if ( ! class_exists( 'Reveal_Slide_Reordering' ) ) :
 			}
 
 			add_filter(
-				'views_' . $screen->id, array(
+				'views_' . $screen->id,
+				array(
 					__CLASS__,
 					'sort_by_order_link',
 				)
@@ -86,7 +87,6 @@ if ( ! class_exists( 'Reveal_Slide_Reordering' ) ) :
 				wp_enqueue_style( 'reveal-slide-reordering', plugins_url( '/css/reveal-slide-reordering.css', dirname( __FILE__ ) ) );
 			}
 		}
-
 		/**
 		 * Add slide ordering help to the help tab
 		 */
@@ -103,6 +103,7 @@ if ( ! class_exists( 'Reveal_Slide_Reordering' ) ) :
 				)
 			);
 		}
+
 
 		public static function ajax_reveal_slide_ordering() {
 			// check and make sure we have what we need
@@ -167,7 +168,7 @@ if ( ! class_exists( 'Reveal_Slide_Reordering' ) ) :
 
 			$siblings_query = array(
 				'depth'                  => 1,
-				'posts_per_slide'         => $max_sortable_posts,
+				'posts_per_slide'        => $max_sortable_posts,
 				'post_type'              => $post->post_type,
 				'post_status'            => $post_stati,
 				'post_parent'            => $parent_id,
@@ -271,7 +272,7 @@ if ( ! class_exists( 'Reveal_Slide_Reordering' ) ) :
 				// if the moved post has children, we need to refresh the slide (unless we're continuing)
 				$children = new WP_Query(
 					array(
-						'posts_per_slide'         => 1,
+						'posts_per_slide'        => 1,
 						'post_type'              => $post->post_type,
 						'post_status'            => $post_stati,
 						'post_parent'            => $post->ID,

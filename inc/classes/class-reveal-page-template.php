@@ -138,3 +138,5 @@ $args = array(
 		return $template;
 	}
 }
+
+Reveal_Page_Template::init();

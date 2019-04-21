@@ -263,3 +263,4 @@ class Add_Reveal_Customizer {
 		return ( array_key_exists( $input, $choices ) ? $input : $setting->default );
 	}
 }
+Add_Reveal_Customizer::init();

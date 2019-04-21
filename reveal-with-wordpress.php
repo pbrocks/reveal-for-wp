@@ -27,14 +27,3 @@ foreach ( glob( __DIR__ . '/inc/classes/*.php' ) as $filename ) {
 	require $filename;
 }
 
-// include( 'inc/classes/class-add-reveal-customizer.php' );
-// include( 'inc/classes/class-build-reveal-slides.php' );
-// include( 'inc/classes/class-create-reveal-slides.php' );
-// include( 'inc/classes/class-reveal-page-template.php' );
-// include( 'inc/classes/class-reveal-slide-metaboxes.php' );
-// include( 'inc/classes/class-reveal-slide-reordering.php' );
-Add_Reveal_Customizer::init();
-Build_Reveal_Slides::init();
-Create_Reveal_Slides::init();
-Reveal_Slide_MetaBoxes::init();
-Reveal_Page_Template::init();

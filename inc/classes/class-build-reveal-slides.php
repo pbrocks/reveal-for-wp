@@ -5,15 +5,35 @@ defined( 'ABSPATH' ) || die( 'File cannot be accessed directly' );
 class Build_Reveal_Slides {
 
 	public static function init() {
+		// add_action( 'load-edit.php', array( __CLASS__, 'load_edit_screen' ) );
 		add_action( 'admin_menu', array( __CLASS__, 'reveal_html' ) );
 		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'custom_css_enqueue' ) );
 		// add_filter( 'theme_page_templates', array( __CLASS__, 'add_page_template_to_dropdown' ) );
 	}
 
 	public static function reveal_html() {
-		$slug  = preg_replace( '/_+/', '-', __FUNCTION__ );
-		$label = ucwords( preg_replace( '/_+/', ' ', __FUNCTION__ ) );
-		add_submenu_page( 'edit.php?post_type=reveal_slide&scategory_name=wclancpa19', __( $label, 'reveal-dashboard-menu' ), __( $label, 'reveal-dashboard-menu' ), 'manage_options', $slug . '.php', array( __CLASS__, 'reveal_some_html' ) );
+		$slug             = preg_replace( '/_+/', '-', __FUNCTION__ );
+		$label            = ucwords( preg_replace( '/_+/', ' ', __FUNCTION__ ) );
+		$reveal_help_page = add_submenu_page( 'edit.php?post_type=reveal_slides', __( $label, 'reveal-dashboard-menu' ), __( $label, 'reveal-dashboard-menu' ), 'manage_options', $slug . '.php', array( __CLASS__, 'reveal_some_html' ) );
+
+		add_action( 'load-' . $reveal_help_page, array( __CLASS__, 'load_reveal_edit_screen' ) );
+	}
+
+	/**
+	 * Add slide ordering help to the help tab
+	 */
+	public static function load_reveal_edit_screen() {
+		$screen = get_current_screen();
+		if ( $screen->id !== 'edit-reveal_slides' ) {
+			return;
+		}
+		$screen->add_help_tab(
+			array(
+				'id'      => 'reveal_slide_other_help_tab',
+				'title'   => 'Reveal Slide ',
+				'content' => '<p>' . __( ' T an item, simply drag and drop the row by "clicking and holding" it anywhere (outside of the links and form controls) and moving it to its new position.', 'reveal-slide-reordering' ) . '</p>',
+			)
+		);
 	}
 
 
@@ -188,3 +208,5 @@ class Build_Reveal_Slides {
 		return $count;
 	}
 }
+
+Build_Reveal_Slides::init();
