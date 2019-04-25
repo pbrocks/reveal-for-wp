@@ -206,7 +206,7 @@ class Create_Reveal_Slides {
 			width: 35%;
 		}*/
 		.manage-column.column-title.column-primary {
-			width: 35%;
+			width: 19%;
 		}
 		.wp-list-table .ui-sortable tr:hover {
 			background: rgba(22,244,25,.2);
