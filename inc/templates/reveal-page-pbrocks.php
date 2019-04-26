@@ -36,13 +36,20 @@ wp_head();
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-	<?php $theme_css = get_option( 'reveal_theme_css' ); ?>
-	<link rel="stylesheet" href="<?php echo REVEAL_JS; ?>/css/reveal.css">
-	<link rel="stylesheet" href="<?php echo REVEAL_JS; ?>/css/theme/<?php echo ( $theme_css ? $theme_css : 'sky-too.css' ); ?>" id="theme">
-	<link rel="stylesheet" href="<?php echo plugins_url( 'inc/css/reveal-pbrocks.css', dirname( __DIR__ ) ); ?>">
-
+	<?php
+	$theme_css = get_option( 'reveal_theme_css' ); /*
+	<link rel="stylesheet" href="<?php echo plugins_url( 'inc/css/reveal-pbrocks.css', dirname( __DIR__ ) ); ?>"> */
+	?>
 	<!-- Code syntax highlighting -->
 	<link rel="stylesheet" href="<?php echo REVEAL_JS; ?>/lib/css/zenburn.css">
+	<link rel="stylesheet" href="<?php echo REVEAL_JS; ?>/css/reveal.css">
+	<link rel="stylesheet" href="<?php echo REVEAL_JS; ?>/css/theme/<?php echo ( $theme_css ? $theme_css : 'sky-too.css' ); ?>" id="theme">
+<?php
+$customizer_css = get_post( get_theme_mod( 'custom_css_post_id' ) );
+echo '<style>';
+print_r( $customizer_css->post_content );
+echo '</style>';
+?>
   </head>
 
   <body>

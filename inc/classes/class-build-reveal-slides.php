@@ -46,7 +46,7 @@ class Build_Reveal_Slides {
 		</style>
 		<?php
 		wp_register_style( 'reveal-pbrocks', plugins_url( 'css/reveal-pbrocks.css', dirname( __FILE__ ) ) );
-		wp_enqueue_style( 'reveal-pbrocks' );
+		// wp_enqueue_style( 'reveal-pbrocks' );
 	}
 
 

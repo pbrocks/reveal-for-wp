@@ -67,16 +67,19 @@ $args = array(
 		echo '<hr><hr><pre>';
 		print_r( $slides->posts[0]->ID );
 		echo '</pre>';
-
+		echo '<pre>';
+		print_r( get_theme_mods() );
+		echo '</pre>';
 		echo '<select>';
 		foreach ( glob( plugin_dir_path( __DIR__ ) . 'templates/*.php' ) as $file ) {
 			echo '<option>' . basename( $file ) . '</option>';
 		}
-		echo '</select>';
-
-		echo '<pre>';
-		// print_r( $files );
-		echo '</pre>';
+		echo '</select><br>';
+		echo get_theme_mod( 'custom_css_post_id' ) . ' is the custom CSS';
+		$customizer_css = get_post( get_theme_mod( 'custom_css_post_id' ) );
+		echo '<pre>$customizer_css <xmp>';
+		print_r( $customizer_css->post_content );
+		echo '</xmp></pre>';
 		$reveal_page_id = intval( get_option( 'reveal_on_page' ) );
 		echo '<h4>final_reveal_template = ' . get_option( 'final_reveal_template' ) . '</h4>';
 		echo '<h4>REVEAL_JS = ' . REVEAL_JS . '</h4>';

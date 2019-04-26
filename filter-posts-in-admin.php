@@ -28,7 +28,7 @@ function wpse45436_admin_posts_filter_restrict_manage_posts() {
 		// change this to the list of values you want to show
 		// in 'label' => 'value' format
 		$values = array(
-			'label' => 'value',
+			'label'  => 'value',
 			'label1' => 'value1',
 			'label2' => 'value2',
 		);
@@ -71,7 +71,7 @@ function wpse45436_posts_filter( $query ) {
 		$type = $_GET['post_type'];
 	}
 	if ( 'reveal_slides' == $type && is_admin() && $pagenow == 'edit.php' && isset( $_GET['ADMIN_FILTER_FIELD_VALUE'] ) && $_GET['ADMIN_FILTER_FIELD_VALUE'] != '' ) {
-		$query->query_vars['meta_key'] = 'META_KEY';
+		$query->query_vars['meta_key']   = 'META_KEY';
 		$query->query_vars['meta_value'] = $_GET['ADMIN_FILTER_FIELD_VALUE'];
 	}
 }
