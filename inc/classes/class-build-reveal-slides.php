@@ -97,7 +97,7 @@ class Build_Reveal_Slides {
 		echo '<div style="padding:0 2rem;">';
 		foreach ( $slides->posts as $key => $value ) {
 			echo '<h4><a href="' . admin_url() . '/post.php?post=' . $value->ID . '&action=edit" target="_blank"><span style="color:tomato;">Slide ' . ( intval( $key ) + 1 ) . '</span> ' . $value->post_title . '</a></h4>';
-			// echo '<p style="color:blue">' . $value->post_content . '</p>';
+			echo '<p style="color:blue">' . $value->post_content . '</p>';
 		}
 		echo '</div><hr><hr>';
 		echo '<pre>';
