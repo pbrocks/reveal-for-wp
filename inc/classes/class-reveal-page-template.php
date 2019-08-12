@@ -51,17 +51,19 @@ $args = array(
 		$files = scandir( $path );
 
 		$slides = Build_Reveal_Slides::build_the_query();
-		$presentation = '';
-		foreach ( $slides->posts as $key => $value ) {
-			$notes = '$post_id = ' . $value->ID . '<br>';
-			$presentation .= '<section><h3>Slide ' . ( intval( $key ) + 1 ) . ' ' . $value->post_title . '</h3>';
-			$presentation .= '<p style="color:blue">' . $value->post_content . '</p></section>';
-		}
-		echo esc_html__( $presentation );
 		echo '<hr><hr><pre>';
-		print_r( $slides->posts[0]->ID );
+		print_r( $slides );
 		echo '</pre>';
-
+		// $presentation = '';
+		// foreach ( $slides->posts as $key => $value ) {
+		// $notes = '$post_id = ' . $value->ID . '<br>';
+		// $presentation .= '<section><h3>Slide ' . ( intval( $key ) + 1 ) . ' ' . $value->post_title . '</h3>';
+		// $presentation .= '<p style="color:blue">' . $value->post_content . '</p></section>';
+		// }
+		// echo esc_html__( $presentation );
+		// echo '<hr><hr><pre>';
+		// print_r( $slides->posts[0]->ID );
+		// echo '</pre>';
 		echo '<select>';
 		foreach ( glob( plugin_dir_path( __DIR__ ) . 'templates/*.php' ) as $file ) {
 			echo '<option>' . basename( $file ) . '</option>';

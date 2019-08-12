@@ -50,27 +50,48 @@ class Build_Reveal_Slides {
 		}
 		echo '</select>';
 
-		// $portfolio = query_posts( 'post_type=reveal_slides' );
-		$slides      = self::build_the_query();
-		$slide_count = count( $slides->posts );
-		// $slide_count = 14;
-		echo '<h3>Active Presentation</h3>';
-		$catgry = get_option( 'reveal_category' );
-		echo '<li>We have ' . $slide_count . ' slides</li>';
-		echo '<li>Presenting from ' . $catgry . ' category</li>';
-		wp_dropdown_categories();
+		$check_this = rrveal_slides__posts();
 
 		echo '<pre>';
-		// print_r( $slides->posts );
+		print_r( $check_this );
 		echo '</pre>';
-		foreach ( $slides->posts as $key => $value ) {
-			// echo '<h4><span style="color:tomato;">Slide ' . ( intval( $key ) + 1 ) . '</span> ' . $value->ID . ' ' . $value->post_title . '</h4>';
-		}
 
-		// foreach ( glob( plugin_dir_path( __DIR__ ) . 'templates/*.php' ) as $file ) {
-		// echo '<option>' . basename( $file ) . '</option>';
-		// $return[ basename( $file ) ] = basename( $file );
-		// }
+		$args = array(
+			'post_type'   => 'reveal_slides',
+			'post_status' => 'publish',
+			'tax_query'   => array(
+				array(
+					'taxonomy' => 'reveal_slides_cat',
+					'field' => 'wclvpa19',
+				),
+			),
+		);
+
+		// $reveal_slides = new WP_Query( $args );
+		$reveal_slides = $check_this;
+
+		if ( $reveal_slides->have_posts() ) {
+		?>
+		  <ul>
+			<?php
+			while ( $reveal_slides->have_posts() ) {
+				$reveal_slides->the_post();
+				?>
+				<li><?php printf( '%1$s - %2$s', get_the_title(), get_the_content() ); ?></li>
+				<?php
+			}
+			  wp_reset_postdata();
+			?>
+		  </ul>
+		<?php
+		} else {
+			esc_html_e( 'No reveal_slides in the diving taxonomy!', 'text-domain' );
+		}
+		echo '<pre>';
+		// print_r( $reveal_slides->posts );
+		echo '</pre>';
+
+		$slides = rrveal_slides__posts();
 		echo '<hr><hr><h3 style="color:tomato;">Slide presentation<h3>';
 		echo '<p>Below you should see the order of slides in your presentation.</p>';
 		$presentation = '';
@@ -83,10 +104,10 @@ class Build_Reveal_Slides {
 		echo '<pre>';
 		// print_r( $slides->posts );
 		echo '</pre>';
-
+		/*
 		echo '<xmp>
-<section class="page-zero">
-	<section>
+		<section class="page-zero">
+		<section>
 		<h2><?php echo $slides->posts[0]->post_title; ?></h2>
 
 		<div class="slide-content">
@@ -104,42 +125,42 @@ class Build_Reveal_Slides {
 		?>
 		<p><br><br></p>
 		<aside class="notes">
-			
+
 		</aside>
 		<p><small><?php echo $step_menu; ?></small></p>
-	</section>
-</section>
+		</section>
+		</section>
 		echo </xmp>';
 
 		echo '<xmp>
-    [1] => WP_Post Object
-        (
-            [ID] => 10463
-            [post_author] => 1
-            [post_date] => 2018-08-10 05:55:05
-            [post_date_gmt] => 2018-08-09 19:55:05
-            [post_content] => Slide 2 Content Slide 2 Content Slide 2 Content Slide 2 Content Slide 2 Content Slide 2 Content Slide 2 Content Slide 2 Content Slide 2 Content 
-            [post_title] => Slide 2 Title
-            [post_excerpt] => 
-            [post_status] => publish
-            [comment_status] => closed
-            [ping_status] => closed
-            [post_password] => 
-            [post_name] => slide-2-title
-            [to_ping] => 
-            [pinged] => 
-            [post_modified] => 2018-08-11 13:44:18
-            [post_modified_gmt] => 2018-08-11 03:44:18
-            [post_content_filtered] => 
-            [post_parent] => 0
-            [guid] => https://elverson.local/?post_type=reveal_js_slide&p=10463
-            [menu_order] => 2
-            [post_type] => reveal_slides
-            [post_mime_type] => 
-            [comment_count] => 0
-            [filter] => raw
-        )
-		</xmp>';
+		[1] => WP_Post Object SAMPLE
+		(
+			[ID] => 10463
+			[post_author] => 1
+			[post_date] => 2018-08-10 05:55:05
+			[post_date_gmt] => 2018-08-09 19:55:05
+			[post_content] => Slide 2 Content Slide 2 Content Slide 2 Content Slide 2 Content Slide 2 Content Slide 2 Content Slide 2 Content Slide 2 Content Slide 2 Content
+			[post_title] => Slide 2 Title
+			[post_excerpt] =>
+			[post_status] => publish
+			[comment_status] => closed
+			[ping_status] => closed
+			[post_password] =>
+			[post_name] => slide-2-title
+			[to_ping] =>
+			[pinged] =>
+			[post_modified] => 2018-08-11 13:44:18
+			[post_modified_gmt] => 2018-08-11 03:44:18
+			[post_content_filtered] =>
+			[post_parent] => 0
+			[guid] => https://wordcamp.local/?post_type=reveal_js_slide&p=10463
+			[menu_order] => 2
+			[post_type] => reveal_slides
+			[post_mime_type] =>
+			[comment_count] => 0
+			[filter] => raw
+		)
+		</xmp>'; */
 		echo '</div>';
 	}
 
@@ -157,14 +178,24 @@ class Build_Reveal_Slides {
 			'post_type'    => array( 'reveal_slides' ),
 			'post_status'  => array( 'publish' ),
 			'category__in' => get_option( 'reveal_category' ),
-			// 'category_name' => 'wclancpa19',
+			// 'category_name' => 'wclvpa19',
 			'nopaging'     => true,
 			'order'        => 'ASC',
 			'orderby'      => 'menu_order',
 		);
+		$args = array(
+			'post_type' => 'reveal_slides',
+			'post_status' => 'publish',
+			'tax_query' => array(
+				array(
+					'taxonomy' => 'reveal_slides_cat',
+					'terms'    => array( 'wclvpa19' ),
+				),
+			),
+		);
+		$slides = get_posts( $args );
 
-		$slides = new WP_Query( $args );
-
+		// $slides = new WP_Query( $args );
 		return $slides;
 	}
 	/**

@@ -4,21 +4,21 @@
  */
 
 
-// add_action( 'admin_menu', 'sandusky_change_category_label' );
-add_action( 'init', 'sandusky_change_cat_object' );
+// add_action( 'admin_menu', 'sandusky_change_reveal_slides_cat_label' );
+// add_action( 'init', 'change_reveal_slides_cat_label' );
 /**
  * Let's rename the native taxonomy Categories to Presentations.
  * This function takes care of the Taxonomy labels.
  *
- * [sandusky_change_category_label]
+ * [change_reveal_slides_cat_label]
  *
  * @return [type] [description]
  */
-function sandusky_change_cat_object() {
+function change_reveal_slides_cat_label() {
 	   global $wp_taxonomies;
-	$section = $wp_taxonomies['category'];
+	$section = $wp_taxonomies['reveal_slides_cat'];
 	// $section->meta_box_cb = 'wp_dropdown_categories';
-	$labels                     = &$wp_taxonomies['category']->labels;
+	$labels                     = &$wp_taxonomies['reveal_slides_cat']->labels;
 	$labels->name               = 'Presentation';
 	$labels->singular_name      = 'Presentation';
 	$labels->add_new            = 'Add Presentation';

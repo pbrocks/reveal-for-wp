@@ -134,10 +134,10 @@ class Add_Reveal_Customizer {
 					'settings'    => 'reveal_category',
 					'label'       => esc_html__( 'Reveal slides presentation', 'reveal-for-wp' ),
 					'description' => esc_html__( 'Select the presentation that you will pull from. If no presentation is selected, the presentation won\'t show properly.', 'reveal-for-wp' ),
-				// Uncomment to pass arguments to wp_dropdown_categories()
-				// 'dropdown_args' => array(
-				// 'taxonomy' => 'post_tag',
-				// ),
+					// Uncomment to pass arguments to wp_dropdown_categories()
+					'dropdown_args' => array(
+						'taxonomy' => 'reveal_slides_cat',
+					),
 				)
 			)
 		);

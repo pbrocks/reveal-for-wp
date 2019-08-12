@@ -35,7 +35,7 @@ if ( ! class_exists( 'Reveal_Slide_Reordering' ) ) :
 		public static function _add_actions() {
 			add_action( 'load-edit.php', array( __CLASS__, 'load_edit_screen' ) );
 			add_action( 'wp_ajax_reveal_slide_ordering', array( __CLASS__, 'ajax_reveal_slide_ordering' ) );
-			add_action( 'plugins_loaded', array( __CLASS__, 'load_textdomain' ) );
+			// add_action( 'plugins_loaded', array( __CLASS__, 'load_textdomain' ) );
 		}
 
 		/**

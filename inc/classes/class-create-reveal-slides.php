@@ -6,6 +6,7 @@ class Create_Reveal_Slides {
 
 	public static function init() {
 		add_action( 'init', array( __CLASS__, 'create_reveal_js_slide' ) );
+		add_action( 'init', array( __CLASS__, 'register_slidecat_taxonomy' ) );
 		add_action( 'manage_posts_extra_tablenav', array( __CLASS__, 'reveal_extra_tablenav' ) );
 		add_filter( 'plugin_action_links_reveal-with-wordpress/reveal-with-wordpress.php', array( __CLASS__, 'plugin_action_links' ) );
 		add_filter( 'query_vars', array( __CLASS__, 'custom_query_vars_filter' ) );
@@ -41,9 +42,9 @@ class Create_Reveal_Slides {
 	}
 
 	public static function set_custom_edit_reveal_slides_columns( $columns ) {
-		$columns['menu_order'] = __( 'SlideOrder', 'reveal-slides' );
-		$columns['post_id'] = __( 'Slide ID', 'reveal-slides' );
-		$columns['reorder'] = __( 'Reorder Slides', 'reveal-slides' );
+		$columns['menu_order'] = __( 'SlideOrder', 'reveal-with-wp' );
+		$columns['post_id'] = __( 'Slide ID', 'reveal-with-wp' );
+		$columns['reorder'] = __( 'Reorder Slides', 'reveal-with-wp' );
 		return $columns;
 	}
 
@@ -73,8 +74,8 @@ class Create_Reveal_Slides {
 	public static function add_slide_statuses() {
 
 		$args = array(
-			'label'                     => _x( 'Presented', 'Status General Name', 'reveal-slides' ),
-			'label_count'               => _n_noop( 'Presented (%s)', 'Presented (%s)', 'reveal-slides' ),
+			'label'                     => _x( 'Presented', 'Status General Name', 'reveal-with-wp' ),
+			'label_count'               => _n_noop( 'Presented (%s)', 'Presented (%s)', 'reveal-with-wp' ),
 			'public'                    => false,
 			'show_in_admin_all_list'    => true,
 			'show_in_admin_status_list' => true,
@@ -85,18 +86,18 @@ class Create_Reveal_Slides {
 	}
 
 
-	public static function register_sidecat_taxonomy() {
-		$tax_labels = self::get_tax_label_defaults();
-		$tax_labels['name']     = _x( 'SideCats', 'Taxonomy General Name', 'reveal-slides' );
-		$tax_labels['singular_name']         = _x( 'SideCat', 'Taxonomy Singular Name', 'reveal-slides' );
-		$tax_labels['menu_name']         = _x( 'SideCat', 'Taxonomy Singular Name', 'reveal-slides' );
+	public static function register_slidecat_taxonomy() {
+		// $tax_labels = self::get_tax_label_defaults();
+		$tax_labels['name']     = _x( 'SlideCats', 'Taxonomy General Name', 'reveal-with-wp' );
+		$tax_labels['singular_name']         = _x( 'SlideCat', 'Taxonomy Singular Name', 'reveal-with-wp' );
+		$tax_labels['menu_name']         = _x( 'SlideCat', 'Taxonomy Singular Name', 'reveal-with-wp' );
 
-		$tax_args = self::get_tax_args_defaults();
-		$tax_args['label']  = __( 'SideCat', 'reveal-slides' );
+		// $tax_args = self::get_tax_args_defaults();
+		$tax_args['label']  = __( 'SlideCat', 'reveal-with-wp' );
 		$tax_args['labels'] = $tax_labels;
-		$tax_args['hierarchical']         = __( true, 'reveal-slides' );
+		$tax_args['hierarchical']         = __( true, 'reveal-with-wp' );
 
-		register_taxonomy( 'revealcat', array( 'reveal_slides_cat' ), $tax_args );
+		register_taxonomy( 'reveal_slides_cat', array( 'reveal_slides' ), $tax_args );
 	}
 	public static function custom_query_vars_filter( $vars ) {
 		$vars[] = 'reveal_order';
@@ -135,10 +136,10 @@ class Create_Reveal_Slides {
 		);
 		$args = array(
 			'label'                 => __( 'Reveal Slide', 'reveal-with-wp' ),
-			'description'           => __( 'Post Type Description', 'reveal-with-wp' ),
+			'description'           => __( 'Reveal Slides Post Type Description', 'reveal-with-wp' ),
 			'labels'                => $labels,
 			'supports'              => array( 'title', 'editor', 'thumbnail', 'revisions', 'custom-fields', 'page-attributes', 'post-formats', 'excerpt' ),
-			'taxonomies'            => array( 'category' ),
+			'taxonomies'            => array( 'reveal_slides_cat' ),
 			'hierarchical'          => true,
 			'public'                => true,
 			'show_ui'               => true,
@@ -155,7 +156,7 @@ class Create_Reveal_Slides {
 			'rewrite'               => array(
 				'with_front' => true,
 				'slug' => 'presentation',
-				'rest_base'           => __( 'reveal-slides', 'reveal-with-wp' ),
+				'rest_base'           => __( 'reveal-with-wp', 'reveal-with-wp' ),
 			),
 		);
 

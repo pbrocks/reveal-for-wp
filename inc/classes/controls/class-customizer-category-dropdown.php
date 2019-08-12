@@ -30,7 +30,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 			$dropdown_args = wp_parse_args(
 				$this->dropdown_args,
 				array(
-					'taxonomy'          => 'category',
+					'taxonomy'          => 'reveal_slides_cat',
 					'show_option_none'  => ' ',
 					'selected'          => $this->value(),
 					'show_option_all'   => '',
