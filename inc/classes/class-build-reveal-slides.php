@@ -60,21 +60,10 @@ class Build_Reveal_Slides {
 		echo '<h3>Presenting from reveal_slides_cat #' . get_option( 'reveal_category' ) . '</h3>';
 		$check_this = rrveal_slides__posts();
 		$check_this = self::build_the_query();
-
+		self::list_slides_from_the_query();
 		echo '<pre>';
-		print_r( $check_this );
+		// print_r( $check_this );
 		echo '</pre>';
-
-		$args = array(
-			'post_type'   => 'reveal_slides',
-			'post_status' => 'publish',
-			'tax_query'   => array(
-				array(
-					'taxonomy' => 'reveal_slides_cat',
-					'field' => 'wclvpa19',
-				),
-			),
-		);
 
 		// $reveal_slides = new WP_Query( $args );
 		$reveal_slides = $check_this;

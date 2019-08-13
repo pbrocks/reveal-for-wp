@@ -1,6 +1,5 @@
 <?php
 
-new Reveal_Slides_Setup_Info();
 class Reveal_Slides_Setup_Info {
 	public function __construct() {
 		add_action( 'admin_enqueue_scripts', array( $this, 'initialize_template_request_scripts' ) );
@@ -366,3 +365,4 @@ Your setup will render differently based on the values of your post meta. The fo
 		<?php
 	}
 }
+new Reveal_Slides_Setup_Info();
