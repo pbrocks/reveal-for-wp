@@ -21,6 +21,151 @@ class Reveal_Slides_Setup_Info {
 		echo '<h3>' . __FILE__ . __LINE__ . '</h3>';
 		echo '</div>';
 	}
+	public function delete_reveal_slides_tab_settings_page() {
+		global $pagenow;
+		$settings = get_option( 'pbrx_tabbed_settings' );
+		$plugin_data = get_pbrx_setup_data();
+	?>
+	
+	<div class="wrap">
+		<h2><?php echo $plugin_data['Name']; ?> Settings</h2>
+		<style type="text/css">
+		h1, p {
+			margin: 0 0 1em 0;
+		}
+
+		/* no grid support? */
+		.sidebar {
+			float: left;
+			/*width: 19.1489%;*/
+		}
+
+		.content {
+			float: right;
+			/*width: 79.7872%;*/
+		}
+
+		/* make a grid */
+		.grid-wrapper {
+			/*max-width: 940px;*/
+			margin: 0 auto;
+			display: grid;
+			grid-template-columns: 1fr 4fr;
+			grid-gap: .5rem;
+		}
+
+		.grid-wrapper > * {
+			background-color: mintcream;
+			color: maroon;
+			border-radius: .2rem;
+			padding: 1rem;
+			font-size: 150%;
+			/* needed for the floated layout*/
+			margin-bottom: .5rem;
+		}
+
+		.header, .footer {
+			grid-column: 1 / -1;
+			/* needed for the floated layout */
+			clear: both;
+		}
+
+
+		/* We need to set the widths used on floated items back to auto, and remove the bottom margin as when we have grid we have gaps. */
+		@supports (display: grid) {
+			.grid-wrapper > * {
+				width: auto;
+				margin: 0;
+			}
+		}
+	</style>
+	<?php
+	if ( 'true' == esc_attr( $_GET['updated'] ) ) {
+		echo '<div class="updated" ><p> Settings updated.</p></div>';
+	}
+
+	if ( isset( $_GET['tab'] ) ) {
+		pbrx_admin_tabs( $_GET['tab'] );
+	} else {
+		pbrx_admin_tabs( 'homepage' );
+	}
+	?>
+
+	<div id="poststuff">
+		<div class="grid-wrapper">
+			<header class="header">My header</header>
+			<form method="post" action="<?php admin_url( 'edit.php?post_type=reveal_slides&page=reveal-dashboard.php' ); ?>">
+				<?php
+				wp_nonce_field( 'pbrx-settings-page' );
+
+				if ( $pagenow == 'edit.php' && $_GET['page'] == 'reveal-dashboard.php' ) {
+
+					if ( isset( $_GET['tab'] ) ) {
+						$tab = $_GET['tab'];
+					} else {
+						$tab = 'homepage';
+					}
+
+					echo '<table class="form-table">';
+					switch ( $tab ) {
+						case 'general':
+							?>
+
+						<aside class="sidebar">Sidebar<label for="pbrx_tag_class">Tags with CSS classes:</label></aside>						
+						<article class="content">
+							<h1>2 column, header and footer</h1>
+							<p>
+								<input id="pbrx_tag_class" name="pbrx_tag_class" type="checkbox" 
+								<?php
+								if ( $settings['pbrx_tag_class'] ) {
+									echo 'checked="checked"';}
+								?>
+									value="true" /> 
+									<span class="description">Output each post tag with a specific CSS class using its slug.</span>
+								</p>
+							</article>
+							<?php
+							break;
+						case 'footer':
+							?>
+							<aside class="sidebar">Sidebar<label for="pbrx_ga">Insert tracking code:</label></aside>						
+							<article class="content">
+								<h1>2 column, header and footer</h1>
+								<p>
+									<textarea id="pbrx_ga" name="pbrx_ga" cols="60" rows="5"><?php echo esc_html( stripslashes( $settings['pbrx_ga'] ) ); ?></textarea><br/>
+									<span class="description">Enter your Google Analytics tracking code:</span>
+								</p>
+							</article>
+							<?php
+							break;
+						case 'homepage':
+							?>
+							<aside class="sidebar">Sidebar<label for="pbrx_intro">Introduction</label></aside>						
+							<article class="content">
+								<h1>2 column, header and footer</h1>
+								<p>
+									<textarea id="pbrx_intro" name="pbrx_intro" cols="60" rows="5" ><?php echo esc_html( stripslashes( $settings['pbrx_intro'] ) ); ?></textarea><br/>
+									<span class="description">Enter the introductory text for the home page:</span>
+								</p>
+							</article>
+							<?php
+							break;
+					}
+						echo '</table>';
+				}
+				?>
+					<footer class="footer">My footer
+						<p class="submit" style="clear: both;">
+							<input type="submit" name="Submit"  class="button-primary" value="Update Settings" />
+							<input type="hidden" name="pbrx-settings-submit" value="Y" />
+						</p>
+					</footer>
+				</form>
+			</div>
+		</div>
+	</div>
+	<?php
+	}
 
 	/**
 	 * [initialize_template_request_scripts]
@@ -88,7 +233,8 @@ class Reveal_Slides_Setup_Info {
 
 	public function reveal_slides_settings_page_init() {
 		$this->$plugin_data = $this->get_reveal_slides_setup_data();
-		$settings_page      = add_dashboard_page( $this->plugin_data['Name'] . ' Settings ' . __LINE__, $this->plugin_data['Name'] . ' Settings', 'manage_options', 'wp-admin-grid-dashboard.php', [ $this, 'reveal_slides_settings_page' ] );
+		$settings_page      = add_dashboard_page( $this->plugin_data['Name'] . ' Settings ' . __LINE__, $this->plugin_data['Name'] . ' Settings', 'manage_options', 'wp-admin-grid-dashboardd.php', [ $this, 'reveal_slides_settings_page' ] );
+		$settings_page      = 'a-reveal-slides-dashboard.php';
 		add_action( "load-{$settings_page}", array( $this, 'reveal_slides_load_settings_page' ) );
 	}
 

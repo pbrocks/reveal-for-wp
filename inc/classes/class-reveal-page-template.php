@@ -14,7 +14,8 @@ class Reveal_Page_Template {
 	public static function reveal_dashboard() {
 		$slug = preg_replace( '/_+/', '-', __FUNCTION__ );
 		$label = ucwords( preg_replace( '/_+/', ' ', __FUNCTION__ ) );
-		add_submenu_page( 'edit.php?post_type=reveal_slides', __( $label, 'reveal-dashboard-menu' ), __( $label, 'reveal-dashboard-menu' ), 'manage_options', $slug . '.php', array( __CLASS__, 'reveal_dashboard_menu_order' ) );
+		$settings_page = add_submenu_page( 'edit.php?post_type=reveal_slides', __( $label, 'reveal-dashboard-menu' ), __( $label, 'reveal-dashboard-menu' ), 'manage_options', $slug . '.php', array( __CLASS__, 'reveal_dashboard_menu_order' ) );
+		add_action( "load-{$settings_page}", 'pbrx_load_settings_page' );
 	}
 
 
@@ -29,7 +30,7 @@ class Reveal_Page_Template {
 	 */
 	public static function reveal_dashboard_menu_order() {
 		echo '<div class="wrap">';
-		echo '<h2>' . __FUNCTION__ . '</h2>';
+		echo '<h2>' . ucwords( preg_replace( '/_+/', ' ', __FUNCTION__ ) ) . '</h2>';
 		$response_tabs = new Reveal_Slides_Setup_Info();
 		$hide_bouncing = get_user_meta( get_current_user_id(), 'hide_bouncing_arrow', true );
 		if ( 'hide' !== $hide_bouncing ) {

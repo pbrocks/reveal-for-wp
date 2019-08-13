@@ -6,7 +6,6 @@
 
 add_action( 'init', 'pbrx_admin_init' );
 add_action( 'admin_menu', 'pbrx_settings_page_init' );
-
 function pbrx_admin_init() {
 	$settings = get_option( 'pbrx_tabbed_settings' );
 	if ( empty( $settings ) ) {
@@ -22,6 +21,7 @@ function pbrx_admin_init() {
 function pbrx_settings_page_init() {
 	$plugin_data = get_pbrx_setup_data();
 	$settings_page = add_dashboard_page( $plugin_data['Name'] . ' Settings', $plugin_data['Name'] . ' Settings', 'manage_options', 'pbrocks-settings', 'pbrx_settings_page' );
+	$settings_page = 'reveal-dashboard.php';
 	add_action( "load-{$settings_page}", 'pbrx_load_settings_page' );
 }
 
@@ -30,7 +30,7 @@ function pbrx_load_settings_page() {
 		check_admin_referer( 'pbrx-settings-page' );
 		pbrx_save_tabbed_settings();
 		$url_parameters = isset( $_GET['tab'] ) ? 'updated=true&tab=' . $_GET['tab'] : 'updated=true';
-		wp_redirect( admin_url( 'index.php?page=pbrocks-settings&' . $url_parameters ) );
+		wp_redirect( admin_url( 'edit.php?post_type=reveal_slides?page=reveal-dashboard.php&' . $url_parameters ) );
 		exit;
 	}
 }
@@ -39,7 +39,7 @@ function pbrx_save_tabbed_settings() {
 	global $pagenow;
 	$settings = get_option( 'pbrx_tabbed_settings' );
 
-	if ( $pagenow == 'index.php' && $_GET['page'] == 'pbrocks-settings' ) {
+	if ( $pagenow == 'edit.php?post_type=reveal_slides' && $_GET['page'] == 'reveal-dashboard.php' ) {
 		if ( isset( $_GET['tab'] ) ) {
 			$tab = $_GET['tab'];
 		} else {
@@ -81,7 +81,7 @@ function pbrx_admin_tabs( $current = 'homepage' ) {
 	echo '<h2 class="nav-tab-wrapper">';
 	foreach ( $tabs as $tab => $name ) {
 		$class = ( $tab == $current ) ? ' nav-tab-active' : '';
-		echo "<a class='nav-tab$class' href='?page=pbrocks-settings&tab=$tab'>$name</a>";
+		echo "<a class='nav-tab$class' href='?page=reveal-dashboard.php&tab=$tab'>$name</a>";
 
 	}
 	echo '</h2>';
@@ -164,11 +164,11 @@ function pbrx_settings_page() {
 	<div id="poststuff">
 		<div class="grid-wrapper">
 			<header class="header">My header</header>
-			<form method="post" action="<?php admin_url( 'index.php?page=pbrocks-settings' ); ?>">
+			<form method="post" action="<?php admin_url( 'edit.php?post_type=reveal_slides&page=reveal-dashboard.php' ); ?>">
 				<?php
 				wp_nonce_field( 'pbrx-settings-page' );
 
-				if ( $pagenow == 'index.php' && $_GET['page'] == 'pbrocks-settings' ) {
+				if ( $pagenow == 'edit.php' && $_GET['page'] == 'reveal-dashboard.php' ) {
 
 					if ( isset( $_GET['tab'] ) ) {
 						$tab = $_GET['tab'];

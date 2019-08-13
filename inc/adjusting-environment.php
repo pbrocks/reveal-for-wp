@@ -2,7 +2,15 @@
 /**
  * Adjusting Environment
  */
-
+// add_action( 'admin_footer', 'show_pagenow_label', 11 );
+function show_pagenow_label() {
+	global $pagenow;
+	echo '<h4 style="text-align:center;">$pagenow = ' . $pagenow . '</h4>';
+	// echo '<h4 style="text-align:center;">' . preg_replace( '/_+/', '-', __FUNCTION__ ) . '</h4>';
+	// echo '<h3 style="text-align:center;color:salmon;">' . __FUNCTION__ . ' | ' . basename( __FILE__ ) . ' | ' . __LINE__ . '</h3>';
+	$screen = get_current_screen();
+	echo '<h3 style="margin:1rem 1rem 1rem 11rem;text-align:center;color:salmon;"><pre>' . print_r( $screen, true ) . '</pre></h3>';
+}
 /**
  * Displays the Post older then current date
  *
@@ -18,7 +26,7 @@ function textdomain_older_posts( $query ) {
 }
 // add_action( 'pre_get_posts', 'textdomain_older_posts' );
 // add_action( 'admin_menu', 'sandusky_change_reveal_slides_cat_label' );
-// add_action( 'init', 'change_reveal_slides_cat_label' );
+add_action( 'init', 'change_reveal_slides_cat_label', 11 );
 /**
  * Let's rename the native taxonomy Categories to Presentations.
  * This function takes care of the Taxonomy labels.
@@ -28,6 +36,7 @@ function textdomain_older_posts( $query ) {
  * @return [type] [description]
  */
 function change_reveal_slides_cat_label() {
+	// ( ! ) Warning: in_array() expects parameter 2 to be array, null given in /app/public/wp-includes/taxonomy.php on line 619
 	   global $wp_taxonomies;
 	$section = $wp_taxonomies['reveal_slides_cat'];
 	// $section->meta_box_cb = 'wp_dropdown_categories';
