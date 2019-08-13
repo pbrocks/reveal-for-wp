@@ -15,7 +15,7 @@ class Reveal_Page_Template {
 		$slug = preg_replace( '/_+/', '-', __FUNCTION__ );
 		$label = ucwords( preg_replace( '/_+/', ' ', __FUNCTION__ ) );
 		$settings_page = add_submenu_page( 'edit.php?post_type=reveal_slides', __( $label, 'reveal-dashboard-menu' ), __( $label, 'reveal-dashboard-menu' ), 'manage_options', $slug . '.php', array( __CLASS__, 'reveal_dashboard_menu_order' ) );
-		add_action( "load-{$settings_page}", 'pbrx_load_settings_page' );
+		// add_action( "load-{$settings_page}", array( __CLASS__, 'reveal_dashboard_menu_order' ) );
 	}
 
 

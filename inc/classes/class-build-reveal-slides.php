@@ -58,7 +58,6 @@ class Build_Reveal_Slides {
 		}
 		echo '</select>';
 		echo '<h3>Presenting from reveal_slides_cat #' . get_option( 'reveal_category' ) . '</h3>';
-		$check_this = rrveal_slides__posts();
 		$check_this = self::build_the_query();
 		self::list_slides_from_the_query();
 		echo '<pre>';
@@ -102,7 +101,7 @@ class Build_Reveal_Slides {
 	 * @return string
 	 */
 	public static function list_slides_from_the_query() {
-		$slides = rrveal_slides__posts();
+		$slides = self::build_the_query();
 		echo '<hr><hr><h3 style="color:tomato;">Slide presentation<h3>';
 		echo '<p>Below you should see the order of slides in your presentation.</p>';
 		$presentation = '';

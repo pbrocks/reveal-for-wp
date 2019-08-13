@@ -1,27 +1,12 @@
 <?php
-
-// add_action( 'pre_get_posts', 'search_filter' );
-/**
- *  [search_filter description]
- */
-function search_filter( $query ) {
-	// if ( ! is_admin() && $query->is_main_query() ) {
-	if ( $query->is_main_query() ) {
-		if ( $query->is_search ) {
-			$query->set( 'post_type', array( 'reveal_slides' ) );
-		}
-	}
-}
-
-
 /**
  * Display a custom taxonomy dropdown in admin
  *
  * @author Mike Hemberger
  * @link http://thestizmedia.com/custom-post-type-filter-admin-custom-taxonomy/
  */
-add_action( 'restrict_manage_posts', 'tsm_filter_post_type_by_taxonomy' );
-function tsm_filter_post_type_by_taxonomy() {
+add_action( 'restrict_manage_posts', 'reveal_filter_post_type_by_taxonomy' );
+function reveal_filter_post_type_by_taxonomy() {
 	global $typenow;
 	$post_type = 'reveal_slides'; // change to your post type
 	$taxonomy  = 'reveal_slides_cat'; // change to your taxonomy
@@ -47,8 +32,8 @@ function tsm_filter_post_type_by_taxonomy() {
  * @author  Mike Hemberger
  * @link http://thestizmedia.com/custom-post-type-filter-admin-custom-taxonomy/
  */
-add_filter( 'parse_query', 'tsm_convert_id_to_term_in_query' );
-function tsm_convert_id_to_term_in_query( $query ) {
+add_filter( 'parse_query', 'reveal_convert_id_to_term_in_query' );
+function reveal_convert_id_to_term_in_query( $query ) {
 	global $pagenow;
 	$post_type = 'reveal_slides'; // change to your post type
 	$taxonomy  = 'reveal_slides_cat'; // change to your taxonomy
