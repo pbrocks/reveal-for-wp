@@ -143,6 +143,7 @@ class Create_Reveal_Slides {
 			'hierarchical'          => true,
 			'public'                => true,
 			'show_ui'               => true,
+			'show_in_rest'          => true,
 			'show_in_menu'          => true,
 			'menu_position'         => 21,
 			'menu_icon'             => 'dashicons-move',

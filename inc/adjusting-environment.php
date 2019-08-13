@@ -3,7 +3,20 @@
  * Adjusting Environment
  */
 
-
+/**
+ * Displays the Post older then current date
+ *
+ * @uses posts_where filer for data range
+ * @uses pre_get_posts hook
+ */
+function textdomain_older_posts( $query ) {
+	if ( ! is_admin() && $query->is_main_query() ) {
+		$query->set( 'order', 'ASC' );
+		add_filter( 'posts_where', 'textdomain_date_range' );
+	}
+	return $query;
+}
+// add_action( 'pre_get_posts', 'textdomain_older_posts' );
 // add_action( 'admin_menu', 'sandusky_change_reveal_slides_cat_label' );
 // add_action( 'init', 'change_reveal_slides_cat_label' );
 /**
