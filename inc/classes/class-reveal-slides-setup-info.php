@@ -50,8 +50,8 @@ class Reveal_Slides_Setup_Info {
 			)
 		);
 		wp_enqueue_script( 'hide-indexing-arrow' );
-		wp_register_style( 'wpe-code-sample', plugins_url( 'css/wpe-code-sample.css', __DIR__ ), time() );
-		wp_enqueue_style( 'wpe-code-sample' );
+		wp_register_style( 'wp-admin-grid', plugins_url( 'css/wp-admin-grid.css', __DIR__ ), time() );
+		wp_enqueue_style( 'wp-admin-grid' );
 	}
 
 	public function run_template_request_function() {
@@ -89,7 +89,7 @@ class Reveal_Slides_Setup_Info {
 
 	public function reveal_slides_settings_page_init() {
 		$this->$plugin_data = $this->get_reveal_slides_setup_data();
-		$settings_page      = add_dashboard_page( $this->plugin_data['Name'] . ' Settings ' . __LINE__, $this->plugin_data['Name'] . ' Settings', 'manage_options', 'wpe-code-sample-dashboard.php', [ $this, 'reveal_slides_settings_page' ] );
+		$settings_page      = add_dashboard_page( $this->plugin_data['Name'] . ' Settings ' . __LINE__, $this->plugin_data['Name'] . ' Settings', 'manage_options', 'wp-admin-grid-dashboard.php', [ $this, 'reveal_slides_settings_page' ] );
 		add_action( "load-{$settings_page}", array( $this, 'reveal_slides_load_settings_page' ) );
 	}
 
@@ -104,7 +104,7 @@ class Reveal_Slides_Setup_Info {
 			check_admin_referer( 'wpe-settings-page' );
 			$this->reveal_slides_save_tabbed_settings();
 			$url_parameters = isset( $_GET['tab'] ) ? 'updated=true&tab=' . $_GET['tab'] : 'updated=true';
-			wp_redirect( admin_url( 'index.php?page=wpe-code-sample-dashboard.php&' . $url_parameters ) );
+			wp_redirect( admin_url( 'index.php?page=wp-admin-grid-dashboard.php&' . $url_parameters ) );
 			exit;
 		}
 	}
@@ -160,7 +160,7 @@ class Reveal_Slides_Setup_Info {
 		echo '<h2 class="nav-tab-wrapper">';
 		foreach ( $tabs as $tab => $name ) {
 			$class = ( $tab == $current ) ? ' nav-tab-active' : '';
-			echo "<a class='nav-tab$class' href='?page=wpe-code-sample-dashboard.php&tab=$tab'>$name</a>";
+			echo "<a class='nav-tab$class' href='?page=wp-admin-grid-dashboard.php&tab=$tab'>$name</a>";
 
 		}
 		echo '</h2>';
@@ -193,7 +193,7 @@ class Reveal_Slides_Setup_Info {
 		<!-- <div class="grid-wrapper"> -->
 			<!-- <header class="header">My header</header> -->
 			<?php
-			if ( $pagenow == 'index.php' && $_GET['page'] == 'wpe-code-sample-dashboard.php' ) {
+			if ( $pagenow == 'index.php' && $_GET['page'] == 'wp-admin-grid-dashboard.php' ) {
 
 				if ( isset( $_GET['tab'] ) ) {
 					$tab = $_GET['tab'];

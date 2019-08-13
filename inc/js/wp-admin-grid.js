@@ -1,7 +1,7 @@
 jQuery(document).ready(function($) {
-	let this_filename = 'wpe-code-sample.js';
-	$("#wpe-code-sample-page").click(function(e) {
-		alert('wpe-code-sample.js');
+	let this_filename = 'wp-admin-grid.js';
+	$("#wp-admin-grid-page").click(function(e) {
+		alert('wp-admin-grid.js');
 		e.preventDefault();
 
 		$.ajax({
@@ -18,11 +18,11 @@ jQuery(document).ready(function($) {
 				'explanation_two' : 'Grab info from javascript and include here (' + this_filename + ').',
 			},
 			success:function(data) {
-				$( '#return-wpe-code-sample' ).html(data);
+				$( '#return-wp-admin-grid' ).html(data);
 				console.log(data);
 			},
 			error: function(jqXHR, textStatus, errorThrown){
-				$( '#return-wpe-code-sample' ).html(errorThrown);
+				$( '#return-wp-admin-grid' ).html(errorThrown);
 				console.log(errorThrown);
 			}
 		});  

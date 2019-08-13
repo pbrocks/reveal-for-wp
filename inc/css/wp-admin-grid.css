@@ -1,4 +1,4 @@
-.wp-core-ui.dashboard_page_wpe-code-sample-dashboard .button-primary {
+.wp-core-ui.dashboard_page_wp-admin-grid-dashboard .button-primary {
 	background-color: #ff6c29;
 	border-color: #ff6c29;
 	-webkit-transition: all .25s ease;
@@ -69,14 +69,14 @@ h1, p {
 	grid-template-columns: 1fr 4fr;
 	grid-gap: .5rem;
 }
-.wp-core-ui.dashboard_page_wpe-code-sample-dashboard p {
+.wp-core-ui.dashboard_page_wp-admin-grid-dashboard p {
 	font-size: 1rem;
 }
-.wp-core-ui.dashboard_page_wpe-code-sample-dashboard p strong {
+.wp-core-ui.dashboard_page_wp-admin-grid-dashboard p strong {
 	color: maroon;
 }
-.wp-core-ui.dashboard_page_wpe-code-sample-dashboard ul,
-.wp-core-ui.dashboard_page_wpe-code-sample-dashboard ol {
+.wp-core-ui.dashboard_page_wp-admin-grid-dashboard ul,
+.wp-core-ui.dashboard_page_wp-admin-grid-dashboard ol {
 	font-size: .85rem;
 	line-height: 1.2rem
 }
