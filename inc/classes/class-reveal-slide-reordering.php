@@ -35,14 +35,6 @@ if ( ! class_exists( 'Reveal_Slide_Reordering' ) ) :
 		public static function _add_actions() {
 			add_action( 'load-edit.php', array( __CLASS__, 'load_edit_screen' ) );
 			add_action( 'wp_ajax_reveal_slide_ordering', array( __CLASS__, 'ajax_reveal_slide_ordering' ) );
-			// add_action( 'plugins_loaded', array( __CLASS__, 'load_textdomain' ) );
-		}
-
-		/**
-		 * Loads the plugin textdomain
-		 */
-		public static function load_textdomain() {
-			load_plugin_textdomain( 'reveal-slide-reordering', false, dirname( plugin_basename( __FILE__ ) ) . '/localization/' );
 		}
 
 		/**
@@ -73,7 +65,7 @@ if ( ! class_exists( 'Reveal_Slide_Reordering' ) ) :
 				)
 			);        // add view by menu order to views
 			add_action( 'wp', array( __CLASS__, 'wp' ) );
-			add_action( 'admin_head', array( __CLASS__, 'admin_head' ) );
+			add_action( 'admin_head', array( __CLASS__, 'add_help_via_admin_head' ) );
 		}
 
 		/**
@@ -82,15 +74,15 @@ if ( ! class_exists( 'Reveal_Slide_Reordering' ) ) :
 		public static function wp() {
 			$orderby = get_query_var( 'orderby' );
 			if ( ( is_string( $orderby ) && 0 === strpos( $orderby, 'menu_order' ) ) || ( isset( $orderby['menu_order'] ) && 'ASC' === $orderby['menu_order'] ) ) {
-				wp_enqueue_script( 'reveal-slide-reordering', plugins_url( '/js/reveal-slide-reordering.js', dirname( __FILE__ ) ), array( 'jquery-ui-sortable' ), '2.1', true );
-				wp_enqueue_style( 'reveal-slide-reordering', plugins_url( '/css/reveal-slide-reordering.css', dirname( __FILE__ ) ) );
+				wp_enqueue_script( 'reveal-with-wp', plugins_url( '/js/reveal-with-wp.js', dirname( __FILE__ ) ), array( 'jquery-ui-sortable' ), '2.1', true );
+				wp_enqueue_style( 'reveal-with-wp', plugins_url( '/css/reveal-with-wp.css', dirname( __FILE__ ) ) );
 			}
 		}
 
 		/**
 		 * Add slide ordering help to the help tab
 		 */
-		public static function admin_head() {
+		public static function add_help_via_admin_head() {
 			$screen = get_current_screen();
 			if ( $screen->id != 'edit-reveal_slides' ) {
 				return;
@@ -99,7 +91,7 @@ if ( ! class_exists( 'Reveal_Slide_Reordering' ) ) :
 				array(
 					'id'      => 'reveal_slide_reordering_help_tab',
 					'title'   => 'Reveal Slide Reordering',
-					'content' => '<p>' . __( ' To reposition an item, simply drag and drop the row by "clicking and holding" it anywhere (outside of the links and form controls) and moving it to its new position.', 'reveal-slide-reordering' ) . '</p>',
+					'content' => '<p>' . __( ' To reposition an item, simply drag and drop the row by "clicking and holding" it anywhere (outside of the links and form controls) and moving it to its new position.', 'reveal-with-wp' ) . '</p>',
 				)
 			);
 		}
@@ -306,7 +298,7 @@ if ( ! class_exists( 'Reveal_Slide_Reordering' ) ) :
 				$query_string = add_query_arg( 'orderby', 'menu_order title', $query_string );
 				$query_string = add_query_arg( 'order', 'asc', $query_string );
 			}
-			$views['byorder'] = sprintf( '<a href="%s" class="%s">%s</a>', esc_url( $query_string ), $class, __( 'Sort by Order', 'reveal-slide-reordering' ) );
+			$views['byorder'] = sprintf( '<a href="%s" class="%s">%s</a>', esc_url( $query_string ), $class, __( 'Sort by Order', 'reveal-with-wp' ) );
 
 			return $views;
 		}

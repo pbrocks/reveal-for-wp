@@ -42,6 +42,14 @@ class Build_Reveal_Slides {
 	public static function reveal_some_html() {
 		echo '<div class="wrap">';
 		echo '<h2>' . ucwords( preg_replace( '/_+/', ' ', __FUNCTION__ ) ) . '</h2>';
+
+		$response_tabs = new Reveal_Slides_Setup_Info();
+		$hide_bouncing = get_user_meta( get_current_user_id(), 'hide_bouncing_arrow', true );
+		if ( 'hide' !== $hide_bouncing ) {
+			echo $hide_bouncing;
+			$show_tabs = $response_tabs->reveal_slides_arrow();
+		}
+
 		echo plugin_dir_path( dirname( __DIR__ ) ) . 'reveal-js/css/themes/<br>';
 
 		echo '<select>';
@@ -184,3 +192,5 @@ class Build_Reveal_Slides {
 		return $count;
 	}
 }
+
+Build_Reveal_Slides::init();

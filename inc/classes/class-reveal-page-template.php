@@ -30,6 +30,12 @@ class Reveal_Page_Template {
 	public static function reveal_dashboard_menu_order() {
 		echo '<div class="wrap">';
 		echo '<h2>' . __FUNCTION__ . '</h2>';
+		$response_tabs = new Reveal_Slides_Setup_Info();
+		$hide_bouncing = get_user_meta( get_current_user_id(), 'hide_bouncing_arrow', true );
+		if ( 'hide' !== $hide_bouncing ) {
+			echo $hide_bouncing;
+			$show_tabs = $response_tabs->reveal_slides_arrow();
+		}
 		$screen = get_current_screen();
 		echo '<h4 style="color:rgba(250,128,114,.7);">Current Screen is <span style="color:rgba(250,128,114,1);">' . $screen->id . '</span></h4>';
 		$my_theme = wp_get_theme();
@@ -134,3 +140,5 @@ $args = array(
 		return $template;
 	}
 }
+
+Reveal_Page_Template::init();

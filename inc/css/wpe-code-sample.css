@@ -1,0 +1,181 @@
+.wp-core-ui.dashboard_page_wpe-code-sample-dashboard .button-primary {
+	background-color: #ff6c29;
+	border-color: #ff6c29;
+	-webkit-transition: all .25s ease;
+	transition: all .25s ease;
+	-webkit-appearance: none;
+	border-radius: 0;
+	box-shadow: 0 1px 0 rgb(14, 202, 212);
+	color: #fff;
+	text-decoration: none;
+	text-shadow: 0 -1px 1px slategray, 1px 0 1px slategray, 0 1px 1px slategray, -1px 0 1px slategray;
+}
+.grid-wrapper {
+	background-color: #fff;
+	color: #444;
+}
+.grid-container {
+	display: grid;
+	grid-gap: 10px;
+	grid-template-columns: 1fr 1fr;
+}
+grid-cell {
+	background-color: rgba(255,255,255,.6);
+	border-radius: 5px;
+	border: 5px solid #ddd;
+	padding: 20px;
+	font-size: 100%;
+	color: #444;
+}
+.grid-heading,
+.grid-footer {
+	text-align: center;
+	grid-column: 1 / 3;
+}
+
+.f {
+	grid-column: 1;
+	grid-row: 2;
+}
+
+.g {
+	grid-column: 2;
+	grid-row: 2;
+}
+
+h1, p {
+	margin: 0 0 1em 0;
+}
+
+/* no grid support? * /
+.sidebar {
+	float: left;
+	/*width: 19.1489%;* /
+}
+
+.content {
+	float: right;
+	/*width: 79.7872%;* /
+}*/
+.tabs-wrap {
+	padding:  1rem 2rem;
+}
+/* make a grid */
+/*.grid-wrapper {*/
+#poststuff {
+	/*max-width: 940px;*/
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: 1fr 4fr;
+	grid-gap: .5rem;
+}
+.wp-core-ui.dashboard_page_wpe-code-sample-dashboard p {
+	font-size: 1rem;
+}
+.wp-core-ui.dashboard_page_wpe-code-sample-dashboard p strong {
+	color: maroon;
+}
+.wp-core-ui.dashboard_page_wpe-code-sample-dashboard ul,
+.wp-core-ui.dashboard_page_wpe-code-sample-dashboard ol {
+	font-size: .85rem;
+	line-height: 1.2rem
+}
+/*.grid-wrapper > * {
+	background-color: mintcream;
+	color: maroon;
+	border-radius: .2rem;
+	padding: 1rem;
+	font-size: 150%;
+	/* needed for the floated layout* /
+	margin-bottom: .5rem;
+}
+*/
+.header, .footer {
+	grid-column: 1 / -1;
+	/* needed for the floated layout */
+	clear: both;
+}
+
+
+/* We need to set the widths used on floated items back to auto, and remove the bottom margin as when we have grid we have gaps. */
+@supports (display: grid) {
+	.grid-wrapper > * {
+		width: auto;
+		margin: 0;
+	}
+}
+
+#close-arrow-x {
+	float: right;
+	color: rgb(14, 202, 212);
+	font-size: 1.3rem;
+	margin-left: .4rem;
+}
+#close-arrow-x:hover {
+	cursor: pointer;
+	color: green;
+	font-weight: 700; 
+}
+.arrow-container {
+	float: right;
+	background-color: rgb(14, 202, 212);
+	/*background-color: #26a1ff;*/
+	height: 10vh;
+	border-radius: 10rem;
+}
+
+.arrow-footer {
+	-webkit-transform: rotate(-180deg);
+	-moz-transform: rotate(-180deg);
+}
+
+.arrow-circle-down {
+	display: block;
+	width: 3rem;
+	height: 3rem;
+}
+
+.bounce {
+	-webkit-animation: bounce 2s;
+			animation: bounce 2s;
+	-webkit-animation-iteration-count: infinite;
+			animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes bounce {
+	0%,
+	25%,
+	50%,
+	75%,
+	100% {
+		-webkit-transform: translateY(0);
+				transform: translateY(0);
+	}
+	40% {
+		-webkit-transform: translateY(-2rem);
+				transform: translateY(-2rem);
+	}
+	60% {
+		-webkit-transform: translateY(-1rem);
+				transform: translateY(-1rem);
+	}
+}
+
+@keyframes bounce {
+	0%,
+	25%,
+	50%,
+	75%,
+	100% {
+		-webkit-transform: translateY(0);
+				transform: translateY(0);
+	}
+	40% {
+		-webkit-transform: translateY(-2rem);
+				transform: translateY(-2rem);
+	}
+	60% {
+		-webkit-transform: translateY(-1rem);
+				transform: translateY(-1rem);
+	}
+}

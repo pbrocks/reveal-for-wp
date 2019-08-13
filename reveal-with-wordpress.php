@@ -15,6 +15,11 @@ defined( 'ABSPATH' ) || die( 'File cannot be accessed directly' );
 define( 'REVEAL_JS', plugins_url( 'reveal-js', __FILE__ ) );
 
 
+register_activation_hook( __FILE__, 'reveal_slides_install' );
+function reveal_slides_install() {
+	set_transient( 'reveal_slides_activated', true, 30 );
+}
+
 if ( file_exists( __DIR__ . '/inc' ) && is_dir( __DIR__ . '/inc' ) ) {
 	/**
 	 * Include all php files in /inc directory.
@@ -32,8 +37,12 @@ if ( file_exists( __DIR__ . '/inc/classes' ) && is_dir( __DIR__ . '/inc/classes'
 	}
 }
 
-Add_Reveal_Customizer::init();
-Build_Reveal_Slides::init();
-Create_Reveal_Slides::init();
-Reveal_Slide_MetaBoxes::init();
-Reveal_Page_Template::init();
+/**
+ * Setup WordPress localization support
+ *
+ * @since 4.0
+ */
+function reveal_slides_load_textdomain() {
+	load_plugin_textdomain( 'reveal-with-wp', false, basename( dirname( __FILE__ ) ) . '/languages' );
+}
+add_action( 'plugins_loaded', 'reveal_slides_load_textdomain' );

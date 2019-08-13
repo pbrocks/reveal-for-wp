@@ -218,3 +218,5 @@ class Create_Reveal_Slides {
 	}
 
 }
+
+Create_Reveal_Slides::init();

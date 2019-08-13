@@ -71,14 +71,6 @@ class Reveal_Slide_MetaBoxes {
 			'normal',
 			'high'
 		);
-		add_meta_box(
-			'reveal_slide_metabox_3',
-			__( 'Customize your Message', 'reveal-with-wp' ),
-			array( __CLASS__, 'display_metabox_3' ),
-			array( 'reveal_slides' ),
-			'normal',
-			'high'
-		);
 
 		add_meta_box(
 			'reveal_slide_metabox_5',
@@ -169,19 +161,6 @@ class Reveal_Slide_MetaBoxes {
 		echo '<input name="' . esc_html__( $selector, 'reveal-with-wp' ) . '" id="' . esc_html__( $selector, 'reveal-with-wp' ) . '" type="checkbox" ' . ( $init_checked ? 'checked' : '' ) . ' />';
 		echo '<label for="' . esc_html__( $selector, 'reveal-with-wp' ) . '"></label></div>';
 		echo '<div id="show-reveal"><button class="button button-primary"><a href="' . $customize_reveal . '" target="_blank">Customize Presentation</a></button><br><br><button class="button button-primary"><a href="' . $show_reveal . '" target="_blank">Show Presentation</a></button><br></div>';
-	}
-
-	public static function display_metabox_3_heading() {
-		$return = '<h3>' . __FUNCTION__ . '</h3>';
-		return $return;
-	}
-
-	public static function display_metabox_3( $post ) {
-		$label = self::display_metabox_3_heading();
-		$label = ucwords( preg_replace( '/_+/', ' ', $label ) );
-		$value = $label;
-		$value .= apply_filters( 'sws_metabox_3_description', 'Use this filter: sws_metabox_3_description to provide some instructions about how to set up a Sitewide Sale.' );
-		echo $value;
 	}
 
 	public static function record_slide_notes( $post ) {
@@ -292,3 +271,4 @@ class Reveal_Slide_MetaBoxes {
 		return $location;
 	}
 }
+Reveal_Slide_MetaBoxes::init();
