@@ -26,71 +26,105 @@ wp_head();
 
 	<!-- Code syntax highlighting -->
 	<link rel="stylesheet" href="<?php echo REVEAL_JS; ?>/lib/css/zenburn.css">
+	<style type="text/css">
+		body > div > div.slides > section.present.has-dark-background {
+				background: radial-gradient(#fff, transparent);
+				padding: 3em;
+		}
+	</style>
   </head>
 	<div class="reveal">
-		<!-- Any section element inside of this container is displayed as a slide -->
-		<div class="slides" >
-			<section>
-				<h1>Fullscreen slides with Reveal.js</h1>
-				<p>
-					<small>Created by <a href="http://www.telematique.eu" >Asvin Goel</a></small>
-				</p>
+	  <div class="slides">
+			<section data-background="#00ffff">
+				<h2>data-background: #00ffff</h2>
 			</section>
-			<section>
-				<section>
-					<p>Reveal.js is great in showing slides in the same way on different screens with different sizes and aspect ratios.</p>
-				</section>
-				<section>
-					<p>However, by default not all of the screen can be used for presentation.</p>
-				</section>
-				<section>
-					<p>Sometimes you want to use all of the screen and this plugin allows you to.</p>
-				</section>
-				<section>
-					<p>Just include the <code>data-fullscreen</code> attribute to the section tag and the slide will use the entire screen.</p>
-				</section>
-			</section>
-			<section>
-				<section>
-					<p>How about showing your next holiday location?</p>
-				</section>
-				<section data-fullscreen>
-					<iframe class="stretch" data-src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d61206.89156051744!2d-151.77366863890407!3d-16.50433878928727!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sde!4v1467468929561"></iframe>
-				</section>
-			</section>
-			<section>
-				<section>
-					<p>Or presenting some Google Spreadsheet?</p>
-				</section>
-				<section data-fullscreen>
-					<iframe class="stretch" data-src="https://docs.google.com/spreadsheets/d/1HH4c7Wdcd6RBIbaw7WsTI4iYjgJAhCAul2td93I-coA/edit?usp=sharing"></iframe>
-				</section>
-			</section>
-<!--
-			<section>
-				<section>
-					<p>Or creating a BPMN model?</p>
-				</section>
-				<section data-fullscreen>
-					<iframe class="stretch" data-src="http://demo.bpmn.io/s/start"></iframe>
-				</section>
-			</section>
--->
-			<section>
-				<section>
-					<p>Note that the fullscreen slides may look different on different screens.</p>
-				</section>
-				<section>
-					<p>It is advisable to only use the fullscreen mode for responsive content.</p>
-				</section>
-			</section>
-			<section>
-			<h2>The end</h2>
 
-				<p>Check out other plugins by clicking on &nbsp;<a href="#" onclick="RevealMenu.toggle(); return false;"><i class="fa fa-bars"></i></a>&nbsp; and then on "Plugins <i class="fa fa-external-link"></i>".</p>
-				<p>Have a look at the source code & documentation on <a href="https://github.com/rajgoel/reveal.js-plugins">Github</a>.</p>
-					
+			<section data-background="#bb00bb">
+				<h2>data-background: #bb00bb</h2>
 			</section>
+
+			<section data-background-color="lightblue">
+				<h2>data-background: lightblue</h2>
+			</section>
+
+			<section>
+				<section data-background="#ff0000">
+					<h2>data-background: #ff0000</h2>
+				</section>
+				<section data-background="rgba(0, 0, 0, 0.2)">
+					<h2>data-background: rgba(0, 0, 0, 0.2)</h2>
+				</section>
+				<section data-background="salmon">
+					<h2>data-background: salmon</h2>
+				</section>
+			</section>
+
+			<section data-background="rgba(0, 100, 100, 0.2)">
+				<section>
+					<h2>Background applied to stack</h2>
+				</section>
+				<section>
+					<h2>Background applied to stack</h2>
+				</section>
+				<section data-background="rgb(66, 66, 66)">
+					<h2>Background applied to slide inside of stack</h2>
+				</section>
+			</section>
+
+			<section data-background-transition="slide" data-background="<?php echo plugins_url( 'assets/image1.png', __DIR__ ); ?>">
+				<h2>Background image</h2>
+			</section>
+
+			<section>
+				<section data-background-transition="slide" data-background="<?php echo plugins_url( 'assets/image1.png', __DIR__ ); ?>">
+					<h2>Background image</h2>
+				</section>
+				<section data-background-transition="slide" data-background="<?php echo plugins_url( 'assets/image1.png', __DIR__ ); ?>">
+					<h2>Background image</h2>
+				</section>
+			</section>
+
+			<section data-background="<?php echo plugins_url( 'assets/image2.png', __DIR__ ); ?>" data-background-size="100px" data-background-repeat="repeat" data-background-color="#111">
+				<h2>Background image</h2>
+				<pre>data-background-size="100px" data-background-repeat="repeat" data-background-color="#111"</pre>
+			</section>
+
+			<section data-background="#888888">
+				<h2>Same background twice (1/2)</h2>
+			</section>
+			<section data-background="#888888">
+				<h2>Same background twice (2/2)</h2>
+			</section>
+
+			<section data-background-video="https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.mp4,https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.webm">
+				<h2>Video background</h2>
+			</section>
+
+			<section data-background-iframe="https://slides.com/news/make-better-presentations/embed?style=hidden&autoSlide=4000">
+				<h2>Iframe background</h2>
+			</section>
+
+			<section>
+				<section data-background="#417203">
+					<h2>Same background twice vertical (1/2)</h2>
+				</section>
+				<section data-background="#417203">
+					<h2>Same background twice vertical (2/2)</h2>
+				</section>
+			</section>
+
+			<section data-background="#934f4d">
+				<h2>Same background from horizontal to vertical (1/3)</h2>
+			</section>
+			<section>
+				<section data-background="#934f4d">
+					<h2>Same background from horizontal to vertical (2/3)</h2>
+				</section>
+				<section data-background="#934f4d">
+					<h2>Same background from horizontal to vertical (3/3)</h2>
+				</section>
+			</section>
+
 		</div>
 	</div>
 	<script src="<?php echo REVEAL_JS; ?>/lib/js/head.min.js"></script>

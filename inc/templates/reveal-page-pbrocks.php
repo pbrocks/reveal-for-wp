@@ -123,7 +123,7 @@ $reveal_notes                 = get_post_meta( $reveal_page_id, 'reveal_notes', 
 
 		transition: 'slide', // none/fade/slide/convex/concave/zoom
 
-				previewLinks: true,
+		previewLinks: true,
 		menu: { // Menu works best with font-awesome installed: sudo apt-get install fonts-font-awesome
 			themes: true,
 			themesPath: '<?php echo REVEAL_JS; ?>/lib/reveal.js/css/theme/',
