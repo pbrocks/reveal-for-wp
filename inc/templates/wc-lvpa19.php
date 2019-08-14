@@ -26,14 +26,15 @@ wp_head();
 
 	<!-- Code syntax highlighting -->
 	<link rel="stylesheet" href="<?php echo REVEAL_JS; ?>/lib/css/zenburn.css">
+	<link rel="stylesheet" href="<?php echo plugins_url( 'inc/css/reveal-pbrocks.css', dirname( __DIR__ ) ); ?>">
   </head>
 	<div class="reveal">
 	  <div class="slides">
 			<section>
-				<h1>Sidetrack Presentation</h1>
-				<h3>pbrocks and iviolini</h3>
+				<h1>WordPress Plugin Architecture</h1>
+				<h3>Paul Barthmaier</h3>
 				<p>
-					<small>Created by <a href="//sidetrack.studio">Sidetrack Studio</a> / <a href="//twitter.com/_pbrocks">@_pbrocks</a> <a href="//twitter.com/_eileenviolini">@_iviolini</a></small>
+					<small><i class="fa fa-twitter"></i> <a href="//twitter.com/_pbrocks">@_pbrocks</a></small>
 				</p>
 			</section>
 
@@ -41,20 +42,21 @@ wp_head();
 			<section>
 				<section>
 					<h2>Vertical Slides</h2>
+					<h4>Top Level Slide</h4>
 					<p>Slides can be nested inside of each other.</p>
-					<p> :fa-coffee:  Use the <em>Space</em> key to navigate through all slides. </p>
 					<p> <i class="fa fa-rocket fa-spin"></i></p>
+					<p><i class="fa fa-coffee"></i> Use the <em>Space</em> key to navigate through all slides. </p>
 					<br>
 					<a href="#" class="navigate-down">
 						<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
 					</a>
 				</section>
 				<section>
-					<h2>Basement Level 1</h2>
+					<h2>Vertical Level -1</h2>
 					<p>Nested slides are useful for adding additional detail underneath a high level horizontal slide.</p>
 				</section>
 				<section>
-					<h2>Basement Level 2</h2>
+					<h2>Vertical Level -2</h2>
 					<p>That's it, time to go back up.</p>
 					<br>
 					<a href="#/2">
@@ -62,29 +64,25 @@ wp_head();
 					</a>
 				</section>
 			</section>
+		<section class="page-six">
 			<section>
 				<h2>Practical</h2>
-				<p>There's different types of fragments, like:</p>
-				<p class="fragment grow">grow</p>
-				<p class="fragment shrink">shrink</p>
-				<p class="fragment fade-out">fade-out</p>
-				<p class="fragment fade-up">fade-up (also down, left and right!)</p>
+				<p>There's different types of fragments, <span class="fragment fade-up">like:</span></p>
+				<p class="fragment current-visible grow">grow</p>
+				<p class="fragment current-visible shrink">shrink</p>
+				<p class="fragment current-visible fade-out">fade-out</p>
+				<p class="fragment current-visible fade-up">fade-up (also down, left and right!)</p>
 				<p class="fragment current-visible">current-visible</p>
-				<p>Highlight <span class="fragment highlight-red">red</span> <span class="fragment highlight-blue">blue</span> <span class="fragment highlight-green">green</span></p>
+				<p class="fragment current-visible">Highlight <span class="fragment highlight-red">red</span> <span class="fragment highlight-blue">blue</span> <span class="fragment highlight-green">green</span></p>
 				<aside class="notes">
 					This slide has fragments which are also stepped through in the notes window.
 				</aside>
 			</section>
-		</section>
-		<section class="page-six">
 			<section>
 				<h2>Slides</h2>
 				<p>
 					Not a coder? Not a problem. There's a fully-featured visual editor for authoring these, try it out at <a href="http://slides.com" target="_blank">http://slides.com</a>.
 				</p>
-			</section>
-			<section>
-
 			</section>
 		</section>
 
@@ -115,6 +113,89 @@ wp_head();
 					<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Up arrow" style="transform: rotate(180deg); -webkit-transform: rotate(180deg);">
 				</a>
 			</section>
+		</section>
+
+		<section>
+		<section>
+			<h2>Point of View</h2>
+			<p>
+				Press <strong>ESC</strong> to enter the slide overview.
+			</p>
+			<p>
+				Hold down alt and click on any element to zoom in on it using <a href="http://lab.hakim.se/zoom-js">zoom.js</a>. Alt + click anywhere to zoom back out.
+			</p>
+		</section>
+
+		<section>
+			<h2>Touch Optimized</h2>
+			<p>
+				Presentations look great on touch devices, like mobile phones and tablets. Simply swipe through your slides.
+			</p>
+		</section>
+		</section>
+
+		<section data-markdown>
+			<script type="text/template">
+				## Markdown support
+
+				Write content using inline or external Markdown.
+				Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown).
+
+
+				```
+				<section data-markdown>### :fa-rocket:
+					## Markdown support
+
+					Write content using inline or external Markdown.
+					Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown).
+				</section>
+				```
+			</script>
+		</section>
+
+		<section>
+			<section id="fragments">
+				<h2>Fragments</h2>
+				<p>Hit the next arrow...</p>
+				<p class="fragment">... to step through ...</p>
+				<p><span class="fragment">... a</span> <span class="fragment">fragmented</span> <span class="fragment">slide.</span></p>
+
+				<aside class="notes">
+					This slide has fragments which are also stepped through in the notes window.
+				</aside>
+			</section>
+			<section>
+				<h2>Fragment Styles</h2>
+				<p>There's different types of fragments, like:</p>
+				<p class="fragment grow">grow</p>
+				<p class="fragment shrink">shrink</p>
+				<p class="fragment fade-out">fade-out</p>
+				<p class="fragment fade-up">fade-up (also down, left and right!)</p>
+				<p class="fragment current-visible">current-visible</p>
+				<p>Highlight <span class="fragment highlight-red">red</span> <span class="fragment highlight-blue">blue</span> <span class="fragment highlight-green">green</span></p>
+				<aside class="notes">
+					This slide has fragments which are also stepped through in the notes window.
+				</aside>
+			</section>
+		</section>
+
+		<section id="markdown" data-markdown>
+			<script type="text/template">
+				## Markdown support
+<br>
+				Write content using inline or external Markdown.
+				Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown).
+
+<br><hr><br>
+				```
+				<section data-markdown>
+					## Markdown support
+<br>
+					Write content using inline or external Markdown.
+					Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown).
+				</section>
+				```
+			</script>
 		</section>
 
 		<section>
@@ -172,124 +253,7 @@ wp_head();
 			</section>
 		</section>
 
-		<section id="point-of-view">
-			<h2>Point of View</h2>
-			<p>
-				Press <strong>ESC</strong> to enter the slide overview.
-			</p>
-			<p>
-				Hold down alt and click on any element to zoom in on it using <a href="http://lab.hakim.se/zoom-js">zoom.js</a>. Alt + click anywhere to zoom back out.
-			</p>
-		</section>
-
-		<section id="touch-optimized">
-			<h2>Touch Optimized</h2>
-			<p>
-				Presentations look great on touch devices, like mobile phones and tablets. Simply swipe through your slides.
-			</p>
-		</section>
-
-		<section id="fragments">
-			<section>
-				<h2>Fragments</h2>
-				<p>Hit the next arrow...</p>
-				<p class="fragment">... to step through ...</p>
-				<p><span class="fragment">... a</span> <span class="fragment">fragmented</span> <span class="fragment">slide.</span></p>
-
-				<aside class="notes">
-					This slide has fragments which are also stepped through in the notes window.
-				</aside>
-			</section>
-			<section>
-				<h2>Fragment Styles</h2>
-				<p>There's different types of fragments, like:</p>
-				<p class="fragment grow">grow</p>
-				<p class="fragment shrink">shrink</p>
-				<p class="fragment fade-out">fade-out</p>
-				<p class="fragment fade-up">fade-up (also down, left and right!)</p>
-				<p class="fragment current-visible">current-visible</p>
-				<p>Highlight <span class="fragment highlight-red">red</span> <span class="fragment highlight-blue">blue</span> <span class="fragment highlight-green">green</span></p>
-				<aside class="notes">
-					This slide has fragments which are also stepped through in the notes window.
-				</aside>
-			</section>
-		</section>
-
-		<section id="markdown" data-markdown>
-			<script type="text/template">
-				## Markdown support
-<br>
-				Write content using inline or external Markdown.
-				Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown).
-
-<br><hr><br>
-				```
-				<section data-markdown>
-					## Markdown support
-<br>
-					Write content using inline or external Markdown.
-					Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown).
-				</section>
-				```
-			</script>
-		</section>
-
-		<section id="transitions">
-			<section>
-				<h2>Transition Styles</h2>
-				<p>
-					You can select from different transitions, like: <br>
-					<a href="?transition=none#/transitions">None</a> -
-					<a href="?transition=fade#/transitions">Fade</a> -
-					<a href="?transition=slide#/transitions">Slide</a> -
-					<a href="?transition=convex#/transitions">Convex</a> -
-					<a href="?transition=concave#/transitions">Concave</a> -
-					<a href="?transition=zoom#/transitions">Zoom</a>
-				</p>
-			</section>
-
-			<section data-transition="concave" data-background="salmon" data-background-transition="zoom">
-				<h2>Background Fade Transition</h2>
-				<p>
-					Different background transitions are available via the backgroundTransition option. This one's called "fade".
-				</p>
-				<pre>
-					<code class="hljs">
-	Reveal.configure({ 
-		backgroundTransition: 'fade';
-	});
-					</code>
-				</pre>
-			</section>
-			<section data-transition="slide" data-background="#5DD0AA" data-background-transition="slide">
-				<h2>Background Transition</h2>
-				<p>
-					Different background transitions are available via the backgroundTransition option. This one's called "slide".
-				</p>
-				<pre>
-					<code class="hljs">
-	Reveal.configure({ 
-		backgroundTransition: 'slide';
-	});
-					</code>
-				</pre>
-			</section>
-			<section data-transition="slide" data-background="wheat" data-background-transition="zoom">
-				<h2>Background Transition</h2>
-				<p>
-					Different background transitions are available via the backgroundTransition option. This one's called "zoom".
-				</p>
-				<pre>
-					<code class="hljs">
-	Reveal.configure({ 
-		backgroundTransition: 'zoom';
-	});
-					</code>
-				</pre>
-			</section>
-		</section>
-
-		<section id="slide-backgrounds">
+		<section>
 			<section data-background="#dddddd">
 				<h2>Slide Backgrounds</h2>
 				<p>
@@ -435,194 +399,6 @@ wp_head();
 		</section>
 
 		<section id="pdf">
-		<h2>Export to PDF</h2>
-		<p>Presentations can be <a href="https://github.com/hakimel/reveal.js#pdf-export">exported to PDF</a>, here's an example:</p>
-		<iframe data-src="https://www.slideshare.net/slideshow/embed_code/42840540" width="445" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:3px solid #666; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
-		</section>
-		<section>
-			<section id="fragments">
-				<h2>Fragments</h2>
-				<p>Hit the next arrow...</p>
-				<p class="fragment">... to step through ...</p>
-				<p><span class="fragment">... a</span> <span class="fragment">fragmented</span> <span class="fragment">slide.</span></p>
-
-				<aside class="notes">
-					This slide has fragments which are also stepped through in the notes window.
-				</aside>
-			</section>
-			<section>
-				<h2>Fragment Styles</h2>
-				<p>There's different types of fragments, like:</p>
-				<p class="fragment grow">grow</p>
-				<p class="fragment shrink">shrink</p>
-				<p class="fragment fade-out">fade-out</p>
-				<p class="fragment fade-up">fade-up (also down, left and right!)</p>
-				<p class="fragment current-visible">current-visible</p>
-				<p>Highlight <span class="fragment highlight-red">red</span> <span class="fragment highlight-blue">blue</span> <span class="fragment highlight-green">green</span></p>
-				<aside class="notes">
-					This slide has fragments which are also stepped through in the notes window.
-				</aside>
-			</section>
-		</section>
-
-		<section id="transitions">
-			<h2>Transition Styles</h2>
-			<p>
-				You can select from different transitions, like: <br>
-				<a href="?transition=none#/transitions">None</a> -
-				<a href="?transition=fade#/transitions">Fade</a> -
-				<a href="?transition=slide#/transitions">Slide</a> -
-				<a href="?transition=convex#/transitions">Convex</a> -
-				<a href="?transition=concave#/transitions">Concave</a> -
-				<a href="?transition=zoom#/transitions">Zoom</a>
-			</p>
-		</section>
-		<section>
-			<section data-background="#dddddd">
-				<h2>Slide Backgrounds</h2>
-				<p>
-					Set <code>data-background="#dddddd"</code> on a slide to change the background color. All CSS color formats are supported.
-				</p>
-				<a href="#" class="navigate-down">
-					<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-				</a>
-			</section>
-			<section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png">
-				<h2>Image Backgrounds</h2>
-				<pre><code class="hljs">&lt;section data-background="image.png"&gt;</code></pre>
-			</section>
-			<section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png" data-background-repeat="repeat" data-background-size="100px">
-				<h2>Tiled Backgrounds</h2>
-				<pre><code class="hljs" style="word-wrap: break-word;">&lt;section data-background="image.png" data-background-repeat="repeat" data-background-size="100px"&gt;</code></pre>
-			</section>
-			<section data-background-video="https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.mp4,https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.webm" data-background-color="#000000">
-				<div style="background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px;">
-					<h2>Video Backgrounds</h2>
-					<pre><code class="hljs" style="word-wrap: break-word;">&lt;section data-background-video="video.mp4,video.webm"&gt;</code></pre>
-				</div>
-			</section>
-			<section data-background="http://i.giphy.com/90F8aUepslB84.gif">
-				<h2>... and GIFs!</h2>
-			</section>
-		</section>
-
-		<section data-transition="slide" data-background="#4d7e65" data-background-transition="zoom">
-			<h2>Background Transitions</h2>
-			<p>
-				Different background transitions are available via the backgroundTransition option. This one's called "zoom".
-			</p>
-			<pre><code class="hljs">Reveal.configure({ backgroundTransition: 'zoom' })</code></pre>
-		</section>
-
-		<section data-transition="slide" data-background="#b5533c" data-background-transition="zoom">
-			<h2>Background Transitions</h2>
-			<p>
-				You can override background transitions per-slide.
-			</p>
-			<pre><code class="hljs" style="word-wrap: break-word;">&lt;section data-background-transition="zoom"&gt;</code></pre>
-		</section>
-
-			<section>
-				<h2>Pretty Code</h2>
-				<pre><code class="hljs" data-trim contenteditable>
-					function linkify( selector ) {
-					if( supports3DTransforms ) {
-
-					var nodes = document.querySelectorAll( selector );
-
-					for( var i = 0, len = nodes.length; i &lt; len; i++ ) {
-					var node = nodes[i];
-
-					if( !node.className ) {
-					node.className += ' roll';
-						}
-					}
-				}
-			}
-		</code></pre>
-		<p>Code syntax highlighting courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</p>
-		</section>
-
-		<section>
-		<h2>Marvelous List</h2>
-		<ul>
-			<li>No order here</li>
-			<li>Or here</li>
-			<li>Or here</li>
-			<li>Or here</li>
-		</ul>
-		</section>
-
-		<section>
-		<h2>Fantastic Ordered List</h2>
-		<ol>
-			<li>One is smaller than...</li>
-			<li>Two is smaller than...</li>
-			<li>Three!</li>
-		</ol>
-		</section>
-
-		<section>
-		<h2>Tabular Tables</h2>
-		<table>
-			<thead>
-				<tr>
-					<th>Item</th>
-					<th>Value</th>
-					<th>Quantity</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>Apples</td>
-					<td>$1</td>
-					<td>7</td>
-				</tr>
-				<tr>
-					<td>Lemonade</td>
-					<td>$2</td>
-					<td>18</td>
-				</tr>
-				<tr>
-					<td>Bread</td>
-					<td>$3</td>
-					<td>2</td>
-				</tr>
-			</tbody>
-		</table>
-		</section>
-
-		<section>
-		<h2>Clever Quotes</h2>
-		<p>
-			These guys come in two forms, inline: <q cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-			&ldquo;The nice thing about standards is that there are so many to choose from&rdquo;</q> and block:
-		</p>
-		<blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-			&ldquo;For years there has been a theory that millions of monkeys typing at random on millions of typewriters would
-			reproduce the entire works of Shakespeare. The Internet has proven this theory to be untrue.&rdquo;
-		</blockquote>
-		</section>
-
-		<section>
-		<h2>Intergalactic Interconnections</h2>
-		<p>
-			You can link between slides internally,
-			<a href="#/2/3">like this</a>.
-		</p>
-		</section>
-
-		<section>
-		<h2>Speaker View</h2>
-		<p>There's a <a href="https://github.com/hakimel/reveal.js#speaker-notes">speaker view</a>. It includes a timer, preview of the upcoming slide as well as your speaker notes.</p>
-		<p>Press the <em>S</em> key to try it out.</p>
-
-		<aside class="notes">
-			Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
-		</aside>
-		</section>
-
-		<section>
 		<h2>Export to PDF</h2>
 		<p>Presentations can be <a href="https://github.com/hakimel/reveal.js#pdf-export">exported to PDF</a>, here's an example:</p>
 		<iframe data-src="https://www.slideshare.net/slideshow/embed_code/42840540" width="445" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:3px solid #666; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>

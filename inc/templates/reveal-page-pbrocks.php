@@ -21,7 +21,7 @@ wp_head();
 		$i++;
 	}
 	?>
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
   <head>
