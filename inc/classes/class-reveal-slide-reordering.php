@@ -74,8 +74,8 @@ if ( ! class_exists( 'Reveal_Slide_Reordering' ) ) :
 		public static function wp() {
 			$orderby = get_query_var( 'orderby' );
 			if ( ( is_string( $orderby ) && 0 === strpos( $orderby, 'menu_order' ) ) || ( isset( $orderby['menu_order'] ) && 'ASC' === $orderby['menu_order'] ) ) {
-				wp_enqueue_script( 'reveal-with-wp', plugins_url( '/js/reveal-with-wp.js', dirname( __FILE__ ) ), array( 'jquery-ui-sortable' ), '2.1', true );
-				wp_enqueue_style( 'reveal-with-wp', plugins_url( '/css/reveal-with-wp.css', dirname( __FILE__ ) ) );
+				wp_enqueue_script( 'reveal-slide-reordering', plugins_url( '/js/reveal-slide-reordering.js', dirname( __FILE__ ) ), array( 'jquery-ui-sortable' ), '2.1', true );
+				wp_enqueue_style( 'reveal-slide-reordering', plugins_url( '/css/reveal-slide-reordering.css', dirname( __FILE__ ) ) );
 			}
 		}
 

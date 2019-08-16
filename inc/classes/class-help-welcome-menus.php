@@ -12,8 +12,8 @@ class Reveal_Help_Welcome_Menus {
 		add_action( 'admin_init', array( $this, 'reveal_slides_welcome' ), 11 );
 		add_action( 'admin_menu', array( $this, 'a_reveal_slides_dashboard' ) );
 		add_action( 'admin_head', array( $this, 'admin_add_help_tab' ) );
-		add_action( 'admin_enqueue_scripts', array( $this, 'initialize_reveal_slides_scripts' ) );
-		add_action( 'wp_enqueue_scripts', array( $this, 'initialize_reveal_slides_scripts' ) );
+		// add_action( 'admin_enqueue_scripts', array( $this, 'initialize_reveal_slides_scripts' ) );
+		// add_action( 'wp_enqueue_scripts', array( $this, 'initialize_reveal_slides_scripts' ) );
 		add_action( 'wp_ajax_reveal_slides_request', array( $this, 'run_reveal_slides_function' ) );
 		add_action( 'wp_ajax_nopriv_reveal_slides_request', array( $this, 'run_reveal_slides_function' ) );
 		// add_filter( 'page_attributes_dropdown_pages_args', array( $this, 'dropdown_pages_args_callback' ), 10, 2 );
