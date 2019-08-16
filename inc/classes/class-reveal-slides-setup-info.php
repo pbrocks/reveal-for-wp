@@ -24,7 +24,7 @@ class Reveal_Slides_Setup_Info {
 	public function delete_reveal_slides_tab_settings_page() {
 		global $pagenow;
 		$settings = get_option( 'pbrx_tabbed_settings' );
-		$plugin_data = get_pbrx_setup_data();
+		$plugin_data = $this->get_reveal_slides_setup_data();
 	?>
 	
 	<div class="wrap">
@@ -232,8 +232,8 @@ class Reveal_Slides_Setup_Info {
 	}
 
 	public function reveal_slides_settings_page_init() {
-		$this->$plugin_data = $this->get_reveal_slides_setup_data();
-		$settings_page      = add_dashboard_page( $this->plugin_data['Name'] . ' Settings ' . __LINE__, $this->plugin_data['Name'] . ' Settings', 'manage_options', 'wp-admin-grid-dashboardd.php', [ $this, 'reveal_slides_settings_page' ] );
+		$plugin_data = $this->get_reveal_slides_setup_data();
+		$settings_page      = add_dashboard_page( $plugin_data['Name'] . ' Settings ' . __LINE__, $plugin_data['Name'] . ' Settings', 'manage_options', 'wp-admin-grid-dashboardd.php', [ $this, 'reveal_slides_settings_page' ] );
 		$settings_page      = 'a-reveal-slides-dashboard.php';
 		add_action( "load-{$settings_page}", array( $this, 'reveal_slides_load_settings_page' ) );
 	}
@@ -312,7 +312,7 @@ class Reveal_Slides_Setup_Info {
 	}
 
 	public function get_reveal_slides_setup_data() {
-		$plugin_data['Name'] = 'WPE Code Sample';
+		$plugin_data['Name'] = 'Reveal Slides';
 		return $plugin_data;
 	}
 
