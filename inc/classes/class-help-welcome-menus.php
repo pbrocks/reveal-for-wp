@@ -17,7 +17,7 @@ class Reveal_Help_Welcome_Menus {
 		add_action( 'wp_ajax_reveal_slides_request', array( $this, 'run_reveal_slides_function' ) );
 		add_action( 'wp_ajax_nopriv_reveal_slides_request', array( $this, 'run_reveal_slides_function' ) );
 		// add_filter( 'page_attributes_dropdown_pages_args', array( $this, 'dropdown_pages_args_callback' ), 10, 2 );
-		add_filter( 'wp_dropdown_pages', array( $this, 'dropdown_pages_callback' ) );
+		// add_filter( 'wp_dropdown_pages', array( $this, 'dropdown_pages_callback' ) );
 	}
 
 	function dropdown_pages_args_callback( $dropdown_args, $post ) {
