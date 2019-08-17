@@ -68,7 +68,6 @@ wp_head();
 						This slide has fragments which are also stepped through in the notes window.
 					</aside>
 				</section>
-
 				<section>
 					<h1>wp-content</h1>
 					<p>
@@ -79,21 +78,17 @@ wp_head();
 					</aside>
 				</section>
 				<section>
-					<h2 id="block-name">Plugin Header</h2>
-					<div>
-					</div>
-					<aside class="notes">nada</aside>
-				</section>
-				<section>
-					<h2 id="block-name">Image</h2>
-					<div>
-						<div id="slide-image" >
-							<img width="1191" height="765" src="https://wordcamp.local/wp-content/uploads/2019/08/login-screen.png" class="aligncenter wp-post-image" alt="" srcset="https://wordcamp.local/wp-content/uploads/2019/08/login-screen.png 1191w, https://wordcamp.local/wp-content/uploads/2019/08/login-screen-300x193.png 300w, https://wordcamp.local/wp-content/uploads/2019/08/login-screen-768x493.png 768w, https://wordcamp.local/wp-content/uploads/2019/08/login-screen-1024x658.png 1024w" sizes="(max-width: 1191px) 100vw, 1191px" />
-						</div>
-					</div>
+					<h2>Plugin Header</h2>
+					<p>
+					<img src="<?php echo plugins_url( 'inc/assets/wclvpa19/your-stuff.png', dirname( __DIR__ ) ); ?>" width="100%"/>
+					</p>
 					<aside class="notes">bout how to set up a Sitewide Sale.
 						Toggle panel: Reveal Slide Notes
 					</aside>
+				</section>
+				<section style="background: radial-gradient(#fff, transparent);padding: 3rem;" data-background="<?php echo plugins_url( 'inc/assets/wclvpa19/tumblr_mqq36l7h601rvvkr7o1_250.gif', dirname( __DIR__ ) ); ?>">
+					<h2>If you've ever tried to enqueue CSS or Javascript</h2>
+					<aside class="notes">nada</aside>
 				</section>
 			</section>
 
@@ -117,7 +112,7 @@ wp_head();
 					<aside class="notes">This is my Slide Notes</aside>
 				</section>
 				<section>
-					<h2 id="block-name">Strategies I use when building plugins</h2>
+					<h2>Strategies I use when building plugins</h2>
 					<div>
 						<!-- wp:paragraph -->
 						<p>-</p>
@@ -130,7 +125,7 @@ wp_head();
 					</aside>
 				</section>
 				<section>
-					<h2 id="block-name">Stuff they don't teach you at the WordPress Seminary</h2>
+					<h2>Stuff they don't teach you at the WordPress Seminary</h2>
 					<div>
 					</div>
 					<aside class="notes">about how to set up a Sitewide Sale.
