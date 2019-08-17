@@ -84,9 +84,9 @@ wp_head();
 					</aside>
 				</section>
 				<section>
-					<h2>Plugin Header</h2>
+					<h2>Plugins Folder</h2>
 					<p>
-					<img src="<?php echo plugins_url( 'inc/assets/wclvpa19/your-stuff.png', dirname( __DIR__ ) ); ?>" width="100%"/>
+					<img src="<?php echo plugins_url( 'inc/assets/wclvpa19/plugins-folder.png', dirname( __DIR__ ) ); ?>" width="100%"/>
 					</p>
 					<aside class="notes">bout how to set up a Sitewide Sale.
 						Toggle panel: Reveal Slide Notes
@@ -206,6 +206,7 @@ wp_head();
 
 		transition: 'slide', // none/fade/slide/convex/concave/zoom
 
+
 		// Optional reveal.js plugins
 		dependencies: [
 		  { src: '<?php echo REVEAL_JS; ?>/lib/js/classList.js', condition: function() { return !document.body.classList; } },
@@ -213,9 +214,10 @@ wp_head();
 		  { src: '<?php echo REVEAL_JS; ?>/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
 		  { src: '<?php echo REVEAL_JS; ?>/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
 		  { src: '<?php echo REVEAL_JS; ?>/plugin/zoom-js/zoom.js', async: true },
-		{ src: '<?php echo REVEAL_JS; ?>/plugin/menu/menu.js', async: true }
-		]
-	  });
+			{ src: '<?php echo REVEAL_JS; ?>/plugin/notes/notes.js', async: true },
+			{ src: '<?php echo REVEAL_JS; ?>/plugin/menu/menu.js', async: true }
+			]
+		});
 
 	</script>
 <?php

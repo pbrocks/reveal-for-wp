@@ -25,6 +25,12 @@
     font-size: 5rem;
     width: 100%;
 }
+
+.reveal img {
+    height: 650px;
+    width: auto;
+}
+
 h2#block-name {
     width: 77%;
     margin: -3rem auto 1rem;
