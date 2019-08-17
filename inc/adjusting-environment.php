@@ -23,7 +23,7 @@ function adjust_current_presentations_slides( $query ) {
 		$query->set( 'tax_query', $taxquery );
 	}
 }
-add_action( 'init', 'change_reveal_slides_cat_label', 11 );
+// add_action( 'init', 'change_reveal_slides_cat_label', 11 );
 /**
  * Let's rename the native taxonomy Categories to Presentations.
  * This function takes care of the Taxonomy labels.

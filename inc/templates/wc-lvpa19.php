@@ -1,6 +1,10 @@
 <?php
 /**
  * Reveal Page template
+ * body > div > div.slides > section.stack.present > section.has-dark-background.present {
+ *
+	background: radial-gradient(white, transparent);
+ * }
  */
 // get_header();
 wp_head();
@@ -21,8 +25,9 @@ wp_head();
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
+	<?php $theme_css = get_option( 'reveal_theme_css' ); ?>
 	<link rel="stylesheet" href="<?php echo REVEAL_JS; ?>/css/reveal.css">
-	<link rel="stylesheet" href="<?php echo REVEAL_JS; ?>/css/theme/sky.css" id="theme">
+	<link rel="stylesheet" href="<?php echo REVEAL_JS; ?>/css/theme/<?php echo ( $theme_css ? $theme_css : 'sky-too.css' ); ?>" id="theme">
 
 	<!-- Code syntax highlighting -->
 	<link rel="stylesheet" href="<?php echo REVEAL_JS; ?>/lib/css/zenburn.css">
@@ -33,61 +38,103 @@ wp_head();
 			<section>
 				<h1>WordPress Plugin Architecture</h1>
 				<h3>Paul Barthmaier</h3>
+				<h4>NE Tennesee Media Group</h4>
 				<p>
-					<small><i class="fa fa-twitter"></i> <a href="//twitter.com/_pbrocks">@_pbrocks</a></small>
+					<small><a href="//twitter.com/_pbrocks">@_pbrocks</a></small>
 				</p>
+				<aside class="notes">
+				</aside>
 			</section>
-			<!-- Example of nested vertical slides -->
 			<section>
-				<section id="vertical">
-					<h2>Vertical Slides</h2>
-					<h4>Top Level Slide</h4>
+				<section>
+					<h2 id="block-name">Mission</h2>
+					<div id="block-content" class="slide-content">Avoid the temptation of adding to functions.php</div>
+					<aside class="notes">This is my Slide Notes</aside>
+				</section>
+				<section data-background="<?php echo plugins_url( 'assets/image2.png', __DIR__ ); ?>" data-background-size="100px" data-background-repeat="repeat" data-background-color="#111">
+					<h2>Background image</h2>
+					<pre>data-background-size="100px" data-background-repeat="repeat" data-background-color="#111"</pre>
+				</section>
+				<section>
+					<h2 id="block-name">Strategies I use when building plugins</h2>
+					<div id="block-content" class="slide-content">
+						<!-- wp:paragraph -->
+						<p>-</p>
+						<!-- /wp:paragraph -->
+					</div>
+					<aside class="notes">Reveal Slide Notes
+						display Metabox 3 Heading
+						Use this filter: sws_metabox_3_description to provide some instructions about how to set up a Sitewide Sale.
+						Toggle panel: Reveal Slide Notes
+					</aside>
+				</section>
+				<section>
+					<h2 id="block-name">Stuff they don't teach you at the WordPress Seminary</h2>
+					<div id="block-content" class="slide-content">
+					</div>
+					<aside class="notes">Reveal Slide Notes
+						display Metabox 3 Heading
+						Use this filter: sws_metabox_3_description to provide some instructions about how to set up a Sitewide Sale.
+						Toggle panel: Reveal Slide Notes
+					</aside>
+				</section>
+				<section>
+					<h2 id="block-name">Objective: Show Results</h2>
+					<div id="block-content" class="slide-content">
+					</div>
+					<aside class="notes">Reveal Slide Notes
+						display Metabox 3 Heading
+						Use this filter: sws_metabox_3_description to provide some instructions about how to set up a Sitewide Sale.
+						Toggle panel: Reveal Slide Notes
+					</aside>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h1>Why write a Plugin</h1>
 					<p><i class="fa fa-coffee"></i> Slides can be nested inside of each other.</p>
 					<p><i class="fa fa-rocket fa-spin"></i> Use the <em>Space</em> key to navigate through all slides. </p>
-					<br>
-					<a href="#" class="navigate-down">
-						<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-					</a>
 				</section>
-				<section id="vertical-1">
-					<h2>Vertical Level -1</h2>
-					<p>Nested slides are useful for adding additional detail underneath a high level horizontal slide.</p>
-				</section>
-				<section id="vertical-2">
-					<h2>Vertical Level -2</h2>
-					<p>That's it, time to go back up.</p>
-					<br>
-					<a href="#/2">
-						<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Up arrow" style="transform: rotate(180deg); -webkit-transform: rotate(180deg);">
-					</a>
-				</section>
-			</section>
-			<section>
-				<section id="button">
-					<h2>Unsplash Button</h2>
+				<section>
+					<h1>Practical</h1>
 					<p>
-						<?php echo do_shortcode( '[unsplash-ajax]' ); ?>
+					<img src="<?php echo plugins_url( 'inc/assets/wclvpa19/your-stuff.png', dirname( __DIR__ ) ); ?>" width="100%"/>
 					</p>
-				</section>
-			</section>
-			<section>
-				<section id="fragment">
-					<h2>Fragments</h2>
-					<p>There's different types of fragments, <span class="fragment fade-up">like:</span></p>
-					<p class="fragment current-visible grow">grow</p>
-					<p class="fragment current-visible shrink">shrink</p>
-					<p class="fragment current-visible fade-out">fade-out</p>
-					<p class="fragment current-visible fade-up">fade-up (also down, left and right!)</p>
-					<p class="fragment current-visible">current-visible</p>
 					<aside class="notes">
 						This slide has fragments which are also stepped through in the notes window.
 					</aside>
 				</section>
-				<section id="practical">
-					<h2>Practical</h2>
-					<p class="fragment">Highlight <span class="fragment highlight-red">red</span> <span class="fragment highlight-blue">blue</span> <span class="fragment highlight-green">green</span></p>
-					<aside class="notes">
-						This slide has fragments which are also stepped through in the notes window.
+			</section>
+			<section>
+				<section>
+					<h2 id="block-name">What is a Plugin?</h2>
+					<div id="block-content" class="slide-content">
+					</div>
+					<aside class="notes">nada</aside>
+				</section>
+				<section>
+					<h2 id="block-name">Core</h2>
+					<div id="block-content" class="slide-content">
+					</div>
+					<aside class="notes">nada</aside>
+				</section>
+				<section>
+					<h2 id="block-name">Plugin Header</h2>
+					<div id="block-content" class="slide-content">
+					</div>
+					<aside class="notes">nada</aside>
+				</section>
+				<section>
+					<h2 id="block-name">Image</h2>
+					<div id="block-content" class="slide-content">
+						<div id="slide-image" >
+							<img width="1191" height="765" src="https://wordcamp.local/wp-content/uploads/2019/08/login-screen.png" class="aligncenter wp-post-image" alt="" srcset="https://wordcamp.local/wp-content/uploads/2019/08/login-screen.png 1191w, https://wordcamp.local/wp-content/uploads/2019/08/login-screen-300x193.png 300w, https://wordcamp.local/wp-content/uploads/2019/08/login-screen-768x493.png 768w, https://wordcamp.local/wp-content/uploads/2019/08/login-screen-1024x658.png 1024w" sizes="(max-width: 1191px) 100vw, 1191px" />
+						</div>
+					</div>
+					<aside class="notes">Reveal Slide Notes
+						display Metabox 3 Heading
+						Use this filter: sws_metabox_3_description to provide some instructions about how to set up a Sitewide Sale.
+						Toggle panel: Reveal Slide Notes
 					</aside>
 				</section>
 			</section>
@@ -95,7 +142,7 @@ wp_head();
 				<h2>Paul Barthmaier</h2>
 				<h3>WordPress Plugin Architecture</h3>
 				<p>
-					<small><i class="fa fa-twitter"></i> <a href="//twitter.com/_pbrocks">@_pbrocks</a></small>
+					<small><a href="//twitter.com/_pbrocks">@_pbrocks</a></small>
 				</p>
 			</section>
 		</div>

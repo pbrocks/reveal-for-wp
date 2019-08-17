@@ -1,8 +1,8 @@
 <?php
 
-add_filter( 'manage_reveal_slides_posts_columns', 'reveal_slides_columns_head' );
-add_action( 'manage_reveal_slides_posts_custom_column', 'reveal_slides_columns_content', 10, 2 );
-add_filter( 'manage_edit-reveal_slides_sortable_columns', 'slug_title_not_sortable' );
+// add_filter( 'manage_reveal_slides_posts_columns', 'reveal_slides_columns_head' );
+// add_action( 'manage_reveal_slides_posts_custom_column', 'reveal_slides_columns_content', 10, 2 );
+// add_filter( 'manage_edit-reveal_slides_sortable_columns', 'slug_title_not_sortable' );
 // ADD TWO NEW COLUMNS
 function reveal_slides_columns_head( $defaults ) {
 	$defaults['first_column']  = 'First Column';
