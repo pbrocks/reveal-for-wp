@@ -51,10 +51,6 @@ wp_head();
 					<div id="block-content" class="slide-content">Avoid the temptation of adding to functions.php</div>
 					<aside class="notes">This is my Slide Notes</aside>
 				</section>
-				<section data-background="<?php echo plugins_url( 'assets/image2.png', __DIR__ ); ?>" data-background-size="100px" data-background-repeat="repeat" data-background-color="#111">
-					<h2>Background image</h2>
-					<pre>data-background-size="100px" data-background-repeat="repeat" data-background-color="#111"</pre>
-				</section>
 				<section>
 					<h2 id="block-name">Strategies I use when building plugins</h2>
 					<div id="block-content" class="slide-content">
@@ -83,9 +79,39 @@ wp_head();
 					<div id="block-content" class="slide-content">
 					</div>
 					<aside class="notes">Reveal Slide Notes
-						display Metabox 3 Heading
-						Use this filter: sws_metabox_3_description to provide some instructions about how to set up a Sitewide Sale.
+						
 						Toggle panel: Reveal Slide Notes
+					</aside>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h2>WordPress Files</h2>
+					<p>
+					<img src="<?php echo plugins_url( 'inc/assets/wclvpa19/wordpress-files.png', dirname( __DIR__ ) ); ?>" width="100%"/>
+					</p>
+					<aside class="notes">
+						This slide has fragments which are also stepped through in the notes window.
+					</aside>
+				</section>
+
+				<section>
+					<h2>Core Files</h2>
+					<p>
+					<img src="<?php echo plugins_url( 'inc/assets/wclvpa19/wordpress-core-files.png', dirname( __DIR__ ) ); ?>" width="100%"/>
+					</p>
+					<aside class="notes">
+						This slide has fragments which are also stepped through in the notes window.
+					</aside>
+				</section>
+
+				<section>
+					<h1>wp-content</h1>
+					<p>
+					<img src="<?php echo plugins_url( 'inc/assets/wclvpa19/your-stuff.png', dirname( __DIR__ ) ); ?>" width="100%"/>
+					</p>
+					<aside class="notes">
+						where your customizations go
 					</aside>
 				</section>
 			</section>
@@ -95,14 +121,23 @@ wp_head();
 					<p><i class="fa fa-coffee"></i> Slides can be nested inside of each other.</p>
 					<p><i class="fa fa-rocket fa-spin"></i> Use the <em>Space</em> key to navigate through all slides. </p>
 				</section>
-				<section>
-					<h1>Practical</h1>
-					<p>
-					<img src="<?php echo plugins_url( 'inc/assets/wclvpa19/your-stuff.png', dirname( __DIR__ ) ); ?>" width="100%"/>
-					</p>
-					<aside class="notes">
-						This slide has fragments which are also stepped through in the notes window.
-					</aside>
+				<section data-background="<?php echo plugins_url( 'assets/wclvpa19/twentyten.png', __DIR__ ); ?>">
+				</section>
+				<section data-background="<?php echo plugins_url( 'assets/wclvpa19/ajax-color.png', __DIR__ ); ?>">
+				</section>
+				<section data-background-video="<?php echo plugins_url( 'assets/wclvpa19/unsplash.mp4', __DIR__ ); ?>">
+				</section>
+				<section data-background="<?php echo plugins_url( 'assets/wclvpa19/ajax-color.png', __DIR__ ); ?>">
+				</section>
+				<section data-background-video="<?php echo plugins_url( 'assets/wclvpa19/color-change.mp4', __DIR__ ); ?>">
+				</section>
+				<section data-background="<?php echo plugins_url( 'assets/wclvpa19/ajax-color.png', __DIR__ ); ?>">
+				</section>
+				<section data-background-video="<?php echo plugins_url( 'assets/wclvpa19/color-change.mp4', __DIR__ ); ?>">
+				</section>
+				<section data-background="<?php echo plugins_url( 'assets/wclvpa19/ajax-color.png', __DIR__ ); ?>">
+				</section>
+				<section data-background-video="<?php echo plugins_url( 'assets/wclvpa19/color-change.mp4', __DIR__ ); ?>">
 				</section>
 			</section>
 			<section>
