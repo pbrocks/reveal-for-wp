@@ -46,9 +46,15 @@ wp_head();
 				</aside>
 			</section>
 			<section>
-				<section id="what-isa-plugin">What is a Plugin?</h2>
+				<section id="what-isa-plugin">
+					<h2>What is a Plugin?</h2>
 					<div>
 					</div>
+					<aside class="notes">nada</aside>
+				</section>
+				<section>
+					<h2>WordPress Plugin</h2>
+					<h4>php file in the plugins folder/subfolder with a doc block header.</h4>
 					<aside class="notes">nada</aside>
 				</section>
 				<section style="transform: translateY(-5rem);">
