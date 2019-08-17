@@ -46,45 +46,11 @@ wp_head();
 				</aside>
 			</section>
 			<section>
-				<section>
-					<h2 id="block-name">Mission</h2>
-					<div id="block-content" class="slide-content">Avoid the temptation of adding to functions.php</div>
-					<aside class="notes">This is my Slide Notes</aside>
-				</section>
-				<section>
-					<h2 id="block-name">Strategies I use when building plugins</h2>
-					<div id="block-content" class="slide-content">
-						<!-- wp:paragraph -->
-						<p>-</p>
-						<!-- /wp:paragraph -->
+				<section id="what-isa-plugin">What is a Plugin?</h2>
+					<div>
 					</div>
-					<aside class="notes">Reveal Slide Notes
-						display Metabox 3 Heading
-						Use this filter: sws_metabox_3_description to provide some instructions about how to set up a Sitewide Sale.
-						Toggle panel: Reveal Slide Notes
-					</aside>
+					<aside class="notes">nada</aside>
 				</section>
-				<section>
-					<h2 id="block-name">Stuff they don't teach you at the WordPress Seminary</h2>
-					<div id="block-content" class="slide-content">
-					</div>
-					<aside class="notes">Reveal Slide Notes
-						display Metabox 3 Heading
-						Use this filter: sws_metabox_3_description to provide some instructions about how to set up a Sitewide Sale.
-						Toggle panel: Reveal Slide Notes
-					</aside>
-				</section>
-				<section>
-					<h2 id="block-name">Objective: Show Results</h2>
-					<div id="block-content" class="slide-content">
-					</div>
-					<aside class="notes">Reveal Slide Notes
-						
-						Toggle panel: Reveal Slide Notes
-					</aside>
-				</section>
-			</section>
-			<section>
 				<section style="transform: translateY(-5rem);">
 					<h2>WordPress Files</h2>
 					<p>
@@ -111,6 +77,79 @@ wp_head();
 					<aside class="notes">
 						where your customizations go
 					</aside>
+				</section>
+				<section>
+					<h2 id="block-name">Plugin Header</h2>
+					<div>
+					</div>
+					<aside class="notes">nada</aside>
+				</section>
+				<section>
+					<h2 id="block-name">Image</h2>
+					<div>
+						<div id="slide-image" >
+							<img width="1191" height="765" src="https://wordcamp.local/wp-content/uploads/2019/08/login-screen.png" class="aligncenter wp-post-image" alt="" srcset="https://wordcamp.local/wp-content/uploads/2019/08/login-screen.png 1191w, https://wordcamp.local/wp-content/uploads/2019/08/login-screen-300x193.png 300w, https://wordcamp.local/wp-content/uploads/2019/08/login-screen-768x493.png 768w, https://wordcamp.local/wp-content/uploads/2019/08/login-screen-1024x658.png 1024w" sizes="(max-width: 1191px) 100vw, 1191px" />
+						</div>
+					</div>
+					<aside class="notes">bout how to set up a Sitewide Sale.
+						Toggle panel: Reveal Slide Notes
+					</aside>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h2>https://github.com/pbrocks/<br><br>wclvpa19-ajax-plugin</h2>
+				</section>
+				<section data-background="<?php echo plugins_url( 'assets/wclvpa19/github-login.png', __DIR__ ); ?>">
+				</section>
+				<section data-background="<?php echo plugins_url( 'assets/wclvpa19/enqueue-scripts-styles.png', __DIR__ ); ?>">
+				</section>
+				<section data-background="<?php echo plugins_url( 'assets/wclvpa19/login-style.png', __DIR__ ); ?>">
+				</section>
+				<section data-background-video="<?php echo plugins_url( 'assets/wclvpa19/login-scripts.mp4', __DIR__ ); ?>">
+				</section>
+			</section>
+			<section id="mission">
+				<section id="functions.php">
+					<h2>Mission</h2>
+					<div>Avoid the temptation of adding to functions.php</div>
+					<aside class="notes">This is my Slide Notes</aside>
+				</section>
+				<section>
+					<h2 id="block-name">Strategies I use when building plugins</h2>
+					<div>
+						<!-- wp:paragraph -->
+						<p>-</p>
+						<!-- /wp:paragraph -->
+					</div>
+					<aside class="notes">Reveal Slide Notes
+						display Metabox 3 Heading
+						Use this filter: sws_metabox_3_description to provide some instructions about how to set up a Sitewide Sale.
+						Toggle panel: Reveal Slide Notes
+					</aside>
+				</section>
+				<section>
+					<h2 id="block-name">Stuff they don't teach you at the WordPress Seminary</h2>
+					<div>
+					</div>
+					<aside class="notes">about how to set up a Sitewide Sale.
+						Toggle panel: Reveal Slide Notes
+					</aside>
+				</section>
+				<section id="pro-tip">
+					<h2>pbrx Tip:</h2>
+					<h1 class="fragment">Always Get Results</h1>
+					<div>
+					</div>
+					<aside class="notes">Reveal Slide Notes
+						
+						Toggle panel: Reveal Slide Notes
+					</aside>
+				</section>
+			</section>
+			<section>
+				<section>
 				</section>
 			</section>
 			<section>
@@ -139,37 +178,6 @@ wp_head();
 				</section>
 			</section>
 			<section>
-				<section>
-					<h2 id="block-name">What is a Plugin?</h2>
-					<div id="block-content" class="slide-content">
-					</div>
-					<aside class="notes">nada</aside>
-				</section>
-				<section>
-					<h2 id="block-name">Core</h2>
-					<div id="block-content" class="slide-content">
-					</div>
-					<aside class="notes">nada</aside>
-				</section>
-				<section>
-					<h2 id="block-name">Plugin Header</h2>
-					<div id="block-content" class="slide-content">
-					</div>
-					<aside class="notes">nada</aside>
-				</section>
-				<section>
-					<h2 id="block-name">Image</h2>
-					<div id="block-content" class="slide-content">
-						<div id="slide-image" >
-							<img width="1191" height="765" src="https://wordcamp.local/wp-content/uploads/2019/08/login-screen.png" class="aligncenter wp-post-image" alt="" srcset="https://wordcamp.local/wp-content/uploads/2019/08/login-screen.png 1191w, https://wordcamp.local/wp-content/uploads/2019/08/login-screen-300x193.png 300w, https://wordcamp.local/wp-content/uploads/2019/08/login-screen-768x493.png 768w, https://wordcamp.local/wp-content/uploads/2019/08/login-screen-1024x658.png 1024w" sizes="(max-width: 1191px) 100vw, 1191px" />
-						</div>
-					</div>
-					<aside class="notes">Reveal Slide Notes
-						display Metabox 3 Heading
-						Use this filter: sws_metabox_3_description to provide some instructions about how to set up a Sitewide Sale.
-						Toggle panel: Reveal Slide Notes
-					</aside>
-				</section>
 			</section>
 			<section>
 				<h2>Paul Barthmaier</h2>
