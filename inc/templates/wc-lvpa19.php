@@ -54,13 +54,21 @@ wp_head();
 				</section>
 				<section>
 					<h2>WordPress Plugin</h2>
-					<h4>php file in the plugins folder/subfolder with a doc block header.</h4>
+					<br>
+					<h3>php file in the plugins folder/subfolder<br><br> <span class="fragment">with a <b><em>doc block header</em></b>.</span></h3>
 					<aside class="notes">nada</aside>
+				</section>
+				<section style="transform: translateY(-5rem);">
+					<h2>WordPress File Structure</h2>
+
+					<aside class="notes">
+						Let's review the WordPress file structure. In the root of your site, you'll have a collection of folders and files that are prefixed with wp-
+					</aside>
 				</section>
 				<section style="transform: translateY(-5rem);">
 					<h2>WordPress Files</h2>
 					<p>
-					<img src="<?php echo plugins_url( 'inc/assets/wclvpa19/wordpress-files.png', dirname( __DIR__ ) ); ?>" width="100%"/>
+					<img src="<?php echo plugins_url( 'inc/assets/wclvpa19/wordpress-files.png', dirname( __DIR__ ) ); ?>" width="90%" />
 					</p>
 					<aside class="notes">
 						This slide has fragments which are also stepped through in the notes window.
@@ -69,7 +77,7 @@ wp_head();
 
 				<section style="transform: translateY(-5rem);">
 					<h2>Core Files</h2>
-					<img src="<?php echo plugins_url( 'inc/assets/wclvpa19/wordpress-core-files.png', dirname( __DIR__ ) ); ?>" width="100%"/>
+					<img src="<?php echo plugins_url( 'inc/assets/wclvpa19/wordpress-core-files.png', dirname( __DIR__ ) ); ?>" width="90%" />
 					<aside class="notes">
 						This slide has fragments which are also stepped through in the notes window.
 					</aside>
@@ -92,9 +100,63 @@ wp_head();
 						Toggle panel: Reveal Slide Notes
 					</aside>
 				</section>
-				<section style="background: radial-gradient(#fff, transparent);padding: 3rem;" data-background="<?php echo plugins_url( 'inc/assets/wclvpa19/tumblr_mqq36l7h601rvvkr7o1_250.gif', dirname( __DIR__ ) ); ?>">
-					<h2>If you've ever tried to enqueue CSS or Javascript</h2>
-					<aside class="notes">nada</aside>
+				<section>
+					<h2>A Sample Plugin</h2>
+					<img src="<?php echo plugins_url( 'inc/assets/wclvpa19/our-plugin.png', dirname( __DIR__ ) ); ?>" width="80%"/>
+					<aside class="notes">bout how to set up a Sitewide Sale.
+						Toggle panel: Reveal Slide Notes
+					</aside>
+				</section>
+				<section>
+					<h2>Sample Plugin</h2>
+					<img src="<?php echo plugins_url( 'inc/assets/wclvpa19/wclvpa19-ajax-plugin.png', dirname( __DIR__ ) ); ?>" width="80%"/>
+					<aside class="notes">bout how to set up a Sitewide Sale.
+						Toggle panel: Reveal Slide Notes
+					</aside>
+				</section>
+				<section>
+					<h2>Plugin Header</h2>
+					<img src="<?php echo plugins_url( 'inc/assets/wclvpa19/plugin-header.png', dirname( __DIR__ ) ); ?>" width="80%"/>
+					<aside class="notes">bout how to set up a Sitewide Sale.
+						Toggle panel: Reveal Slide Notes
+					</aside>
+				</section>
+				<section>
+					<h2>Info from Doc Block</h2>
+					<p>
+					<img src="<?php echo plugins_url( 'inc/assets/wclvpa19/our-plugin.png', dirname( __DIR__ ) ); ?>" width="100%"/>
+					</p>
+					<aside class="notes">bout how to set up a Sitewide Sale.
+						Toggle panel: Reveal Slide Notes
+					</aside>
+				</section>
+				<section>
+					<h2>Sample Plugin</h2>
+					<img src="<?php echo plugins_url( 'inc/assets/wclvpa19/wclvpa19-ajax-plugin-1.png', dirname( __DIR__ ) ); ?>" width="80%"/>
+					<aside class="notes">bout how to set up a Sitewide Sale.
+						Toggle panel: Reveal Slide Notes
+					</aside>
+				</section>
+				<section>
+					<h2>Sample Plugin</h2>
+					<img src="<?php echo plugins_url( 'inc/assets/wclvpa19/wclvpa19-ajax-plugin-2.png', dirname( __DIR__ ) ); ?>" width="80%"/>
+					<aside class="notes">bout how to set up a Sitewide Sale.
+						Toggle panel: Reveal Slide Notes
+					</aside>
+				</section>
+				<section>
+					<h2>Sample Plugin</h2>
+					<img src="<?php echo plugins_url( 'inc/assets/wclvpa19/wclvpa19-ajax-plugin-4.png', dirname( __DIR__ ) ); ?>" width="80%"/>
+					<aside class="notes">bout how to set up a Sitewide Sale.
+						Toggle panel: Reveal Slide Notes
+					</aside>
+				</section>
+				<section>
+					<h2>Sample Plugin</h2>
+					<img src="<?php echo plugins_url( 'inc/assets/wclvpa19/wclvpa19-ajax-plugin-5.png', dirname( __DIR__ ) ); ?>" width="80%"/>
+					<aside class="notes">bout how to set up a Sitewide Sale.
+						Toggle panel: Reveal Slide Notes
+					</aside>
 				</section>
 			</section>
 
@@ -105,6 +167,11 @@ wp_head();
 				<section data-background="<?php echo plugins_url( 'assets/wclvpa19/github-login.png', __DIR__ ); ?>">
 				</section>
 				<section data-background="<?php echo plugins_url( 'assets/wclvpa19/enqueue-scripts-styles.png', __DIR__ ); ?>">
+				</section>
+
+				<section style="background: radial-gradient(#fff, transparent);padding: 3rem;" data-background="<?php echo plugins_url( 'inc/assets/wclvpa19/tumblr_mqq36l7h601rvvkr7o1_250.gif', dirname( __DIR__ ) ); ?>">
+					<h2>If you've ever tried to enqueue CSS or Javascript</h2>
+					<aside class="notes">nada</aside>
 				</section>
 				<section data-background="<?php echo plugins_url( 'assets/wclvpa19/login-style.png', __DIR__ ); ?>">
 				</section>

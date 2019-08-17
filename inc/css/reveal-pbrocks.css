@@ -26,8 +26,8 @@
     width: 100%;
 }
 
-.reveal img {
-    height: 650px;
+.reveal img.biggish {
+    max-height: 650px;
     width: auto;
 }
 
