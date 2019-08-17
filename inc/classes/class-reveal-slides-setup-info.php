@@ -9,7 +9,7 @@ class Reveal_Slides_Setup_Info {
 		add_action( 'wp_ajax_hide_arrow_request', array( $this, 'run_hide_arrow_function' ) );
 		add_action( 'wp_ajax_nopriv_page_hide_arrow', array( $this, 'run_hide_arrow_function' ) );
 		add_action( 'init', array( $this, 'reveal_slides_admin_init' ) );
-		add_action( 'admin_menu', array( $this, 'reveal_slides_settings_page_init' ) );
+		// add_action( 'admin_menu', array( $this, 'reveal_slides_settings_page_init' ) );
 	}
 	/**
 	 * [reveal_slides_footer]
@@ -23,9 +23,9 @@ class Reveal_Slides_Setup_Info {
 	}
 	public function delete_reveal_slides_tab_settings_page() {
 		global $pagenow;
-		$settings = get_option( 'pbrx_tabbed_settings' );
+		$settings    = get_option( 'pbrx_tabbed_settings' );
 		$plugin_data = $this->get_reveal_slides_setup_data();
-	?>
+		?>
 	
 	<div class="wrap">
 		<h2><?php echo $plugin_data['Name']; ?> Settings</h2>
@@ -79,17 +79,17 @@ class Reveal_Slides_Setup_Info {
 			}
 		}
 	</style>
-	<?php
-	if ( 'true' == esc_attr( $_GET['updated'] ) ) {
-		echo '<div class="updated" ><p> Settings updated.</p></div>';
-	}
+		<?php
+		if ( 'true' == esc_attr( $_GET['updated'] ) ) {
+			echo '<div class="updated" ><p> Settings updated.</p></div>';
+		}
 
-	if ( isset( $_GET['tab'] ) ) {
-		pbrx_admin_tabs( $_GET['tab'] );
-	} else {
-		pbrx_admin_tabs( 'homepage' );
-	}
-	?>
+		if ( isset( $_GET['tab'] ) ) {
+			pbrx_admin_tabs( $_GET['tab'] );
+		} else {
+			pbrx_admin_tabs( 'homepage' );
+		}
+		?>
 
 	<div id="poststuff">
 		<div class="grid-wrapper">
@@ -164,7 +164,7 @@ class Reveal_Slides_Setup_Info {
 			</div>
 		</div>
 	</div>
-	<?php
+		<?php
 	}
 
 	/**
@@ -232,9 +232,9 @@ class Reveal_Slides_Setup_Info {
 	}
 
 	public function reveal_slides_settings_page_init() {
-		$plugin_data = $this->get_reveal_slides_setup_data();
-		$settings_page      = add_dashboard_page( $plugin_data['Name'] . ' Settings ' . __LINE__, $plugin_data['Name'] . ' Settings', 'manage_options', 'wp-admin-grid-dashboardd.php', [ $this, 'reveal_slides_settings_page' ] );
-		$settings_page      = 'a-reveal-slides-dashboard.php';
+		$plugin_data   = $this->get_reveal_slides_setup_data();
+		$settings_page = add_dashboard_page( $plugin_data['Name'] . ' Settings ' . __LINE__, $plugin_data['Name'] . ' Settings', 'manage_options', 'wp-admin-grid-dashboardd.php', [ $this, 'reveal_slides_settings_page' ] );
+		$settings_page = 'a-reveal-slides-dashboard.php';
 		add_action( "load-{$settings_page}", array( $this, 'reveal_slides_load_settings_page' ) );
 	}
 

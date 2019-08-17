@@ -10,7 +10,7 @@ function reveal_slides_install() {
 class Reveal_Help_Welcome_Menus {
 	public function __construct() {
 		add_action( 'admin_init', array( $this, 'reveal_slides_welcome' ), 11 );
-		add_action( 'admin_menu', array( $this, 'a_reveal_slides_dashboard' ) );
+		// add_action( 'admin_menu', array( $this, 'a_reveal_slides_dashboard' ) );
 		add_action( 'admin_head', array( $this, 'admin_add_help_tab' ) );
 		// add_action( 'admin_enqueue_scripts', array( $this, 'initialize_reveal_slides_scripts' ) );
 		// add_action( 'wp_enqueue_scripts', array( $this, 'initialize_reveal_slides_scripts' ) );
@@ -55,8 +55,8 @@ class Reveal_Help_Welcome_Menus {
 	 */
 	public function a_reveal_slides_dashboard() {
 		global $reveal_slides_help_page;
-		$slug                  = preg_replace( '/_+/', '-', __FUNCTION__ );
-		$label                 = ucwords( preg_replace( '/_+/', ' ', __FUNCTION__ ) );
+		$slug                    = preg_replace( '/_+/', '-', __FUNCTION__ );
+		$label                   = ucwords( preg_replace( '/_+/', ' ', __FUNCTION__ ) );
 		$reveal_slides_help_page = add_dashboard_page( __( $label, 'reveal-with-wp' ), __( $label, 'reveal-with-wp' ), 'manage_options', $slug . '.php', array( $this, 'a_reveal_slides_response' ) );
 
 		add_action( 'load-' . $reveal_slides_help_page, array( $this, 'admin_add_help_tab' ) );
@@ -116,10 +116,10 @@ class Reveal_Help_Welcome_Menus {
 			'reveal-with-wp',
 			'reveal_slides_object',
 			array(
-				'code_ajaxurl'      => admin_url( 'admin-ajax.php' ),
-				'random_number'     => time(),
+				'code_ajaxurl'        => admin_url( 'admin-ajax.php' ),
+				'random_number'       => time(),
 				'reveal_slides_nonce' => wp_create_nonce( 'reveal-with-wp-nonce' ),
-				'explanation_one'   => 'Set up anything from the PHP side here in this function (' . __FUNCTION__ . '). Add the variable to the JS file.',
+				'explanation_one'     => 'Set up anything from the PHP side here in this function (' . __FUNCTION__ . '). Add the variable to the JS file.',
 			)
 		);
 		wp_enqueue_script( 'reveal-with-wp' );

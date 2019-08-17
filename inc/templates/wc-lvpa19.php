@@ -85,7 +85,7 @@ wp_head();
 				</section>
 			</section>
 			<section>
-				<section>
+				<section style="transform: translateY(-5rem);">
 					<h2>WordPress Files</h2>
 					<p>
 					<img src="<?php echo plugins_url( 'inc/assets/wclvpa19/wordpress-files.png', dirname( __DIR__ ) ); ?>" width="100%"/>
@@ -95,11 +95,9 @@ wp_head();
 					</aside>
 				</section>
 
-				<section>
+				<section style="transform: translateY(-5rem);">
 					<h2>Core Files</h2>
-					<p>
 					<img src="<?php echo plugins_url( 'inc/assets/wclvpa19/wordpress-core-files.png', dirname( __DIR__ ) ); ?>" width="100%"/>
-					</p>
 					<aside class="notes">
 						This slide has fragments which are also stepped through in the notes window.
 					</aside>
@@ -121,8 +119,6 @@ wp_head();
 					<p><i class="fa fa-coffee"></i> Slides can be nested inside of each other.</p>
 					<p><i class="fa fa-rocket fa-spin"></i> Use the <em>Space</em> key to navigate through all slides. </p>
 				</section>
-				<section data-background="<?php echo plugins_url( 'assets/wclvpa19/twentyten.png', __DIR__ ); ?>">
-				</section>
 				<section data-background="<?php echo plugins_url( 'assets/wclvpa19/ajax-color.png', __DIR__ ); ?>">
 				</section>
 				<section data-background-video="<?php echo plugins_url( 'assets/wclvpa19/unsplash.mp4', __DIR__ ); ?>">
@@ -133,11 +129,13 @@ wp_head();
 				</section>
 				<section data-background="<?php echo plugins_url( 'assets/wclvpa19/ajax-color.png', __DIR__ ); ?>">
 				</section>
-				<section data-background-video="<?php echo plugins_url( 'assets/wclvpa19/color-change.mp4', __DIR__ ); ?>">
+				<section data-background="<?php echo plugins_url( 'assets/wclvpa19/twentyten.png', __DIR__ ); ?>">
+				</section>
+				<section data-background-video="<?php echo plugins_url( 'assets/wclvpa19/three-areas.mp4', __DIR__ ); ?>">
 				</section>
 				<section data-background="<?php echo plugins_url( 'assets/wclvpa19/ajax-color.png', __DIR__ ); ?>">
 				</section>
-				<section data-background-video="<?php echo plugins_url( 'assets/wclvpa19/color-change.mp4', __DIR__ ); ?>">
+				<section data-background-video="<?php echo plugins_url( 'assets/wclvpa19/flashcards.mp4', __DIR__ ); ?>">
 				</section>
 			</section>
 			<section>
